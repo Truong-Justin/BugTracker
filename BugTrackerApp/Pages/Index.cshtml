@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bugs List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.bug[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bug[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bug[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bug[0].Priority)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bug[0].Assignment)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bug in Model.bug)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => bug.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => bug.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => bug.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => bug.Priority)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => bug.Assignment)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
