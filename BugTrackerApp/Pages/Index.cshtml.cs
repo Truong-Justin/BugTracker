@@ -11,7 +11,7 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        bug = bugObj.GetAllBugs().ToList();
+        bug = bugObj.GetAllBugs();
     }
 }
 
