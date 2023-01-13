@@ -50,8 +50,19 @@ namespace BugTrackerApp.Models
             using(SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
 
-                SQLiteCommand command = new SQLiteCommand($"INSERT INTO 'Bugs' VALUES('{Id}', '{Date}', '{Description}', '{Priority}', '{Assignment}')", connection);
-                command.CommandType = CommandType.Text;
+                SQLiteCommand command = new SQLiteCommand(connection);
+                
+                command.CommandText =
+                @"
+                    INSERT INTO Bugs (Id, Date, Description, Priority, Assignment)
+                    VALUES ($Id,$Date,$Description,$Priority,$Assignment)
+                ";
+
+                command.Parameters.AddWithValue("$Id", Id);
+                command.Parameters.AddWithValue("Date", Date);
+                command.Parameters.AddWithValue("Description", Description);
+                command.Parameters.AddWithValue("Priority", Priority);
+                command.Parameters.AddWithValue("Assignment", Assignment);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -60,9 +71,24 @@ namespace BugTrackerApp.Models
         }
 
         //deletes a bug from database by id
-        public void deleteBug(int id)
+        public void deleteBug(int Id)
         {
+            using(SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                SQLiteCommand command = new SQLiteCommand(connection);
 
+                command.CommandText =
+                @"
+                    DELETE FROM BUGS
+                    WHERE Id = $Id
+                 ";
+
+                command.Parameters.AddWithValue("$id", Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         //updates bug from database by id

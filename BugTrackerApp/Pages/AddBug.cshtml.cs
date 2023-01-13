@@ -12,16 +12,16 @@ namespace BugTrackerApp.Pages
 {
 	public class AddBugModel : PageModel
     {
-        //BugDataAccess objBug = new BugDataAccess();
+        BugDataAccess objBug = new BugDataAccess();
 
         public Bug bug { get; set; }
-        BugDataAccess bugObj = new BugDataAccess();
+        
 
 
         public ActionResult OnPost(int Id, string Date, string Description, string Priority, string Assignment)
         {
 
-            bugObj.addBug(Id, Date, Description, Priority, Assignment);
+            objBug.addBug(Id, Date, Description, Priority, Assignment);
             return RedirectToPage("./Index");
         }
         
