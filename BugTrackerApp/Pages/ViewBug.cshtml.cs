@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BugTrackerApp.Pages
 {
-	public class DeleteBugModel : PageModel
+	public class ViewBugModel : PageModel
     {
         public void OnGet()
         {

@@ -25,6 +25,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.bug[0].Assignment)
                 </th>
+                <th scope="col">Controls</th>
             </tr>
         </thead>
         <tbody>
@@ -46,12 +47,21 @@
                     <td>
                         @Html.DisplayFor(modelItem => bug.Assignment)
                     </td>
+                    <td>
+                       
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@bug.Id">
+                            <button class="btn btn-warning" type="submit">Delete</button>
+                            <a class="btn btn-dark" asp-page="EditBug" asp-route-id="@bug.Id">Edit</a>
+                        </form>
+
+                      
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
-    <card class="bg-light">
-        <a class="my-5 " href="AddBug">Add a new bug</a>
-    </card>
+
+    <a class="my-5 btn btn-dark" href="AddBug">Add a new bug</a>
+
 
 </div>

@@ -12,6 +12,15 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         bug = bugObj.GetAllBugs();
+        
     }
+
+    public IActionResult OnPostDelete(int Id)
+    {
+        bugObj.deleteBug(Id);
+        return RedirectToAction("Get");
+    }
+
+   
 }
 

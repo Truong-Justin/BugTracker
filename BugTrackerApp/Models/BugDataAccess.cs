@@ -59,10 +59,10 @@ namespace BugTrackerApp.Models
                 ";
 
                 command.Parameters.AddWithValue("$Id", Id);
-                command.Parameters.AddWithValue("Date", Date);
-                command.Parameters.AddWithValue("Description", Description);
-                command.Parameters.AddWithValue("Priority", Priority);
-                command.Parameters.AddWithValue("Assignment", Assignment);
+                command.Parameters.AddWithValue("$Date", Date);
+                command.Parameters.AddWithValue("$Description", Description);
+                command.Parameters.AddWithValue("$Priority", Priority);
+                command.Parameters.AddWithValue("$Assignment", Assignment);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -92,15 +92,62 @@ namespace BugTrackerApp.Models
         }
 
         //updates bug from database by id
-        public void editBug(int id)
+        public void editBug(string Date, string Description, string Priority, string Assignment)
         {
+            using(SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                SQLiteCommand command = new SQLiteCommand(connection);
 
+                command.CommandText =
+                @"
+                    UPDATE Bugs
+                    Date = $Date,
+                    Description = $Description,
+                    Priority = $Priority,
+                    Assignment = $Assignment
+                ";
+
+                command.Parameters.AddWithValue("$Date", Date);
+                command.Parameters.AddWithValue("$Description", Description);
+                command.Parameters.AddWithValue("$Priority", Priority);
+                command.Parameters.AddWithValue("Assignment", Assignment);
+
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         //selects a bug to view more information about
-        public void viewBug(int id)
+        public Bug viewBug(int Id)
         {
-            
+            Bug newBug = new Bug();
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                SQLiteCommand command = new SQLiteCommand("SELECT * FROM Bugs;", connection);
+                command.CommandType = CommandType.Text;
+
+                connection.Open();
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    newBug.Id = Convert.ToInt32(reader["Id"]);
+                    newBug.Date = Convert.ToString(reader["Date"]);
+                    newBug.Description = Convert.ToString(reader["Description"]);
+                    newBug.Priority = Convert.ToString(reader["Prioirty"]);
+                    newBug.Assignment = Convert.ToString(reader["Assignment"]);
+
+                }
+
+                connection.Close();
+
+            }
+
+            return newBug;
            
         }
     }

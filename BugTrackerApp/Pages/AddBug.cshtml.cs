@@ -15,13 +15,14 @@ namespace BugTrackerApp.Pages
         BugDataAccess objBug = new BugDataAccess();
 
         public Bug bug { get; set; }
+        public int nextId = 2;
         
 
 
-        public ActionResult OnPost(int Id, string Date, string Description, string Priority, string Assignment)
+        public ActionResult OnPost(string Date, string Description, string Priority, string Assignment)
         {
-
-            objBug.addBug(Id, Date, Description, Priority, Assignment);
+            nextId++;
+            objBug.addBug(nextId, Date, Description, Priority, Assignment);
             return RedirectToPage("./Index");
         }
         
