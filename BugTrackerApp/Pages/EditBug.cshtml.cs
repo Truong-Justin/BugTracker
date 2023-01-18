@@ -12,14 +12,19 @@ namespace BugTrackerApp.Pages
     {
         BugDataAccess objBug = new BugDataAccess();
 
+        [BindProperty]
         public Bug bug { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet(int Id)
         {
+            bug = objBug.viewBug(Id);
+            return Page();
         }
 
-        public IActionResult OnPost(string Date, string Description, string Priority, string Assignment)
+        public IActionResult OnPost(int Id, string Date, string Description, string Priority, string Assignment)
         {
+            
+
             if (Date is null)
                 Date = bug.Date;
 
@@ -32,7 +37,7 @@ namespace BugTrackerApp.Pages
             if (Assignment is null)
                 Assignment = bug.Assignment;
 
-            objBug.editBug(Date, Description, Priority, Assignment);
+            objBug.editBug(Id, Date, Description, Priority, Assignment);
             return RedirectToPage("Index");
         }
     }

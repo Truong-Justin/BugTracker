@@ -92,7 +92,7 @@ namespace BugTrackerApp.Models
         }
 
         //updates bug from database by id
-        public void editBug(string Date, string Description, string Priority, string Assignment)
+        public void editBug(int Id, string Date, string Description, string Priority, string Assignment)
         {
             using(SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -100,18 +100,19 @@ namespace BugTrackerApp.Models
 
                 command.CommandText =
                 @"
-                    UPDATE Bugs
+                    UPDATE Bugs SET
                     Date = $Date,
                     Description = $Description,
                     Priority = $Priority,
                     Assignment = $Assignment
+                    WHERE Id = $Id
                 ";
-
+          
                 command.Parameters.AddWithValue("$Date", Date);
                 command.Parameters.AddWithValue("$Description", Description);
                 command.Parameters.AddWithValue("$Priority", Priority);
-                command.Parameters.AddWithValue("Assignment", Assignment);
-
+                command.Parameters.AddWithValue("$Assignment", Assignment);
+                command.Parameters.AddWithValue("$Id", Id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -126,8 +127,16 @@ namespace BugTrackerApp.Models
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                SQLiteCommand command = new SQLiteCommand("SELECT * FROM Bugs;", connection);
-                command.CommandType = CommandType.Text;
+                SQLiteCommand command = new SQLiteCommand(connection);
+
+                command.CommandText =
+                @"
+                    SELECT *
+                    FROM BUGS
+                    WHERE Id = $Id
+                ";
+
+                command.Parameters.AddWithValue("$Id", Id);
 
                 connection.Open();
                 SQLiteDataReader reader = command.ExecuteReader();
@@ -138,13 +147,12 @@ namespace BugTrackerApp.Models
                     newBug.Id = Convert.ToInt32(reader["Id"]);
                     newBug.Date = Convert.ToString(reader["Date"]);
                     newBug.Description = Convert.ToString(reader["Description"]);
-                    newBug.Priority = Convert.ToString(reader["Prioirty"]);
+                    newBug.Priority = Convert.ToString(reader["Priority"]);
                     newBug.Assignment = Convert.ToString(reader["Assignment"]);
 
                 }
 
                 connection.Close();
-
             }
 
             return newBug;

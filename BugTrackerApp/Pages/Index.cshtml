@@ -5,8 +5,8 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bugs List</h1>
-    <h3>@ViewData["sentence"]</h3>
+    <h2 class="display-4">Bugs List</h2>
+    <hr />
     <table class="table">
         <thead>
             <tr>
@@ -52,6 +52,7 @@
                         <form method="post" asp-page-handler="Delete" asp-route-id="@bug.Id">
                             <button class="btn btn-warning" type="submit">Delete</button>
                             <a class="btn btn-dark" asp-page="EditBug" asp-route-id="@bug.Id">Edit</a>
+                            <a class="btn btn-secondary" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
                         </form>
 
                       
