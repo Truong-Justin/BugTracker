@@ -24,20 +24,13 @@ namespace BugTrackerApp.Pages
         public IActionResult OnPost(int Id, string Date, string Description, string Priority, string Assignment)
         {
             
-
-            if (Date is null)
-                Date = bug.Date;
-
-            if (Description is null)
-                Description = bug.Description;
-
-            if (Priority is null)
-                Priority = bug.Priority;
-
-            if (Assignment is null)
-                Assignment = bug.Assignment;
+            Date = bug.Date;
+            Description = bug.Description;
+            Priority = bug.Priority;
+            Assignment = bug.Assignment;
 
             objBug.editBug(Id, Date, Description, Priority, Assignment);
+
             return RedirectToPage("Index");
         }
     }
