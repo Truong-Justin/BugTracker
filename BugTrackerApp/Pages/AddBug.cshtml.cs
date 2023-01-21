@@ -14,7 +14,7 @@ namespace BugTrackerApp.Pages
     {
         BugDataAccess objBug = new BugDataAccess();
 
-        public Bug bug { get; set; }
+        public Bug? bug { get; set; }
         public static int nextId = 2;
         
 

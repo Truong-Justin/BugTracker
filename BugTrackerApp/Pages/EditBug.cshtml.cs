@@ -13,7 +13,7 @@ namespace BugTrackerApp.Pages
         BugDataAccess objBug = new BugDataAccess();
 
         [BindProperty]
-        public Bug bug { get; set; }
+        public Bug? bug { get; set; }
 
         public IActionResult OnGet(int Id)
         {
