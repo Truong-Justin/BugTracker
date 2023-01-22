@@ -14,16 +14,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\Database\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\Database\" />
-    <Content Remove="wwwroot\Database\Bugs.db" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\Database\Bugs.db" />
   </ItemGroup>
 </Project>

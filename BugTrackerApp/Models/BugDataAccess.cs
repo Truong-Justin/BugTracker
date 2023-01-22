@@ -8,7 +8,7 @@ namespace BugTrackerApp.Models
 {
     public class BugDataAccess
     {
-        string connectionString = "DataSource=C:\\home\\site\\wwwroot\\wwwroot\\Database\\Bugs.db";
+        string connectionString = "DataSource=Bugs.db";
 
         //returns all record within Bug database
         public List<Bug> GetAllBugs()
