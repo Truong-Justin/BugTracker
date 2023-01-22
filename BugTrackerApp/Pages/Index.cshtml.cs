@@ -11,8 +11,16 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        bug = bugObj.GetAllBugs();
-        
+        try
+        {
+            bug = bugObj.GetAllBugs();
+        }
+
+        catch(System.Data.SQLite.SQLiteException)
+        {
+            bugObj.makeTable();
+            bug = bugObj.GetAllBugs();
+        }
     }
 
     public IActionResult OnPostDelete(int Id)
