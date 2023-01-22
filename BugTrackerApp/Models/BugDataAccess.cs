@@ -4,15 +4,15 @@ using System.Data;
 using System.Data.SQLite;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Http.HttpResults;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Transactions;
+
+
 
 
 namespace BugTrackerApp.Models
 {
     public class BugDataAccess
     {
-        string connectionString = "DataSource=Bugs.db";
+        string connectionString = "DataSource=wwwroot/Bugs.db";
 
         public void makeTable()
         {
@@ -89,7 +89,7 @@ namespace BugTrackerApp.Models
                 command.Parameters.AddWithValue("$Assignment", Assignment);
 
                 connection.Open();
-                 command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
                 connection.Close();
             }
         }
