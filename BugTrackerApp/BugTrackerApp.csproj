@@ -18,10 +18,4 @@
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\Bugs.db" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\Bugs.db" />
-  </ItemGroup>
 </Project>
