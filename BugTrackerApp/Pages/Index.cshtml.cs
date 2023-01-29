@@ -11,6 +11,8 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
+        //try to load page with list of bugs from bugs databaseb;
+        //if database doesn't exist, create the database file
         try
         {
             bug = bugObj.GetAllBugs();
@@ -23,6 +25,7 @@ public class IndexModel : PageModel
         }
     }
 
+    //delete a bug by ID on POST request
     public IActionResult OnPostDelete(int Id)
     {
         bugObj.deleteBug(Id);

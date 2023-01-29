@@ -10,10 +10,13 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BugTrackerApp.Models
 {
+    //Class handles the database logic 
     public class BugDataAccess
     {
         string connectionString = "DataSource=wwwroot/Bugs.db";
 
+
+        //Creates a Bugs database file 
         public void makeTable()
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -34,8 +37,7 @@ namespace BugTrackerApp.Models
             }
         }
 
-
-        //returns all record within Bug database
+        //Returns all record within Bug database
         public List<Bug> GetAllBugs()
         {
             List<Bug> bugList = new List<Bug>();
@@ -45,22 +47,24 @@ namespace BugTrackerApp.Models
                 using (SQLiteCommand command = new SQLiteCommand("SELECT * FROM Bugs;", connection))
                 {
                     command.CommandType = CommandType.Text;
-
                     connection.Open();
-                    SQLiteDataReader reader = command.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        Bug newBug = new Bug();
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    { 
 
-                        newBug.Id = Convert.ToInt32(reader["Id"]);
-                        newBug.Date = Convert.ToString(reader["Date"]);
-                        newBug.Description = Convert.ToString(reader["Description"]);
-                        newBug.Priority = Convert.ToString(reader["Priority"]);
-                        newBug.Assignment = Convert.ToString(reader["Assignment"]);
+                        while (reader.Read())
+                        {
+                            Bug newBug = new Bug();
 
-                        bugList.Add(newBug);
+                            newBug.Id = Convert.ToInt32(reader["Id"]);
+                            newBug.Date = Convert.ToString(reader["Date"]);
+                            newBug.Description = Convert.ToString(reader["Description"]);
+                            newBug.Priority = Convert.ToString(reader["Priority"]);
+                            newBug.Assignment = Convert.ToString(reader["Assignment"]);
 
+                            bugList.Add(newBug);
+
+                        }
                     }
 
                 }
@@ -70,7 +74,7 @@ namespace BugTrackerApp.Models
             return bugList;
         }
 
-        //adds a new bug record to database
+        //Adds a new bug record to database
         public void addBug(int Id, string Date, string Description, string Priority, string Assignment)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -80,9 +84,9 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                    INSERT INTO Bugs (Id, Date, Description, Priority, Assignment)
-                    VALUES ($Id,$Date,$Description,$Priority,$Assignment)
-                ";
+                        INSERT INTO Bugs (Id, Date, Description, Priority, Assignment)
+                        VALUES ($Id,$Date,$Description,$Priority,$Assignment)
+                    ";
 
                     command.Parameters.AddWithValue("$Id", Id);
                     command.Parameters.AddWithValue("$Date", Date);
@@ -118,7 +122,7 @@ namespace BugTrackerApp.Models
             
         }
 
-        //updates bug from database by id
+        //Updates bug from database by id
         public void editBug(int Id, string Date, string Description, string Priority, string Assignment)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -148,7 +152,7 @@ namespace BugTrackerApp.Models
             }
         }
 
-        //selects a bug to view more information about
+        //Selects a bug to view more information about
         public Bug viewBug(int Id)
         {
             Bug newBug = new Bug();

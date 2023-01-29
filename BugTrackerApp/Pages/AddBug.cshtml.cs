@@ -18,7 +18,8 @@ namespace BugTrackerApp.Pages
         public static int nextId = 2;
         
 
-
+        //Collects the user input and adds a new bug record
+        //to the database
         public ActionResult OnPost(string Date, string Description, string Priority, string Assignment)
         {
             AddBugModel.nextId++;

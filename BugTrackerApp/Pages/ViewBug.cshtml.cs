@@ -11,9 +11,11 @@ namespace BugTrackerApp.Pages
 	public class ViewBugModel : PageModel
     {
         BugDataAccess objBug = new BugDataAccess();
-
         public Bug bug { get; set; }
 
+
+        //data from the selected bug is saved within the bug object
+        //and used to output information to user on GET request
         public ActionResult OnGet(int Id)
         {
             bug = objBug.viewBug(Id);

@@ -15,12 +15,19 @@ namespace BugTrackerApp.Pages
         [BindProperty]
         public Bug? bug { get; set; }
 
+
+        //When the page is loaded, output a form to collect
+        //new data from user to update bug record
         public IActionResult OnGet(int Id)
         {
             bug = objBug.viewBug(Id);
             return Page();
         }
 
+
+        //Populate the fields with the attributes of the selected
+        //bug the user wants to update; When the user enters the
+        //new data and clicks the save button, the bug record is updated
         public IActionResult OnPost(int Id, string Date, string Description, string Priority, string Assignment)
         {
             

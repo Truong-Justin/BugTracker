@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BugTrackerApp.Models
 {
+	//Class represents the data/attributes
+	//found in the Bugs database
 	public class Bug
 	{
 		public int Id { get; set; }
