@@ -13,7 +13,7 @@ namespace BugTrackerApp.Models
     //Class handles the database logic 
     public class BugDataAccess
     {
-        string connectionString = "DataSource=wwwroot/Bugs.db";
+        string connectionString = "DataSource=wwwroot/db/Bugs.db;journal mode=On;";
 
 
         //Creates a Bugs database file 
@@ -21,8 +21,10 @@ namespace BugTrackerApp.Models
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
+                connection.Open();
+
                 using (SQLiteCommand command = new SQLiteCommand(
-                        "BEGIN TRANSACTION;" +
+                        "BEGIN TRANSACTION;" + 
                         "CREATE TABLE `Bugs` (`Id` NUMERIC PRIMARY KEY,`Date` varchar(10),`Description` varchar(125),`Priority` varchar(10),`Assignment` varchar(10));" +
                         "INSERT INTO 'Bugs' VALUES('1', '2022-01-08', 'This bug is making the web app crash', 'High', 'Luke');" +
                         "INSERT INTO 'Bugs' VALUES('2', '2022-01-15', 'A bug is making the JS animation script to not work when the page is loaded', 'Low', 'Lucy');" +
@@ -31,7 +33,6 @@ namespace BugTrackerApp.Models
 
                     command.CommandType = CommandType.Text;
 
-                    connection.Open();
                     command.ExecuteNonQuery();
                 }
             }
@@ -44,10 +45,11 @@ namespace BugTrackerApp.Models
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
+                connection.Open();
+
                 using (SQLiteCommand command = new SQLiteCommand("SELECT * FROM Bugs;", connection))
                 {
                     command.CommandType = CommandType.Text;
-                    connection.Open();
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     { 
@@ -79,6 +81,7 @@ namespace BugTrackerApp.Models
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
+                connection.Open();
 
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
@@ -94,7 +97,6 @@ namespace BugTrackerApp.Models
                     command.Parameters.AddWithValue("$Priority", Priority);
                     command.Parameters.AddWithValue("$Assignment", Assignment);
 
-                    connection.Open();
                     command.ExecuteNonQuery();
                 }
             }
@@ -105,6 +107,8 @@ namespace BugTrackerApp.Models
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
+                connection.Open();
+
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText =
@@ -115,7 +119,6 @@ namespace BugTrackerApp.Models
 
                     command.Parameters.AddWithValue("$id", Id);
 
-                    connection.Open();
                     command.ExecuteNonQuery();
                 }
             }
@@ -127,6 +130,8 @@ namespace BugTrackerApp.Models
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
+                connection.Open();
+
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText =
@@ -145,7 +150,6 @@ namespace BugTrackerApp.Models
                     command.Parameters.AddWithValue("$Assignment", Assignment);
                     command.Parameters.AddWithValue("$Id", Id);
 
-                    connection.Open();
                     command.ExecuteNonQuery();
                     
                 }
@@ -159,6 +163,8 @@ namespace BugTrackerApp.Models
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
+                connection.Open();
+
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText =
@@ -170,20 +176,21 @@ namespace BugTrackerApp.Models
 
                     command.Parameters.AddWithValue("$Id", Id);
 
-                    connection.Open();
-                    SQLiteDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
 
-                        newBug.Id = Convert.ToInt32(reader["Id"]);
-                        newBug.Date = Convert.ToString(reader["Date"]);
-                        newBug.Description = Convert.ToString(reader["Description"]);
-                        newBug.Priority = Convert.ToString(reader["Priority"]);
-                        newBug.Assignment = Convert.ToString(reader["Assignment"]);
+                        while (reader.Read())
+                        {
+
+                            newBug.Id = Convert.ToInt32(reader["Id"]);
+                            newBug.Date = Convert.ToString(reader["Date"]);
+                            newBug.Description = Convert.ToString(reader["Description"]);
+                            newBug.Priority = Convert.ToString(reader["Priority"]);
+                            newBug.Assignment = Convert.ToString(reader["Assignment"]);
+
+                        }
 
                     }
-
                 }
 
             }
