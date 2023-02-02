@@ -4,65 +4,69 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h2 class="display-4">Bugs List</h2>
-    <hr />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.bug[0].Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.bug[0].Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.bug[0].Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(Model => Model.bug[0].Priority)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.bug[0].Assignment)
-                </th>
-                <th scope="col">Controls</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var bug in Model.bug)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => bug.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => bug.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => bug.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => bug.Priority)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => bug.Assignment)
-                    </td>
-                    <td>
+<div class="col-lg-10 mx-auto">
+    <div class="card mt-5 border-secondary">
+        <div class="mx-5 my-5">
+            <h2 class="display-4">Bugs List</h2>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.bugs[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.bugs[0].Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.bugs[0].Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(Model => Model.bugs[0].Priority)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.bugs[0].Assignment)
+                        </th>
+                        <th scope="col">Controls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bug in Model.bugs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Assignment)
+                            </td>
+                            <td>
                        
-                        <form method="post" asp-page-handler="Delete" asp-route-id="@bug.Id">
-                            <button class="btn btn-warning" type="submit">Delete</button>
-                            <a class="btn btn-dark" asp-page="EditBug" asp-route-id="@bug.Id">Edit</a>
-                            <a class="btn btn-secondary" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
-                        </form>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@bug.Id">
+                                    <button class="btn btn-warning" type="submit">Delete</button>
+                                    <a class="btn btn-dark" asp-page="EditBug" asp-route-id="@bug.Id">Edit</a>
+                                    <a class="btn btn-secondary" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
+                                </form>
 
                       
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <a class="my-5 btn btn-dark" href="AddBug">Add a new bug</a>
-
-
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="mx-auto">
+                <a class="my-5 btn btn-dark mx-auto" href="AddBug">Add a new bug</a>
+            </div>
+        </div>
+    </div>
+        
 </div>

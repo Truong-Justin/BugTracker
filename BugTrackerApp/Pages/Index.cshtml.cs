@@ -7,25 +7,38 @@ namespace BugTrackerApp.Pages;
 public class IndexModel : PageModel
 {
     BugDataAccess bugObj = new BugDataAccess();
-    public List<Bug> bug { get; set; }
+    public List<Bug> bugs { get; set; }
 
     public void OnGet()
     {
-        //try to load page with list of bugs from bugs databaseb;
-        //if database doesn't exist, create the database file
+        //Try to load page with list of bugs from bugs databaseb;
+        //If database doesn't exist, create the database file
         try
         {
-            bug = bugObj.GetAllBugs();
+            bugs = bugObj.GetAllBugs();
+
+            //If description is too long, truncate it so it doesn't
+            //break the UI
+            foreach (Bug bug in bugs.Where(b => b.Description.Length > 60))
+            {
+                bug.Description = bug.Description.Substring(0, 60) + "...";
+            }
+
         }
 
         catch(System.Data.SQLite.SQLiteException)
         {
             bugObj.makeTable();
-            bug = bugObj.GetAllBugs();
+            bugs = bugObj.GetAllBugs();
+
+            foreach (Bug bug in bugs.Where(b => b.Description.Length > 60))
+            {
+                bug.Description = bug.Description.Substring(0, 60) + "...";
+            }
         }
     }
 
-    //delete a bug by ID on POST request
+    //Delete a bug by ID on POST request
     public IActionResult OnPostDelete(int Id)
     {
         bugObj.deleteBug(Id);

@@ -59,7 +59,7 @@ namespace BugTrackerApp.Models
                             Bug newBug = new Bug();
 
                             newBug.Id = Convert.ToInt32(reader["Id"]);
-                            newBug.Date = Convert.ToString(reader["Date"]);
+                            newBug.Date = DateOnly.Parse(reader["Date"].ToString());
                             newBug.Description = Convert.ToString(reader["Description"]);
                             newBug.Priority = Convert.ToString(reader["Priority"]);
                             newBug.Assignment = Convert.ToString(reader["Assignment"]);
@@ -77,7 +77,7 @@ namespace BugTrackerApp.Models
         }
 
         //Adds a new bug record to database
-        public void addBug(int Id, string Date, string Description, string Priority, string Assignment)
+        public void addBug(int Id, DateOnly Date, string Description, string Priority, string Assignment)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -126,7 +126,7 @@ namespace BugTrackerApp.Models
         }
 
         //Updates bug from database by id
-        public void editBug(int Id, string Date, string Description, string Priority, string Assignment)
+        public void editBug(int Id, DateOnly Date, string Description, string Priority, string Assignment)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -183,7 +183,7 @@ namespace BugTrackerApp.Models
                         {
 
                             newBug.Id = Convert.ToInt32(reader["Id"]);
-                            newBug.Date = Convert.ToString(reader["Date"]);
+                            newBug.Date = DateOnly.Parse(reader["Date"].ToString());
                             newBug.Description = Convert.ToString(reader["Description"]);
                             newBug.Priority = Convert.ToString(reader["Priority"]);
                             newBug.Assignment = Convert.ToString(reader["Assignment"]);

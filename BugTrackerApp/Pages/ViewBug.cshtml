@@ -5,25 +5,29 @@
 }
 
 <div class="container">
-    <h2>Bug Details</h2>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(model => model.bug.Id)</dt>
-        <dd class="mb-4">@Html.DisplayFor(model => model.bug.Id)</dd>
+    <div class="card mx-auto mt-5 border-secondary">
+        <h2 class="ms-5 mt-3">Bug Details</h2>
+        <hr />
+        <div class="ms-5 my-5">
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.bug.Id)</dt>
+                <dd class="mb-4">@Html.DisplayFor(model => model.bug.Id)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.bug.Date)</dt>
-        <dd class="mb-4">@Html.DisplayFor(model => model.bug.Date)</dd>
+                <dt>@Html.DisplayNameFor(model => model.bug.Date)</dt>
+                <dd class="mb-4">@Html.DisplayFor(model => model.bug.Date)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.bug.Description)</dt>
-        <dd class="mb-4">@Html.DisplayFor(model => model.bug.Description)</dd>
+                <dt>@Html.DisplayNameFor(model => model.bug.Description)</dt>
+                <dd class="mb-4">@Html.DisplayFor(model => model.bug.Description)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.bug.Priority)</dt>
-        <dd class="mb-4">@Html.DisplayFor(model => model.bug.Priority)</dd>
+                <dt>@Html.DisplayNameFor(model => model.bug.Priority)</dt>
+                <dd class="mb-4">@Html.DisplayFor(model => model.bug.Priority)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.bug.Assignment)</dt>
-        <dd class="mb-4">@Html.DisplayFor(model => model.bug.Assignment)</dd>
-    </dl>
-    <div>
-        <a asp-page="/Index">Back To Homepage</a>
+                <dt>@Html.DisplayNameFor(model => model.bug.Assignment)</dt>
+                <dd class="mb-4">@Html.DisplayFor(model => model.bug.Assignment)</dd>
+            </dl>
+            <div>
+                <a class="btn btn-secondary" asp-page="/Index">Back To Homepage</a>
+            </div>
+        </div>
     </div>
 </div>

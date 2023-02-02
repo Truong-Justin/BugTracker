@@ -10,18 +10,26 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">BugTrackerApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a href="/Index" class="navbar-brand">Bug <span class="text-warning">Tracker</span></a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navmenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse" id="navmenu">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a href="/Index" class="nav-link text-light">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/AddBug" class="nav-link text-light">Add Bug</a>
+                        </li>
+                       
                     </ul>
                 </div>
             </div>

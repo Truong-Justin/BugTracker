@@ -15,11 +15,13 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="wwwroot\db\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\" />
+    <Content Remove="wwwroot\images\" />
   </ItemGroup>
 </Project>

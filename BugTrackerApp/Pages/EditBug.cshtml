@@ -5,37 +5,50 @@
 }
 
 <div class="container">
-    <h2>Edit Bug</h2>
-    <hr />
-    <div class="row">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group mb-4">
-                <label asp-for="bug.Date" class="control-label"></label>
-                <input asp-for="bug.Date" class="form-control" />
-                <span asp-validation-for="bug.Date" class="text-danger"></span>
+    <div class="card mx-auto mt-5 border-secondary">
+        <h2 class="ms-5 mt-3">Edit Bug</h2>
+        <hr />
+        <div class="ms-5 my-5">
+            <div class="row">
+                <div class="col-md-11">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-4">
+                            <label asp-for="bug.Date" class="control-label"></label>
+                            <input asp-for="bug.Date" type="date" class="form-control" asp-format="{0:MM-dd-yyyy}" />
+                            <span asp-validation-for="bug.Date" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label asp-for="bug.Description" class="control-label"></label>
+                            <input asp-for="bug.Description" class="form-control" data-val="true" data-val-required="A description is required" />
+                            <span asp-validation-for="bug.Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label asp-for="bug.Priority" class="control-label"></label>
+                            <select asp-for="bug.Priority" class="form-control">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label asp-for="bug.Assignment" class="control-label"></label>
+                            <select asp-for="bug.Assignment" class="form-control">
+                                <option value="Lucy">Lucy</option>
+                                <option value="Luke">Luke</option>
+                                <option value="Allison">Allison</option>
+                                <option value="Justin">Justin</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="submit" value="save" class="btn btn-dark" />
+                            <a class="btn btn-secondary" asp-page="/Index">Back To Homepage</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group mb-4">
-                <label asp-for="bug.Description" class="control-label"></label>
-                <input asp-for="bug.Description" class="form-control" />
-                <span asp-validation-for="bug.Description"></span>
-            </div>
-            <div class="form-group mb-4">
-                <label asp-for="bug.Priority" class="control-label"></label>
-                <input asp-for="bug.Priority" class="form-control" />
-                <span asp-validation-for="bug.Priority"></span>
-            </div>
-            <div class="form-group mb-4">
-                <label asp-for="bug.Assignment" class="control-label"></label>
-                <input asp-for="bug.Assignment" class="form-control" />
-                <span asp-validation-for="bug.Assignment"></span>
-            </div>
-            <div>
-                <input type="submit" value="save" class="btn btn-dark mb-4" />
-            </div>
-        </form>
+        </div>
     </div>
-    <a asp-page="/Index">Back To Home</a>
 </div>
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}

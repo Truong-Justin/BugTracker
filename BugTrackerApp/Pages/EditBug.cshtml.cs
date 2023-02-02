@@ -13,7 +13,7 @@ namespace BugTrackerApp.Pages
         BugDataAccess objBug = new BugDataAccess();
 
         [BindProperty]
-        public Bug? bug { get; set; }
+        public Bug bug { get; set; }
 
 
         //When the page is loaded, output a form to collect
@@ -28,9 +28,9 @@ namespace BugTrackerApp.Pages
         //Populate the fields with the attributes of the selected
         //bug the user wants to update; When the user enters the
         //new data and clicks the save button, the bug record is updated
-        public IActionResult OnPost(int Id, string Date, string Description, string Priority, string Assignment)
+        public IActionResult OnPost(int Id, DateOnly Date, string Description, string Priority, string Assignment)
         {
-            
+
             Date = bug.Date;
             Description = bug.Description;
             Priority = bug.Priority;

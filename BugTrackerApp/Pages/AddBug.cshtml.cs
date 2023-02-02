@@ -14,13 +14,13 @@ namespace BugTrackerApp.Pages
     {
         BugDataAccess objBug = new BugDataAccess();
 
-        public Bug? bug { get; set; }
-        public static int nextId = 2;
+        public Bug bug { get; set; }
+        public static int nextId = 3;
         
 
         //Collects the user input and adds a new bug record
         //to the database
-        public ActionResult OnPost(string Date, string Description, string Priority, string Assignment)
+        public ActionResult OnPost(DateOnly Date, string Description, string Priority, string Assignment)
         {
             AddBugModel.nextId++;
             objBug.addBug(nextId, Date, Description, Priority, Assignment);

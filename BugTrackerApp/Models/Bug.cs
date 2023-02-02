@@ -11,17 +11,17 @@ namespace BugTrackerApp.Models
 	{
 		public int Id { get; set; }
 
-		[Required, DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}")]
-		public string? Date { get; set; }
+		[DisplayFormat(DataFormatString ="{0:MM-dd-yyyy}")]
+		public DateOnly Date { get; set; }
 
 		[Required]
-		public string? Description { get; set; }
+		public string Description { get; set; }
 
 		[Required]
-		public string? Priority { get; set; }
+		public string Priority { get; set; }
 
 		[Required]
-		public string? Assignment { get; set; }
+		public string Assignment { get; set; }
 
 
 	}
