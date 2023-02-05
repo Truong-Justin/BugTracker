@@ -5,7 +5,7 @@
 }
 
 <div class="col-lg-10 mx-auto">
-    <div class="card mt-5 border-secondary">
+    <div class="card mt-5 border-secondary bg-light">
         <div class="mx-5 my-5">
             <h2 class="display-4">Bugs List</h2>
             <hr />
@@ -63,6 +63,31 @@
                     }
                 </tbody>
             </table>
+
+            <!--This portion of code is an alternative way to build and display output to user-->
+            @*<div class="container">
+            @foreach (var bug in Model.bugs)
+            {
+                    <br />
+                <div class="row border border-primary">
+                    <div class="col">
+                        @Html.DisplayFor(modelItem => bug.Id)
+                    </div>
+                    <div class="col">
+                        @Html.DisplayFor(modelItem => bug.Date)
+                    </div>
+                    <div class="col">
+                        @Html.DisplayFor(modelItem => bug.Description)
+                    </div>
+                    <div class="col">
+                        @Html.DisplayFor(modelItem => bug.Priority)
+                    </div>
+                    <div class="col">
+                        @Html.DisplayFor(modelItem => bug.Assignment)
+                    </div>
+                </div>
+            }*@
+
             <div class="mx-auto">
                 <a class="my-5 btn btn-dark mx-auto" href="AddBug">Add a new bug</a>
             </div>

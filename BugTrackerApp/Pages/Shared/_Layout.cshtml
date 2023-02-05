@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BugTrackerApp.styles.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
@@ -29,12 +30,36 @@
                         <li class="nav-item">
                             <a href="/AddBug" class="nav-link text-light">Add Bug</a>
                         </li>
-                       
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <!--Banner-->
+    <section class="bg-dark text-light p-4 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <img class="img-fluid w-25 d-sm-none"
+                     src="wwwroot/images/bug.png"
+                     alt="bug"
+                     id="bug">
+                <div class="py-5">
+                    <h1>A Place To <span class="text-warning">Record </span>Bugs</h1>
+                    <p class="lead my-4">
+                        This application lets you, the user, perform <span class="text-decoration-underline">CRUD</span> operations on a database that stores all
+                        <span class="text-warning">bug entries</span> and their properties.
+                    </p>
+
+
+                </div>
+                <img class="img-fluid w-25 d-none d-sm-block"
+                     src="images/bug.png"
+                     alt="me"
+                     id="profile_pic">
+            </div>
+        </div>
+    </section>
     <div>
         <main role="main" class="pb-3">
             @RenderBody()

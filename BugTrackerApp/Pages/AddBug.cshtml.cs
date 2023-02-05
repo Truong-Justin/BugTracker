@@ -15,15 +15,22 @@ namespace BugTrackerApp.Pages
         BugDataAccess objBug = new BugDataAccess();
 
         public Bug bug { get; set; }
-        public static int nextId = 3;
-        
+
+        public static int Id { get; set; }
+
+        public ActionResult OnGet()
+        {
+            AddBugModel.Id = objBug.GetAllBugs().Count;
+
+            return Page();
+        }
 
         //Collects the user input and adds a new bug record
         //to the database
         public ActionResult OnPost(DateOnly Date, string Description, string Priority, string Assignment)
         {
-            AddBugModel.nextId++;
-            objBug.addBug(nextId, Date, Description, Priority, Assignment);
+            AddBugModel.Id++;
+            objBug.addBug(Id, Date, Description, Priority, Assignment);
             return RedirectToPage("./Index");
         }
         

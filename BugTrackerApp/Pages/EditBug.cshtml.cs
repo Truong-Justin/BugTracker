@@ -30,7 +30,6 @@ namespace BugTrackerApp.Pages
         //new data and clicks the save button, the bug record is updated
         public IActionResult OnPost(int Id, DateOnly Date, string Description, string Priority, string Assignment)
         {
-
             Date = bug.Date;
             Description = bug.Description;
             Priority = bug.Priority;

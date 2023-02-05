@@ -8,6 +8,7 @@ public class IndexModel : PageModel
 {
     BugDataAccess bugObj = new BugDataAccess();
     public List<Bug> bugs { get; set; }
+    public int Id { get; set; }
 
     public void OnGet()
     {

@@ -23,5 +23,6 @@
   <ItemGroup>
     <Content Remove="wwwroot\db\" />
     <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\db\Bugs.db-shm" />
   </ItemGroup>
 </Project>
