@@ -16,11 +16,15 @@ namespace BugTrackerApp.Pages
 
         //data from the selected bug is saved within the bug object
         //and used to output information to user on GET request
-        public ActionResult OnGet(int Id)
+        public void OnGet(int Id)
         {
             bug = objBug.viewBug(Id);
+        }
 
-            return Page();
+        public ActionResult OnPost(int Id)
+        {
+            objBug.deleteBug(Id);
+            return RedirectToPage("/Index");
         }
     }
 }

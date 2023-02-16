@@ -4,94 +4,74 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="col-lg-10 mx-auto">
-    <div class="card mt-5 border-secondary bg-light">
-        <div class="mx-5 my-5">
-            <h2 class="display-4">Bugs List</h2>
-            <hr />
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.bugs[0].Id)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.bugs[0].Date)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.bugs[0].Description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(Model => Model.bugs[0].Priority)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.bugs[0].Assignment)
-                        </th>
-                        <th scope="col">Controls</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var bug in Model.bugs)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => bug.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => bug.Date)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => bug.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => bug.Priority)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => bug.Assignment)
-                            </td>
-                            <td>
-                       
-                                <form method="post" asp-page-handler="Delete" asp-route-id="@bug.Id">
-                                    <button class="btn btn-warning" type="submit">Delete</button>
-                                    <a class="btn btn-dark" asp-page="EditBug" asp-route-id="@bug.Id">Edit</a>
-                                    <a class="btn btn-secondary" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
-                                </form>
-
-                      
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            <!--This portion of code is an alternative way to build and display output to user-->
-            @*<div class="container">
-            @foreach (var bug in Model.bugs)
-            {
-                    <br />
-                <div class="row border border-primary">
-                    <div class="col">
-                        @Html.DisplayFor(modelItem => bug.Id)
-                    </div>
-                    <div class="col">
-                        @Html.DisplayFor(modelItem => bug.Date)
-                    </div>
-                    <div class="col">
-                        @Html.DisplayFor(modelItem => bug.Description)
-                    </div>
-                    <div class="col">
-                        @Html.DisplayFor(modelItem => bug.Priority)
-                    </div>
-                    <div class="col">
-                        @Html.DisplayFor(modelItem => bug.Assignment)
-                    </div>
-                </div>
-            }*@
-
-            <div class="mx-auto">
-                <a class="my-5 btn btn-dark mx-auto" href="AddBug">Add a new bug</a>
+<div class="mx-auto">
+    <div class="container" id="container_items">
+        <div class="mb-3">
+        </div>
+        <div class="row shadow" style="border-radius:0%; padding:0%;">
+            <div class="col bg-dark">
+                s
+            </div>
+            <div class="col bg-dark text-light text-leading">
+                Date
+            </div>
+            <div class="col bg-dark text-light">
+                Description
+            </div>
+            <div class="col bg-dark text-light">
+                Priority
+            </div>
+            <div class="col bg-dark text-light">
+                Assigned-To
+            </div>
+            <div class="col bg-dark">
+                s
             </div>
         </div>
+
+        @foreach (var bug in Model.bugs)
+            {
+        <div class="row shadow" id="row_hover">
+            <div class="col">
+                <img src="images/fixing-problem.png" class="w-25">
+            </div>
+            <div class="col">
+                @Html.DisplayFor(modelItem => bug.Date)
+            </div>
+            <div class="col">
+                @Html.DisplayFor(modelItem => bug.Description)
+            </div>
+            <div class="col">
+                @if (bug.Priority == "Low")
+                {
+                    <div id="low_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                }
+
+                @if (bug.Priority == "Medium")
+                {
+                    <div id="medium_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                }
+
+                @if (bug.Priority == "High")
+                {
+                    <div id="high_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                }
+            </div>
+            <div class="col">
+                <div id="assignment">
+                    @Html.DisplayFor(modelItem => bug.Assignment)
+                </div>
+            </div>
+            <div class="col">
+                <form method="post" asp-page-handler="View" asp-route-id="@bug.Id">
+                    <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
+                </form>
+            </div>
+        </div>
+            }
+    <div class="mx-auto">
+        <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddBug" style="display: inline-flex">+ Add</a>
     </div>
-        
+    </div>
 </div>
+

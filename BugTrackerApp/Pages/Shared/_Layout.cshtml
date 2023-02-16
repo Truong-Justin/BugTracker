@@ -13,8 +13,8 @@
     <header>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
-            <div class="container">
-                <a href="/Index" class="navbar-brand">Bug <span class="text-warning">Tracker</span></a>
+            <div class="container" style="max-width:75%">
+                <a href="/Index" class="navbar-brand">Bug <span class="text-primary">Tracker</span></a>
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
@@ -30,35 +30,32 @@
                         <li class="nav-item">
                             <a href="/AddBug" class="nav-link text-light">Add Bug</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="https://www.justintruong.studio" class="nav-link text-light">Back To Portfolio</a>
+                        </li>
 
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <!--Banner-->
-    <section class="bg-dark text-light p-4 text-center text-sm-start">
-        <div class="container">
-            <div class="d-sm-flex align-items-center justify-content-between">
-                <img class="img-fluid w-25 d-sm-none"
-                     src="wwwroot/images/bug.png"
-                     alt="bug"
-                     id="bug">
-                <div class="py-5">
-                    <h1>A Place To <span class="text-warning">Record </span>Bugs</h1>
-                    <p class="lead my-4">
-                        This application lets you, the user, perform <span class="text-decoration-underline">CRUD</span> operations on a database that stores all
-                        <span class="text-warning">bug entries</span> and their properties.
+    <section class="p-5 bg-dark">
+        <div class="container" style="max-width:75%">
+            <div class="row align-items-center justify-content-between" style="margin-bottom: 0px;">
+                <div class="col-md p-5">
+                    <h2 class="text-secondary" id="project_titles" style="text-decoration-line:underline"><span class="text-primary">Bug</span> Tracker App</h2>
+                    <p class="text-dark">
+                        A fullstack application that uses C#, ASP.Net Core Razor Pages, and SQLite. The app lets the user Create, Read, Update, and Delete bug records from a database file.
                     </p>
-
-
                 </div>
-                <img class="img-fluid w-25 d-none d-sm-block"
-                     src="images/bug.png"
-                     alt="me"
-                     id="profile_pic">
+                
+                    <img src="images/bugPic.svg" class="img-fluid w-25 my-3 d-none d-sm-block" alt="Stock App">
+                
             </div>
         </div>
+
     </section>
     <div>
         <main role="main" class="pb-3">
