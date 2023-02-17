@@ -46,6 +46,7 @@ body {
     border-color: black;
     background-color: rgb(224, 229, 236);
     margin-bottom: 10px;
+    transition-duration: .75s;
 }
 
 #row_hover:hover {

@@ -39,13 +39,6 @@ public class IndexModel : PageModel
         }
     }
 
-    //Delete a bug by ID on POST request
-    public IActionResult OnPostDelete(int Id)
-    {
-        bugObj.deleteBug(Id);
-        return RedirectToAction("Get");
-    }
-
    
 }
 
