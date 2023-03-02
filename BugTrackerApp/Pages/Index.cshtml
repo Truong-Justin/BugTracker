@@ -8,11 +8,11 @@
     <div class="container" id="container_items">
         <div class="mb-3">
         </div>
-        <div class="row shadow" style="border-radius:0%; padding:0%;">
-            <div class="col bg-dark">
+        <div class="row shadow d-sm-inline-flex d-none" style="border-radius:0%; padding:0%;">
+            <div class="col bg-dark d-none d-sm-block">
                 s
             </div>
-            <div class="col bg-dark text-light text-leading">
+            <div class="col bg-dark text-light text-leading d-none d-sm-block">
                 Date
             </div>
             <div class="col bg-dark text-light">
@@ -29,46 +29,78 @@
             </div>
         </div>
 
+        <!--UI for mobile view-->
         @foreach (var bug in Model.bugs)
-            {
-        <div class="row shadow" id="row_hover">
-            <div class="col">
-                <img src="images/fixing-problem.png" class="w-25">
-            </div>
-            <div class="col">
-                @Html.DisplayFor(modelItem => bug.Date)
-            </div>
-            <div class="col">
-                @Html.DisplayFor(modelItem => bug.Description)
-            </div>
-            <div class="col">
-                @if (bug.Priority == "Low")
-                {
-                    <div id="low_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
-                }
+        {
+            <div class="row d-sm-none">
+                <div class="col-md-10 mx-auto">
+                    <dl class="dl-horizontal mt-4 mx-auto">
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => bug.Id)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Id)</dd>
 
-                @if (bug.Priority == "Medium")
-                {
-                    <div id="medium_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
-                }
+                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Date)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Date)</dd>
 
-                @if (bug.Priority == "High")
-                {
-                    <div id="high_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
-                }
-            </div>
-            <div class="col">
-                <div id="assignment">
-                    @Html.DisplayFor(modelItem => bug.Assignment)
+                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Description)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Description)</dd>
+
+                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Priority)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Priority)</dd>
+
+                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Assignment)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Assignment)</dd>
+                    </dl>
+                    <div class="mb-4">
+                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@bug.Id">
+                            <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <form method="post" asp-page-handler="View" asp-route-id="@bug.Id">
-                    <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
-                </form>
+        }
+
+        <!--UI for desktop view-->
+        @foreach (var bug in Model.bugs)
+        {
+            <div class="row shadow d-sm-inline-flex d-none" id="row_hover">
+                <div class="col">
+                    <img src="images/fixing-problem.png" class="w-25">
+                </div>
+                <div class="col">
+                    @Html.DisplayFor(modelItem => bug.Date)
+                </div>
+                <div class="col">
+                    @Html.DisplayFor(modelItem => bug.Description)
+                </div>
+                <div class="col">
+                    @if (bug.Priority == "Low")
+                    {
+                        <div id="low_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                    }
+
+                    @if (bug.Priority == "Medium")
+                    {
+                        <div id="medium_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                    }
+
+                    @if (bug.Priority == "High")
+                    {
+                        <div id="high_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                    }
+                </div>
+                <div class="col">
+                    <div id="assignment">
+                        @Html.DisplayFor(modelItem => bug.Assignment)
+                    </div>
+                </div>
+                <div class="col">
+                    <form method="post" asp-page-handler="View" asp-route-id="@bug.Id">
+                        <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
+                    </form>
+                </div>
             </div>
-        </div>
-            }
+        }
+
     <div class="mx-auto">
         <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddBug" style="display: inline-flex">+ Add</a>
     </div>

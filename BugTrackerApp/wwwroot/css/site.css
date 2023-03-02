@@ -90,3 +90,11 @@ h4 {
     padding: 5px;
     background-color: lightsteelblue;
 }
+
+#text_underline {
+    text-decoration-line: underline;
+}
+
+#center_text {
+    text-align: center;
+}
