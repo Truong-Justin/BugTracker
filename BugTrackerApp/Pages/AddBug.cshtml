@@ -13,33 +13,33 @@
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group mb-4 mt-4">
-                            <label asp-for="bug.Date" class="control-label"></label>
-                            <input asp-for="bug.Date" type="date" class="form-control" asp-format="{0:MM-dd-yyyy}" name="Date" />
-                            <span asp-validation-for="bug.Date" class="text-danger"></span>
+                            <label asp-for="Bug.Date" class="control-label"></label>
+                            <input asp-for="Bug.Date" type="date" class="form-control" asp-format="{0:MM-dd-yyyy}" name="Date" />
+                            <span asp-validation-for="Bug.Date" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
-                            <label asp-for="bug.Description" class="control-label"></label>
-                            <input asp-for="bug.Description" class="form-control" name="Description" data-val;="true" data-val-required="A description is required." />
-                            <span asp-validation-for="bug.Description" class="text-danger"></span>
+                            <label asp-for="Bug.Description" class="control-label"></label>
+                            <input asp-for="Bug.Description" class="form-control" name="Description" data-val;="true" data-val-required="A description is required." />
+                            <span asp-validation-for="Bug.Description" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
-                            <label asp-for="bug.Priority" class="control-label"></label>
-                            <select asp-for="bug.Priority" class="form-control" name="Priority">
+                            <label asp-for="Bug.Priority" class="control-label"></label>
+                            <select asp-for="Bug.Priority" class="form-control" name="Priority">
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
                             </select>
-                            <span asp-validation-for="bug.Priority" class="text-danger"></span>
+                            <span asp-validation-for="Bug.Priority" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
-                            <label asp-for="bug.Assignment" class="control-label"></label>
-                            <select asp-for="bug.Assignment" class="form-control" name="Assignment">
+                            <label asp-for="Bug.Assignment" class="control-label"></label>
+                            <select asp-for="Bug.Assignment" class="form-control" name="Assignment">
                                 <option value="Lucy">Lucy</option>
                                 <option value="Luke">Luke</option>
                                 <option value="Allison">Allison</option>
                                 <option value="Justin">Justin</option>
                             </select>
-                            <span asp-validation-for="bug.Assignment" class="text-danger"></span>
+                            <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-4">

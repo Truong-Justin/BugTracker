@@ -30,31 +30,32 @@
         </div>
 
         <!--UI for mobile view-->
-        @foreach (var bug in Model.bugs)
+        @foreach (var Bug in Model.Bugs)
         {
             <div class="row d-sm-none">
                 <div class="col-md-10 mx-auto">
+                    <img src="images/fixing-problem.png" class="w-25"/>
                     <h2 class="mt-3"><span class="text-primary">Bug</span> <span class="text-secondary">Details</span></h2>
                     <hr />
                     <dl class="dl-horizontal mt-4 mx-auto">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => bug.Id)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Id)</dd>
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Id)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Id)</dd>
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Date)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Date)</dd>
+                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Date)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Date)</dd>
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Description)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Description)</dd>
+                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Description)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Description)</dd>
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Priority)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Priority)</dd>
+                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Priority)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => bug.Assignment)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => bug.Assignment)</dd>
+                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Assignment)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Assignment)</dd>
                     </dl>
                     <div class="mb-4">
-                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@bug.Id">
-                            <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
+                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Bug.Id">
+                            <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@Bug.Id">View</a>
                         </form>
                     </div>
                 </div>
@@ -62,42 +63,42 @@
         }
 
         <!--UI for desktop view-->
-        @foreach (var bug in Model.bugs)
+        @foreach (var Bug in Model.Bugs)
         {
             <div class="row shadow d-sm-inline-flex d-none" id="row_hover">
                 <div class="col">
                     <img src="images/fixing-problem.png" class="w-25">
                 </div>
                 <div class="col">
-                    @Html.DisplayFor(modelItem => bug.Date)
+                    @Html.DisplayFor(modelItem => Bug.Date)
                 </div>
                 <div class="col">
-                    @Html.DisplayFor(modelItem => bug.Description)
+                    @Html.DisplayFor(modelItem => Bug.Description)
                 </div>
                 <div class="col">
-                    @if (bug.Priority == "Low")
+                    @if (Bug.Priority == "Low")
                     {
-                        <div id="low_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                        <div id="low_priority">@Html.DisplayFor(modelItem => Bug.Priority)</div>
                     }
 
-                    @if (bug.Priority == "Medium")
+                    @if (Bug.Priority == "Medium")
                     {
-                        <div id="medium_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                        <div id="medium_priority">@Html.DisplayFor(modelItem => Bug.Priority)</div>
                     }
 
-                    @if (bug.Priority == "High")
+                    @if (Bug.Priority == "High")
                     {
-                        <div id="high_priority">@Html.DisplayFor(modelItem => bug.Priority)</div>
+                        <div id="high_priority">@Html.DisplayFor(modelItem => Bug.Priority)</div>
                     }
                 </div>
                 <div class="col">
                     <div id="assignment">
-                        @Html.DisplayFor(modelItem => bug.Assignment)
+                        @Html.DisplayFor(modelItem => Bug.Assignment)
                     </div>
                 </div>
                 <div class="col">
-                    <form method="post" asp-page-handler="View" asp-route-id="@bug.Id">
-                        <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@bug.Id">View</a>
+                    <form method="post" asp-page-handler="View" asp-route-id="@Bug.Id">
+                        <a class="btn btn-sm btn-dark" asp-page="ViewBug" asp-route-id="@Bug.Id">View</a>
                     </form>
                 </div>
             </div>

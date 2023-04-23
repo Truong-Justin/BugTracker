@@ -2,7 +2,7 @@
 
 
 ## Project Description
-This full-stack web application was made using C#, SQLite, HTML/CSS and ASP.NET Core Razor Pages. The user is able to create, view, update/edit or delete bugs from a SQLite database. ADO.NET was used to establish a connection between the application and the data source, the SQLite database, in order to better understand what an ORM frameworkd does and what is happening in the background. The Bug class in the Models folder is the data model used to represent the data attributes we will be working with when working with the Bug entities. The BugDataAccess class, from the same folder, holds the business logic that is used to manipulate the database data. The primary focus and goal of this project was to build and deploy a full-stack ASP.NET web application, with a focus on UI and UX design. 
+This responsive full-stack web application was made using C#, SQLite, HTML/CSS and ASP.NET Core Razor Pages. The user is able to create, view, update/edit or delete bugs from a SQLite database. ADO.NET was used to establish a connection between the application and the data source, the SQLite database, in order to better understand what an ORM framework does and what is happening in the background. The Bug class in the Models folder is the data model used to represent the data attributes we will be working with when working with the Bug entities. The BugDataAccess class, from the same folder, holds the business logic that is used to manipulate the database data. The primary focus and goal of this project was to build and deploy a full-stack ASP.NET web application, with a focus on UI and UX design and <ins>includes a **UI for both desktop and mobile views**</ins>. 
 
 
 ## How to run the web application
@@ -31,3 +31,4 @@ This full-stack web application was made using C#, SQLite, HTML/CSS and ASP.NET 
 2. HTML/CSS, Bootstrap 5 & ASP.NET Core Razor Pages for the UI
 3. Microsoft Azure App Services to host and deploy the application
 4. SQLite database 
+

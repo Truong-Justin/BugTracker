@@ -12,36 +12,36 @@ namespace BugTrackerApp.Pages
 {
     public class AddBugModel : PageModel
     {
-        BugDataAccess objBug = new BugDataAccess();
+        BugDataAccess ObjBug = new BugDataAccess();
 
-        public Bug bug { get; set; }
-        public List<Bug> bugs { get;set; }
+        public Bug Bug { get; set; }
+        public List<Bug> Bugs { get;set; }
         public static int Id { get; set; }
 
         public ActionResult OnGet()
         {
-            AddBugModel.Id = objBug.GetAllBugs().Count;
+            AddBugModel.Id = ObjBug.GetAllBugs().Count;
             return Page();
         }
 
-        //Collects the user input and adds a new bug record
-        //to the database
-        public ActionResult OnPost(DateOnly Date, string Description, string Priority, string Assignment)
+        // Collects the user input and adds a new bug record
+        // to the database.
+        public ActionResult OnPost(DateOnly date, string description, string priority, string assignment)
         {
             try
             {
                 AddBugModel.Id++;
-                objBug.addBug(Id, Date, Description, Priority, Assignment);
+                ObjBug.AddBug(Id, date, description, priority, assignment);
                 return RedirectToPage("./Index");
             }
 
-            //ensures a unique ID is generated and used
+            // Ensures a unique ID is generated and used.
             catch (System.Data.SQLite.SQLiteException)
             {
-                bugs = objBug.GetAllBugs();
+                Bugs = ObjBug.GetAllBugs();
 
-                int newId = 0;
-                foreach (Bug bug in bugs)
+                int newId = AddBugModel.Id;
+                foreach (Bug bug in Bugs)
                 {
                     if (bug.Id > newId)
                     {
@@ -51,7 +51,7 @@ namespace BugTrackerApp.Pages
 
                 newId++;
 
-                objBug.addBug(newId, Date, Description, Priority, Assignment);
+                ObjBug.AddBug(newId, date, description, priority, assignment);
                 return RedirectToPage("./Index");
             }
         }

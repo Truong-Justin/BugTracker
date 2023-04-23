@@ -13,13 +13,13 @@ namespace BugTrackerApp.Models
     //Class handles the database logic 
     public class BugDataAccess
     {
-        string connectionString = "DataSource=wwwroot/db/Bugs.db;journal mode=On;";
+        readonly private string _connectionString = "DataSource=wwwroot/db/Bugs.db;PRAGMA journal_mode=WAL;";
 
 
         //Creates a Bugs database file 
-        public void makeTable()
+        public void MakeTable()
         {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -43,7 +43,7 @@ namespace BugTrackerApp.Models
         {
             List<Bug> bugList = new List<Bug>();
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -77,9 +77,9 @@ namespace BugTrackerApp.Models
         }
 
         //Adds a new bug record to database
-        public void addBug(int Id, DateOnly Date, string Description, string Priority, string Assignment)
+        public void AddBug(int id, DateOnly date, string description, string priority, string assignment)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -91,11 +91,11 @@ namespace BugTrackerApp.Models
                         VALUES ($Id,$Date,$Description,$Priority,$Assignment)
                     ";
 
-                    command.Parameters.AddWithValue("$Id", Id);
-                    command.Parameters.AddWithValue("$Date", Date);
-                    command.Parameters.AddWithValue("$Description", Description);
-                    command.Parameters.AddWithValue("$Priority", Priority);
-                    command.Parameters.AddWithValue("$Assignment", Assignment);
+                    command.Parameters.AddWithValue("$id", id);
+                    command.Parameters.AddWithValue("$date", date);
+                    command.Parameters.AddWithValue("$description", description);
+                    command.Parameters.AddWithValue("$priority", priority);
+                    command.Parameters.AddWithValue("$assignment", assignment);
 
                     command.ExecuteNonQuery();
                 }
@@ -103,9 +103,9 @@ namespace BugTrackerApp.Models
         }
 
         //deletes a bug from database by id
-        public void deleteBug(int Id)
+        public void DeleteBug(int id)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -114,10 +114,10 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         DELETE FROM BUGS
-                        WHERE Id = $Id
+                        WHERE Id = $id
                     ";
 
-                    command.Parameters.AddWithValue("$id", Id);
+                    command.Parameters.AddWithValue("$id", id);
 
                     command.ExecuteNonQuery();
                 }
@@ -126,9 +126,9 @@ namespace BugTrackerApp.Models
         }
 
         //Updates bug from database by id
-        public void editBug(int Id, DateOnly Date, string Description, string Priority, string Assignment)
+        public void EditBug(int id, DateOnly date, string description, string priority, string assignment)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -137,18 +137,18 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         UPDATE Bugs SET
-                        Date = $Date,
-                        Description = $Description,
-                        Priority = $Priority,
-                        Assignment = $Assignment
-                        WHERE Id = $Id
+                        Date = $date,
+                        Description = $description,
+                        Priority = $priority,
+                        Assignment = $assignment
+                        WHERE Id = $id
                     ";
 
-                    command.Parameters.AddWithValue("$Date", Date);
-                    command.Parameters.AddWithValue("$Description", Description);
-                    command.Parameters.AddWithValue("$Priority", Priority);
-                    command.Parameters.AddWithValue("$Assignment", Assignment);
-                    command.Parameters.AddWithValue("$Id", Id);
+                    command.Parameters.AddWithValue("$date", date);
+                    command.Parameters.AddWithValue("$description", description);
+                    command.Parameters.AddWithValue("$priority", priority);
+                    command.Parameters.AddWithValue("$assignment", assignment);
+                    command.Parameters.AddWithValue("$id", id);
 
                     command.ExecuteNonQuery();
                     
@@ -157,11 +157,11 @@ namespace BugTrackerApp.Models
         }
 
         //Selects a bug to view more information about
-        public Bug viewBug(int Id)
+        public Bug ViewBug(int id)
         {
             Bug newBug = new Bug();
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -171,10 +171,10 @@ namespace BugTrackerApp.Models
                     @"
                         SELECT *
                         FROM BUGS
-                        WHERE Id = $Id
+                        WHERE Id = $id
                     ";
 
-                    command.Parameters.AddWithValue("$Id", Id);
+                    command.Parameters.AddWithValue("$id", id);
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
