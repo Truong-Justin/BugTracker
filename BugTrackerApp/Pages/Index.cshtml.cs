@@ -24,7 +24,6 @@ public class IndexModel : PageModel
             {
                 bug.Description = bug.Description.Substring(0, 60) + "...";
             }
-
         }
 
         catch(System.Data.SQLite.SQLiteException)

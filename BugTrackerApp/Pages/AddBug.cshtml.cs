@@ -13,7 +13,6 @@ namespace BugTrackerApp.Pages
     public class AddBugModel : PageModel
     {
         BugDataAccess ObjBug = new BugDataAccess();
-
         public Bug Bug { get; set; }
         public List<Bug> Bugs { get;set; }
         public static int Id { get; set; }

@@ -4,22 +4,22 @@ using System.Data;
 using System.Data.SQLite;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Configuration;
 
 
 
 
 namespace BugTrackerApp.Models
 {
-    //Class handles the database logic 
     public class BugDataAccess
     {
-        readonly private string _connectionString = "DataSource=wwwroot/db/Bugs.db;PRAGMA journal_mode=WAL;";
-
-
-        //Creates a Bugs database file 
+        
         public void MakeTable()
         {
-            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
@@ -30,7 +30,6 @@ namespace BugTrackerApp.Models
                         "INSERT INTO 'Bugs' VALUES('2', '2022-01-15', 'A bug is making the JS animation script to not work when the page is loaded', 'Low', 'Lucy');" +
                          "COMMIT;", connection))
                 {
-
                     command.CommandType = CommandType.Text;
 
                     command.ExecuteNonQuery();
@@ -38,12 +37,13 @@ namespace BugTrackerApp.Models
             }
         }
 
-        //Returns all record within Bug database
         public List<Bug> GetAllBugs()
         {
             List<Bug> bugList = new List<Bug>();
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
@@ -53,7 +53,6 @@ namespace BugTrackerApp.Models
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     { 
-
                         while (reader.Read())
                         {
                             Bug newBug = new Bug();
@@ -65,21 +64,20 @@ namespace BugTrackerApp.Models
                             newBug.Assignment = Convert.ToString(reader["Assignment"]);
 
                             bugList.Add(newBug);
-
                         }
                     }
-
                 }
-
             }
 
             return bugList;
         }
 
-        //Adds a new bug record to database
         public void AddBug(int id, DateOnly date, string description, string priority, string assignment)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
@@ -88,7 +86,7 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         INSERT INTO Bugs (Id, Date, Description, Priority, Assignment)
-                        VALUES ($Id,$Date,$Description,$Priority,$Assignment)
+                        VALUES ($id,$date,$description,$priority,$assignment)
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
@@ -102,10 +100,12 @@ namespace BugTrackerApp.Models
             }
         }
 
-        //deletes a bug from database by id
         public void DeleteBug(int id)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
@@ -118,17 +118,17 @@ namespace BugTrackerApp.Models
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
-
                     command.ExecuteNonQuery();
                 }
             }
-            
         }
 
-        //Updates bug from database by id
         public void EditBug(int id, DateOnly date, string description, string priority, string assignment)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
@@ -151,17 +151,17 @@ namespace BugTrackerApp.Models
                     command.Parameters.AddWithValue("$id", id);
 
                     command.ExecuteNonQuery();
-                    
                 }
             }
         }
 
-        //Selects a bug to view more information about
         public Bug ViewBug(int id)
         {
             Bug newBug = new Bug();
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
@@ -181,18 +181,14 @@ namespace BugTrackerApp.Models
 
                         while (reader.Read())
                         {
-
                             newBug.Id = Convert.ToInt32(reader["Id"]);
                             newBug.Date = DateOnly.Parse(reader["Date"].ToString());
                             newBug.Description = Convert.ToString(reader["Description"]);
                             newBug.Priority = Convert.ToString(reader["Priority"]);
                             newBug.Assignment = Convert.ToString(reader["Assignment"]);
-
                         }
-
                     }
                 }
-
             }
 
             return newBug;

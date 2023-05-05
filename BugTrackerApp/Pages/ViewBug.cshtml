@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="my-5 mx-auto" id="container_items">
-        <div class="row">
+        <div class="row shadow">
             <div class="col-md-11 mx-auto">
                 <h2 class="mt-3 mx-auto"><span class="text-primary">Bug</span> <span class="text-secondary">Details</span></h2>
                 <hr />
@@ -28,9 +28,9 @@
                 </dl>
                 <div class="mb-4">
                     <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Bug.Id">
-                        <a class="btn btn-secondary" asp-page="/Index">Home</a>
-                        <a class="btn btn-dark" asp-page="EditBug" asp-route-id=@Model.Bug.Id>Edit Bug</a>
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <a class="btn btn-secondary shadow" asp-page="/Index">Home</a>
+                        <a class="btn btn-dark shadow" asp-page="EditBug" asp-route-id=@Model.Bug.Id>Edit Bug</a>
+                        <button class="btn btn-danger shadow" type="submit">Delete</button>
                     </form>
                 </div>
             </div>

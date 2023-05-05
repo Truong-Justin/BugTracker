@@ -11,7 +11,6 @@ namespace BugTrackerApp.Pages
 	public class EditBugModel : PageModel
     {
         BugDataAccess ObjBug = new BugDataAccess();
-
         [BindProperty]
         public Bug Bug { get; set; }
 
@@ -22,7 +21,6 @@ namespace BugTrackerApp.Pages
             Bug = ObjBug.ViewBug(Id);
             return Page();
         }
-
 
         // Populate the fields with the attributes of the selected
         // bug the user wants to update.
