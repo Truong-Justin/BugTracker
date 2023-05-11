@@ -24,7 +24,7 @@ namespace BugTrackerApp.Models
                 connection.Open();
 
                 using (SQLiteCommand command = new SQLiteCommand(
-                        "BEGIN TRANSACTION;" + 
+                        "BEGIN TRANSACTION;" +
                         "CREATE TABLE `Bugs` (`Id` NUMERIC PRIMARY KEY,`Date` varchar(10),`Description` varchar(125),`Priority` varchar(10),`Assignment` varchar(10));" +
                         "INSERT INTO 'Bugs' VALUES('1', '2022-01-08', 'This bug is making the web app crash', 'High', 'Luke');" +
                         "INSERT INTO 'Bugs' VALUES('2', '2022-01-15', 'A bug is making the JS animation script to not work when the page is loaded', 'Low', 'Lucy');" +
@@ -35,6 +35,26 @@ namespace BugTrackerApp.Models
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public void SetJournalMode()
+        {
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand("PRAGMA journal_mode=WAL;", connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    command.ExecuteNonQuery();
+                }
+                
+            }
+
         }
 
         public List<Bug> GetAllBugs()

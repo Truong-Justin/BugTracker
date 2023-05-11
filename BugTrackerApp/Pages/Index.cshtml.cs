@@ -13,7 +13,6 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         // Try to load page with list of bugs from bugs database.
-        // If database doesn't exist, create the database file.
         try
         {
             Bugs = BugObj.GetAllBugs();
@@ -26,9 +25,12 @@ public class IndexModel : PageModel
             }
         }
 
-        catch(System.Data.SQLite.SQLiteException)
+        // If database doesn't exist, create the database file and
+        // set the journal mode to Write-Ahead-Logging
+        catch (System.Data.SQLite.SQLiteException)
         {
             BugObj.MakeTable();
+            BugObj.SetJournalMode();
             Bugs = BugObj.GetAllBugs();
 
             foreach (Bug bug in Bugs.Where(b => b.Description.Length > 60))
