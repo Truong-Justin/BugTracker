@@ -11,11 +11,21 @@
     <None Remove="Models\" />
     <None Remove="System.Data.SQLite" />
     <None Remove="Properties\PublishProfiles\Bugtrackerapp1 - Zip Deploy.pubxml" />
+    <None Remove="Models\Entities\Bugs\" />
+    <None Remove="Models\Entities\Projects\" />
+    <None Remove="Models\People\" />
+    <None Remove="Models\People\Employees\" />
+    <None Remove="Models\People\ProjectManagers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="wwwroot\db\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Models\Entities\Bugs\" />
+    <Folder Include="Models\Entities\Projects\" />
+    <Folder Include="Models\People\" />
+    <Folder Include="Models\People\Employees\" />
+    <Folder Include="Models\People\ProjectManagers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />

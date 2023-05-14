@@ -5,6 +5,7 @@ namespace BugTrackerApp.Models
 {
 	public class Employee : Person
 	{
-    }
+
+	}
 }
 

@@ -3,6 +3,7 @@ namespace BugTrackerApp.Models
 {
 	public class ProjectManager : Person
 	{
+
 	}
 }
 
