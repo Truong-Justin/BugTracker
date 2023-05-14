@@ -17,12 +17,12 @@ namespace BugTrackerApp.Pages
         // and used to output information to user on GET request.
         public void OnGet(int id)
         {
-            Bug = ObjBug.ViewBug(id);
+            Bug = (Bug)ObjBug.ViewEntity(id);
         }
 
         public ActionResult OnPost(int id)
         {
-            ObjBug.DeleteBug(id);
+            ObjBug.DeleteEntity(id);
             return RedirectToPage("/Index");
         }
     }

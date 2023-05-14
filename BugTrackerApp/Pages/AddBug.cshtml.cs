@@ -14,12 +14,12 @@ namespace BugTrackerApp.Pages
     {
         BugDataAccess ObjBug = new BugDataAccess();
         public Bug Bug { get; set; }
-        public List<Bug> Bugs { get;set; }
+        public IList<Bug> Bugs { get;set; }
         public static int Id { get; set; }
 
         public ActionResult OnGet()
         {
-            AddBugModel.Id = ObjBug.GetAllBugs().Count;
+            AddBugModel.Id = ObjBug.GetAllEntities().Count;
             return Page();
         }
 
@@ -30,14 +30,14 @@ namespace BugTrackerApp.Pages
             try
             {
                 AddBugModel.Id++;
-                ObjBug.AddBug(Id, date, description, priority, assignment);
+                ObjBug.AddEntity(Id, date, description, priority, assignment);
                 return RedirectToPage("./Index");
             }
 
             // Ensures a unique ID is generated and used.
             catch (System.Data.SQLite.SQLiteException)
             {
-                Bugs = ObjBug.GetAllBugs();
+                Bugs = ObjBug.GetAllEntities();
 
                 int newId = AddBugModel.Id;
                 foreach (Bug bug in Bugs)
@@ -50,7 +50,7 @@ namespace BugTrackerApp.Pages
 
                 newId++;
 
-                ObjBug.AddBug(newId, date, description, priority, assignment);
+                ObjBug.AddEntity(newId, date, description, priority, assignment);
                 return RedirectToPage("./Index");
             }
         }

@@ -7,7 +7,7 @@ namespace BugTrackerApp.Pages;
 public class IndexModel : PageModel
 {
     BugDataAccess BugObj = new BugDataAccess();
-    public List<Bug> Bugs { get; set; }
+    public IList<Bug> Bugs { get; set; }
     public int Id { get; set; }
 
     public void OnGet()
@@ -15,7 +15,7 @@ public class IndexModel : PageModel
         // Try to load page with list of bugs from bugs database.
         try
         {
-            Bugs = BugObj.GetAllBugs();
+            Bugs = BugObj.GetAllEntities();
 
             // If description is too long, truncate it so it doesn't
             // break the UI.
@@ -31,7 +31,7 @@ public class IndexModel : PageModel
         {
             BugObj.MakeTable();
             BugObj.SetJournalMode();
-            Bugs = BugObj.GetAllBugs();
+            Bugs = BugObj.GetAllEntities();
 
             foreach (Bug bug in Bugs.Where(b => b.Description.Length > 60))
             {

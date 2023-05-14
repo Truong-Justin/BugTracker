@@ -11,7 +11,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace BugTrackerApp.Models
 {
-    public class BugDataAccess
+
+    public class BugDataAccess : IEntityDataAccess
     {
         
         public void MakeTable()
@@ -52,12 +53,10 @@ namespace BugTrackerApp.Models
 
                     command.ExecuteNonQuery();
                 }
-                
             }
-
         }
 
-        public List<Bug> GetAllBugs()
+        public IList<Bug> GetAllEntities()
         {
             List<Bug> bugList = new List<Bug>();
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -89,10 +88,10 @@ namespace BugTrackerApp.Models
                 }
             }
 
-            return bugList;
+            return bugList.AsReadOnly();
         }
 
-        public void AddBug(int id, DateOnly date, string description, string priority, string assignment)
+        public void AddEntity(int id, DateOnly date, string description, string priority, string assignment)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -120,7 +119,7 @@ namespace BugTrackerApp.Models
             }
         }
 
-        public void DeleteBug(int id)
+        public void DeleteEntity(int id)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -143,7 +142,7 @@ namespace BugTrackerApp.Models
             }
         }
 
-        public void EditBug(int id, DateOnly date, string description, string priority, string assignment)
+        public void EditEntity(int id, DateOnly date, string description, string priority, string assignment)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -175,7 +174,7 @@ namespace BugTrackerApp.Models
             }
         }
 
-        public Bug ViewBug(int id)
+        public Object ViewEntity(int id)
         {
             Bug newBug = new Bug();
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
