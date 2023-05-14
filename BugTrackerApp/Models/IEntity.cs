@@ -11,16 +11,12 @@ namespace BugTrackerApp.Models
 
         int Id { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}"), Required]
         DateOnly Date { get; set; }
 
-        [Required]
         string Description { get; set; }
 
-        [Required]
         string Priority { get; set; }
 
-        [Required]
         string Assignment { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace BugTrackerApp.Pages
     {
         BugDataAccess ObjBug = new BugDataAccess();
         public Bug Bug { get; set; }
-        public IList<Bug> Bugs { get;set; }
+        public IList<Bug> Bugs { get; set; }
         public static int Id { get; set; }
 
         public ActionResult OnGet()
@@ -54,6 +54,6 @@ namespace BugTrackerApp.Pages
                 return RedirectToPage("./Index");
             }
         }
-        
+
     }
 }
