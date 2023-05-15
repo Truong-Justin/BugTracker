@@ -12,17 +12,17 @@ namespace BugTrackerApp.Pages
     {
         BugDataAccess ObjBug = new BugDataAccess();
         public Bug Bug { get; set; }
-
+             
         // Data from the selected bug is saved within the bug object
         // and used to output information to user on GET request.
         public void OnGet(int id)
         {
-            Bug = (Bug)ObjBug.ViewEntity(id);
+            Bug = ObjBug.ViewEntity(id, Bug);
         }
 
         public ActionResult OnPost(int id)
         {
-            ObjBug.DeleteEntity(id);
+            ObjBug.DeleteEntity(id, Bug);
             return RedirectToPage("/Index");
         }
     }

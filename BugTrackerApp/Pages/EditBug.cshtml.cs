@@ -19,7 +19,7 @@ namespace BugTrackerApp.Pages
         // new data from user to update bug record.
         public IActionResult OnGet(int Id)
         {
-            Bug = (Bug)ObjBug.ViewEntity(Id);
+            Bug = ObjBug.ViewEntity(Id, Bug);
             return Page();
         }
 
@@ -34,7 +34,7 @@ namespace BugTrackerApp.Pages
             priority = Bug.Priority;
             assignment = Bug.Assignment;
 
-            ObjBug.EditEntity(id, date, description, priority, assignment);
+            ObjBug.EditEntity(id, date, description, priority, assignment, Bug);
 
             return RedirectToPage("Index");
         }
