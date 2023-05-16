@@ -33,6 +33,10 @@ namespace BugTrackerApp.Models
             }
         }
 
+        // Methode sets journal mode to write-ahead-logging to simulate
+        // concurrent read/write access; SQLite does not support concurrent
+        // read/write access natively so WAL is used to write to the database when
+        // a new database connection can be made 
         public void SetJournalMode()
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -340,7 +344,8 @@ namespace BugTrackerApp.Models
             return newBug;
         }
 
-
+        // Method selects a specific project from the Projects table
+        // using the given Id
         public Project ViewEntity(int id, Project project)
         {
             Project newProject = new Project();

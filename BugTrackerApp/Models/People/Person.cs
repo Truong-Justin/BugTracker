@@ -3,7 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BugTrackerApp.Models
 {
-	// Abstract class created for code reusability 
+
+    // Abstract class made to support inheritance
+    // and code-reusability for future subclasses
     public abstract class Person
 	{
 		public int Id { get; set; }
