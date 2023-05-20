@@ -20,7 +20,7 @@ public class IndexModel : PageModel
 
             // If description is too long, truncate it so it doesn't
             // break the UI.
-            foreach (Bug bug in Bugs.Where(b => b.Description.Length > 60))
+            foreach (Bug bug in Bugs.Where(bug => bug.Description.Length > 60))
             {
                 bug.Description = bug.Description.Substring(0, 60) + "...";
             }
@@ -34,7 +34,7 @@ public class IndexModel : PageModel
             BugObj.SetJournalMode();
             Bugs = BugObj.GetAllEntities(Bug);
 
-            foreach (Bug bug in Bugs.Where(b => b.Description.Length > 60))
+            foreach (Bug bug in Bugs.Where(bug => bug.Description.Length > 60))
             {
                 bug.Description = bug.Description.Substring(0, 60) + "...";
             }

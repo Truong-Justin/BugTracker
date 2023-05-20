@@ -32,3 +32,20 @@ This responsive full-stack web application was made using C#, SQLite, HTML/CSS a
 3. Microsoft Azure App Services to host and deploy the application
 4. SQLite database 
 
+
+## Planned additions
+1. I am currently in the process of expanding the number of tables/entities to include tables for: 
+    - Project Managers that would lead the project
+    - Projects that the bugs would belong to
+    - Employees that would be assigned to projects
+
+   These entities and their associated data access classes will be inherited from abstract classes to support code-reusability and method overloading. This design choice will also    be my attempt to include high extensibility, high cohesion, and low coupling. I want to implement these design features so that when new additions/features are added, major refactoring of the codebase or changes to the underlying architecture won't be necessary.  
+
+2. Currently, a SQLite database is being used because it is supported on Windows, MacOS, and Linux. A goal for this project is to keep it OS/platform independent, but I do want to replace the SQLite database with Microsoft SQL Server to better align with the current tech stack used by Microsoft/.NET developers. To accomplish this, I intend to use Docker to containerize/package the necessary dependencies so that the project can run on Windows, MacOS, and Linux within a Docker Container. To accomplish this, I intend to host a Docker Image on a registry that can be pulled to create a Docker Container/running instance of the Docker Image.
+
+3. As this project is also an application with a focus on UI/UX design, I would like to change the way records are shown to the user when a report is outputted. The information of each database record is placed within a container that is shaped like a long horizontal row. Instead of this design, I would like to implement an interface that will have three vertical sections:
+    - Projects that aren't being worked on yet || Projects that are currently being worked on || Projects that are finished. 
+    - Bugs that aren't being worked on yet || Bugs that are currently being worked on || Bugs that have been finished.
+    
+Finally, I would also like to place the information of each record within a square container like an html card to create a more visually pleasing interface and have each record be stacked on top of each other within the vertical sections they belong to.
+

@@ -7,6 +7,8 @@ namespace BugTrackerApp.Models
 	{
         // Foreign key
         public int ProjectId { get; set; }
+
+        public Project Project { get; set; }
     }
 }
 
