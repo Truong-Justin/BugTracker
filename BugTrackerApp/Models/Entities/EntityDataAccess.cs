@@ -5,10 +5,7 @@ using System.Data.SqlClient;
 
 namespace BugTrackerApp.Models
 {
-    // Abstract class made to support inheritance,
-    // code-reusability, and method overloading for future
-    // subclasses
-    public abstract class EntityDataAccess
+    public class EntityDataAccess
     {
 
         public void MakeTable()
@@ -77,7 +74,7 @@ namespace BugTrackerApp.Models
                         {
                             Bug newBug = new Bug();
 
-                            newBug.Id = Convert.ToInt32(reader["Id"]);
+                            newBug.BugId = Convert.ToInt32(reader["BugId"]);
                             newBug.Date = DateOnly.Parse(reader["Date"].ToString());
                             newBug.Description = Convert.ToString(reader["Description"]);
                             newBug.Priority = Convert.ToString(reader["Priority"]);
@@ -113,11 +110,12 @@ namespace BugTrackerApp.Models
                         {
                             Project newProject = new Project();
 
-                            newProject.Id = Convert.ToInt32(reader["Id"]);
-                            newProject.Date = DateOnly.Parse(reader["Date"].ToString());
+                            newProject.ProjectId = Convert.ToInt32(reader["ProjectId"]);
+                            newProject.Date = DateOnly.Parse(reader["StartDate"].ToString());
+                            newProject.ProjectTitle = Convert.ToString(reader["ProjectTitle"]);
                             newProject.Description = Convert.ToString(reader["Description"]);
                             newProject.Priority = Convert.ToString(reader["Priority"]);
-                            newProject.Assignment = Convert.ToString(reader["Assignment"]);
+                            newProject.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
 
                             projectsList.Add(newProject);
                         }
@@ -129,7 +127,7 @@ namespace BugTrackerApp.Models
         }
 
         // Method adds a new bug record to the Bugs table
-        public void AddEntity(int id, DateOnly date, string description, string priority, string assignment, Bug bug)
+        public void AddEntity(int id, int projectId, DateOnly date, string description, string priority, string assignment, Bug bug)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -142,11 +140,12 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                        INSERT INTO Bugs (Id, Date, Description, Priority, Assignment)
-                        VALUES ($id,$date,$description,$priority,$assignment)
+                        INSERT INTO Bugs (BugId, ProjectId, Date, Description, Priority, Assignment)
+                        VALUES ($id,$projectId,$date,$description,$priority,$assignment)
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
+                    command.Parameters.AddWithValue("$projectId", projectId);
                     command.Parameters.AddWithValue("$date", date);
                     command.Parameters.AddWithValue("$description", description);
                     command.Parameters.AddWithValue("$priority", priority);
@@ -171,7 +170,7 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                        INSERT INTO Projects (Id, Date, Description, Priority, Assignment)
+                        INSERT INTO Projects (ProjectId, Date, Description, Priority, Assignment)
                         VALUES ($id,$date,$description,$priority,$assignment)
                     ";
 
@@ -202,7 +201,7 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         DELETE FROM BUGS
-                        WHERE Id = $id
+                        WHERE BugId = $id
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
@@ -226,8 +225,8 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                        DELETE FROM BUGS
-                        WHERE Id = $id
+                        DELETE FROM PROJECTS
+                        WHERE ProjectId = $id
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
@@ -256,7 +255,7 @@ namespace BugTrackerApp.Models
                         Description = $description,
                         Priority = $priority,
                         Assignment = $assignment
-                        WHERE Id = $id
+                        WHERE BugId = $id
                     ";
 
                     command.Parameters.AddWithValue("$date", date);
@@ -290,7 +289,7 @@ namespace BugTrackerApp.Models
                         Description = $description,
                         Priority = $priority,
                         Assignment = $assignment
-                        WHERE Id = $id
+                        WHERE ProjectId = $id
                     ";
 
                     command.Parameters.AddWithValue("$date", date);
@@ -322,7 +321,7 @@ namespace BugTrackerApp.Models
                     @"
                         SELECT *
                         FROM BUGS
-                        WHERE Id = $id
+                        WHERE BugId = $id
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
@@ -332,7 +331,8 @@ namespace BugTrackerApp.Models
 
                         while (reader.Read())
                         {
-                            newBug.Id = Convert.ToInt32(reader["Id"]);
+                            newBug.BugId = Convert.ToInt32(reader["BugId"]);
+                            newBug.ProjectId = Convert.ToInt32(reader["ProjectId"]);
                             newBug.Date = DateOnly.Parse(reader["Date"].ToString());
                             newBug.Description = Convert.ToString(reader["Description"]);
                             newBug.Priority = Convert.ToString(reader["Priority"]);
@@ -363,7 +363,7 @@ namespace BugTrackerApp.Models
                     @"
                         SELECT *
                         FROM PROJECTS
-                        WHERE Id = $id
+                        WHERE ProjectId = $id
                     ";
 
                     command.Parameters.AddWithValue("$id", id);
@@ -373,11 +373,11 @@ namespace BugTrackerApp.Models
 
                         while (reader.Read())
                         {
-                            newProject.Id = Convert.ToInt32(reader["Id"]);
-                            newProject.Date = DateOnly.Parse(reader["Date"].ToString());
+                            newProject.ProjectId = Convert.ToInt32(reader["ProjectId"]);
+                            newProject.Date = DateOnly.Parse(reader["ProjectDate"].ToString());
+                            newProject.ProjectTitle = Convert.ToString(reader["ProjectTitle"]);
                             newProject.Description = Convert.ToString(reader["Description"]);
                             newProject.Priority = Convert.ToString(reader["Priority"]);
-                            newProject.Assignment = Convert.ToString(reader["Assignment"]);
                         }
                     }
                 }

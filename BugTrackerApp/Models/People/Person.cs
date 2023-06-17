@@ -8,7 +8,6 @@ namespace BugTrackerApp.Models
     // and code-reusability for future subclasses
     public abstract class Person
 	{
-        public int Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -18,6 +17,15 @@ namespace BugTrackerApp.Models
 
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}"), Required]
         public DateOnly HireDate { get; set; }
+
+
+        // Constructor sets default values
+        // to avoid possible null references
+        public Person()
+        {
+            FirstName = string.Empty;
+            LastName = string.Empty;
+        }
     }
 }
 

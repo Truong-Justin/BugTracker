@@ -6,16 +6,13 @@ namespace BugTrackerApp.Models
 {
 	public class Project : Entity
 	{
+		[Required]
+		public int ProjectId { get; set; }
+
+		public string ProjectTitle { get; set; }
+
 		// Foreign Key
 		public int ProjectManagerId { get; set; }
-
-		public Project ProjectManager { get; set; }
-
-		// Collection of bugs that a project has
-		IList<Bug> Bugs { get; set; }
-
-		// Collection of employees that a project has
-		IList<Employee> Employees { get; set; }
 	}
 }
 

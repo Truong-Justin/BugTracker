@@ -11,25 +11,28 @@
                 <h2 class="mt-3 mx-auto"><span class="text-primary">Bug</span> <span class="text-secondary">Details</span></h2>
                 <hr />
                 <dl class="dl-horizontal mt-4">
-                    <dt>@Html.DisplayNameFor(model => model.Bug.Id)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(model => model.Bug.Id)</dd>
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.BugId)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.BugId)</dd>
 
-                    <dt>@Html.DisplayNameFor(model => model.Bug.Date)</dt>
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.ProjectId)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.ProjectId)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Date)</dt>
                     <dd class="mb-4">@Html.DisplayFor(model => model.Bug.Date)</dd>
 
-                    <dt>@Html.DisplayNameFor(model => model.Bug.Description)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(model => model.Bug.Description)</dd>
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Description)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.Description)</dd>
 
-                    <dt>@Html.DisplayNameFor(model => model.Bug.Priority)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(model => model.Bug.Priority)</dd>
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Priority)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</dd>
 
-                    <dt>@Html.DisplayNameFor(model => model.Bug.Assignment)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(model => model.Bug.Assignment)</dd>
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Assignment)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.Assignment)</dd>
                 </dl>
                 <div class="mb-4">
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Bug.Id">
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Bug.BugId">
                         <a class="btn btn-secondary shadow" asp-page="/Index">Home</a>
-                        <a class="btn btn-dark shadow" asp-page="EditBug" asp-route-id=@Model.Bug.Id>Edit Bug</a>
+                        <a class="btn btn-dark shadow" asp-page="EditBug" asp-route-id=@Model.Bug.BugId>Edit Bug</a>
                         <button class="btn btn-danger shadow" type="submit">Delete</button>
                     </form>
                 </div>

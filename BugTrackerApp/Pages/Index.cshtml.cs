@@ -6,7 +6,7 @@ namespace BugTrackerApp.Pages;
 
 public class IndexModel : PageModel
 {
-    BugDataAccess BugObj = new BugDataAccess();
+    EntityDataAccess ObjDataAccess = new EntityDataAccess();
     public IList<Bug> Bugs { get; set; }
     Bug Bug = new Bug();
     public int Id { get; set; }
@@ -16,7 +16,7 @@ public class IndexModel : PageModel
         // Try to load page with list of bugs from bugs database.
         try
         {
-            Bugs = BugObj.GetAllEntities(Bug);
+            Bugs = ObjDataAccess.GetAllEntities(Bug);
 
             // If description is too long, truncate it so it doesn't
             // break the UI.
@@ -30,9 +30,9 @@ public class IndexModel : PageModel
         // set the journal mode to Write-Ahead-Logging
         catch (System.Data.SQLite.SQLiteException)
         {
-            BugObj.MakeTable();
-            BugObj.SetJournalMode();
-            Bugs = BugObj.GetAllEntities(Bug);
+            ObjDataAccess.MakeTable();
+            ObjDataAccess.SetJournalMode();
+            Bugs = ObjDataAccess.GetAllEntities(Bug);
 
             foreach (Bug bug in Bugs.Where(bug => bug.Description.Length > 60))
             {

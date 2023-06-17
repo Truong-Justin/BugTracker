@@ -10,7 +10,7 @@ namespace BugTrackerApp.Pages
 {
 	public class EditBugModel : PageModel
     {
-        BugDataAccess ObjBug = new BugDataAccess();
+        EntityDataAccess ObjDataAccess = new EntityDataAccess();
 
         [BindProperty]
         public Bug Bug { get; set; }
@@ -19,7 +19,7 @@ namespace BugTrackerApp.Pages
         // new data from user to update bug record.
         public IActionResult OnGet(int Id)
         {
-            Bug = ObjBug.ViewEntity(Id, Bug);
+            Bug = ObjDataAccess.ViewEntity(Id, Bug);
             return Page();
         }
 
@@ -34,7 +34,7 @@ namespace BugTrackerApp.Pages
             priority = Bug.Priority;
             assignment = Bug.Assignment;
 
-            ObjBug.EditEntity(id, date, description, priority, assignment, Bug);
+            ObjDataAccess.EditEntity(id, date, description, priority, assignment, Bug);
 
             return RedirectToPage("Index");
         }

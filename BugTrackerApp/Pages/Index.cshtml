@@ -38,37 +38,39 @@
                     <h2 class="mt-3"><span class="text-primary">Bug</span> <span class="text-secondary">Details</span></h2>
                     <hr />
                     <dl class="dl-horizontal mt-4 mx-auto">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Id)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Id)</dd>
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.BugId)</dt>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.BugId)</dd>
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Date)</dt>
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.ProjectId)</dt>
+
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Date)</dt>
                         <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Date)</dd>
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Description)</dt>
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Description)</dt>
                         <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Description)</dd>
 
                         @if (Bug.Priority == "Low")
                         {
-                            <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Priority)</dt>
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Priority)</dt>
                             <dd id="low_priority" class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
                         }
                         @if (Bug.Priority == "Medium")
                         {
-                            <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Priority)</dt>
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Priority)</dt>
                             <dd id="medium_priority" class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
                         }
                         @if (Bug.Priority == "High")
                         {
-                            <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Priority)</dt>
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Priority)</dt>
                             <dd id="high_priority" class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
                         }
 
-                        <dt id="text_underline">@Html.DisplayNameFor(model => Bug.Assignment)</dt>
+                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Assignment)</dt>
                         <dd id="assignment" class="mb-4">@Html.DisplayFor(modelItem => Bug.Assignment)</dd>
                     </dl>
                     <div class="mb-4">
-                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Bug.Id">
-                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewBug" asp-route-id="@Bug.Id">View</a>
+                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Bug.BugId">
+                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewBug" asp-route-id="@Bug.BugId">View</a>
                         </form>
                     </div>
                 </div>
@@ -108,8 +110,8 @@
                     </div>
                 </div>
                 <div class="col">
-                    <form method="post" asp-page-handler="View" asp-route-id="@Bug.Id">
-                        <a class="btn btn-sm btn-dark shadow" asp-page="ViewBug" asp-route-id="@Bug.Id">View</a>
+                    <form method="post" asp-page-handler="View" asp-route-id="@Bug.BugId">
+                        <a class="btn btn-sm btn-dark shadow" asp-page="ViewBug" asp-route-id="@Bug.BugId">View</a>
                     </form>
                 </div>
             </div>
