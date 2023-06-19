@@ -16,15 +16,6 @@ namespace BugTrackerApp.Models
 
         [Required]
         public string Priority { get; set; }
-
-
-        // Constructor sets default values
-        // to avoid possible null references
-        public Entity()
-        {
-            Description = string.Empty;
-            Priority = string.Empty;
-        }
     }
 }
 

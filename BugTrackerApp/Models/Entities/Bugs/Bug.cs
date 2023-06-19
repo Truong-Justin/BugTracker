@@ -5,6 +5,7 @@ namespace BugTrackerApp.Models
 {
 	public class Bug : Entity
 	{
+
         [Required]
         public int BugId { get; set; }
 
@@ -12,6 +13,7 @@ namespace BugTrackerApp.Models
         public string Assignment { get; set; }
 
         // Foreign key
+        [Required]
         public int ProjectId { get; set; }
     }
 }

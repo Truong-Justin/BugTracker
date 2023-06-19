@@ -28,7 +28,7 @@ public class IndexModel : PageModel
 
         // If database doesn't exist, create the database file and
         // set the journal mode to Write-Ahead-Logging
-        catch (System.Data.SQLite.SQLiteException)
+        catch (Microsoft.Data.Sqlite.SqliteException)
         {
             ObjDataAccess.MakeTable();
             ObjDataAccess.SetJournalMode();

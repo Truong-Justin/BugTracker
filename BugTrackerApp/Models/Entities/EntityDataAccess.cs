@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using System.Data.SqlClient;
 
 namespace BugTrackerApp.Models
@@ -13,11 +13,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(
+                using (SqliteCommand command = new SqliteCommand(
                         "BEGIN TRANSACTION;" +
                         "CREATE TABLE `Bugs` (`Id` NUMERIC PRIMARY KEY,`Date` varchar(10),`Description` varchar(125),`Priority` varchar(10),`Assignment` varchar(10));" +
                         "INSERT INTO 'Bugs' VALUES('1', '2022-01-08', 'This bug is making the web app crash', 'High', 'Luke');" +
@@ -40,11 +40,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("PRAGMA journal_mode=WAL;", connection))
+                using (SqliteCommand command = new SqliteCommand("PRAGMA journal_mode=WAL;", connection))
                 {
                     command.CommandType = CommandType.Text;
 
@@ -60,15 +60,15 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT * FROM Bugs;", connection))
+                using (SqliteCommand command = new SqliteCommand("SELECT * FROM Bugs;", connection))
                 {
                     command.CommandType = CommandType.Text;
 
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -96,15 +96,15 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT * FROM Projects;", connection))
+                using (SqliteCommand command = new SqliteCommand("SELECT * FROM Projects;", connection))
                 {
                     command.CommandType = CommandType.Text;
 
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -132,11 +132,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -162,11 +162,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -192,11 +192,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -217,11 +217,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -242,11 +242,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -276,11 +276,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -311,11 +311,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -326,7 +326,7 @@ namespace BugTrackerApp.Models
 
                     command.Parameters.AddWithValue("$id", id);
 
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
 
                         while (reader.Read())
@@ -353,11 +353,11 @@ namespace BugTrackerApp.Models
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                using (SQLiteCommand command = new SQLiteCommand(connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText =
                     @"
@@ -368,7 +368,7 @@ namespace BugTrackerApp.Models
 
                     command.Parameters.AddWithValue("$id", id);
 
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
 
                         while (reader.Read())

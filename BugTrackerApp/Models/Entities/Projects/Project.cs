@@ -9,10 +9,11 @@ namespace BugTrackerApp.Models
 		[Required]
 		public int ProjectId { get; set; }
 
+		[Required]
 		public string ProjectTitle { get; set; }
 
 		// Foreign Key
-		public int ProjectManagerId { get; set; }
+		public int? ProjectManagerId { get; set; }
 	}
 }
 

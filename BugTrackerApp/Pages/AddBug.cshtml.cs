@@ -23,12 +23,12 @@ namespace BugTrackerApp.Pages
         [BindProperty]
         public int SelectedProjectId { get; set; }
 
+
         public ActionResult OnGet()
         {
-            // Returns the length of the bugs list returned from the
-            // bugs database that is used to generate an Id to be used
-            // for a new bug record
+            // Used for ID generation
             AddBugModel.Id = ObjDataAccess.GetAllEntities(Bug).Count;
+
             Projects = ObjDataAccess.GetAllEntities(Project);
 
             return Page();
@@ -49,14 +49,14 @@ namespace BugTrackerApp.Pages
             try
             {
                 AddBugModel.Id++;
-                ObjDataAccess.AddEntity(Id, Convert.ToInt32(SelectedProjectId), date, description, priority, assignment, Bug);
+                ObjDataAccess.AddEntity(Id, SelectedProjectId, date, description, priority, assignment, Bug);
                 return RedirectToPage("./Index");
             }
 
             // Ensures a unique ID is generated and used.
-            catch (System.Data.SQLite.SQLiteException)
+            catch (Microsoft.Data.Sqlite.SqliteException)
             {
-                Bugs = (IList<Bug>)ObjDataAccess.GetAllEntities(Bug);
+                Bugs = ObjDataAccess.GetAllEntities(Bug);
 
                 int newId = AddBugModel.Id;
                 foreach (Bug bug in Bugs)
