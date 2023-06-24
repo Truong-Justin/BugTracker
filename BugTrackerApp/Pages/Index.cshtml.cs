@@ -8,7 +8,7 @@ public class IndexModel : PageModel
 {
     EntityDataAccess ObjDataAccess = new EntityDataAccess();
     public IList<Bug> Bugs { get; set; }
-    Bug Bug = new Bug();
+    Bug Bug { get; set; }
     public int Id { get; set; }
 
     public void OnGet()
@@ -17,13 +17,7 @@ public class IndexModel : PageModel
         try
         {
             Bugs = ObjDataAccess.GetAllEntities(Bug);
-
-            // If description is too long, truncate it so it doesn't
-            // break the UI.
-            foreach (Bug bug in Bugs.Where(bug => bug.Description.Length > 60))
-            {
-                bug.Description = bug.Description.Substring(0, 60) + "...";
-            }
+            Bugs = ObjDataAccess.TruncateDescriptions(Bugs);
         }
 
         // If database doesn't exist, create the database file and
@@ -33,11 +27,7 @@ public class IndexModel : PageModel
             ObjDataAccess.MakeTable();
             ObjDataAccess.SetJournalMode();
             Bugs = ObjDataAccess.GetAllEntities(Bug);
-
-            foreach (Bug bug in Bugs.Where(bug => bug.Description.Length > 60))
-            {
-                bug.Description = bug.Description.Substring(0, 60) + "...";
-            }
+            Bugs = ObjDataAccess.TruncateDescriptions(Bugs);
         }
     }   
 }

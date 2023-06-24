@@ -34,23 +34,27 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    max-width: 75%;
+    max-width: 100%;
 }
 
-.row {
+.new-row {
     border-style: ridge;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 10px;
-    border-width: 2px;
+    border-width: 1.5px;
     border-color: black;
     background-color: rgb(224, 229, 236);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     transition-duration: .75s;
 }
 
 #row_hover:hover {
     background-color: white;
+}
+
+#new-row-hover:hover {
+    background-color: #343a40;
 }
 
 h4 {
@@ -63,11 +67,33 @@ h4 {
     margin-bottom: auto;
 }
 
+.card {
+    height: 100%;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.card-title {
+    text-decoration: underline;
+}
+
+.btn-danger {
+    background-color: rgb(217, 72, 85);
+}
+
+#card-text {
+    color: #696880;
+}
+
+#card-headers {
+    text-decoration-color: white;
+}
+
 #low_priority {
     display: inline-flex;
     border-radius: 5%;
     padding: 5px;
-    background-color: rgb(13, 192, 13)
+    background-color: rgb(13, 192, 13);
 }
 
 #medium_priority {
@@ -97,4 +123,13 @@ h4 {
 
 #center_text {
     text-align: center;
+}
+
+#nav-buttons {
+    display: inline-flex;
+    width: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    color: white;
 }

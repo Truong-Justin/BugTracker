@@ -12,12 +12,14 @@ namespace BugTrackerApp.Pages
     {
         EntityDataAccess ObjDataAccess = new EntityDataAccess();
         public Bug Bug { get; set; }
+        public Project Project { get; set; }
              
         // Data from the selected bug is saved within the bug object
         // and used to output information to user on GET request.
         public void OnGet(int id)
         {
             Bug = ObjDataAccess.ViewEntity(id, Bug);
+            Project = ObjDataAccess.ViewEntity(Bug.ProjectId, Project); 
         }
 
         public ActionResult OnPost(int id)

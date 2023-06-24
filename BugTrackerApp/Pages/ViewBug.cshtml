@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="my-5 mx-auto" id="container_items">
-        <div class="row shadow">
+        <div class="new-row shadow">
             <div class="col-md-11 mx-auto">
                 <h2 class="mt-3 mx-auto"><span class="text-primary">Bug</span> <span class="text-secondary">Details</span></h2>
                 <hr />
@@ -14,8 +14,8 @@
                     <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.BugId)</dt>
                     <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.BugId)</dd>
 
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.ProjectId)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.ProjectId)</dd>
+                    <dt>Project</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</dd>
 
                     <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Date)</dt>
                     <dd class="mb-4">@Html.DisplayFor(model => model.Bug.Date)</dd>

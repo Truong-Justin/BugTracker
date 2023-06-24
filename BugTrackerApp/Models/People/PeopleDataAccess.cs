@@ -2,10 +2,8 @@
 
 namespace BugTrackerApp.Models.People
 {
-    // Abstract class made to support inheritance,
-    // code-reusability, and method overloading for future
-    // subclasses
-    public abstract class PeopleDataAccess
+
+    public class PeopleDataAccess
 	{
 
         //// Method returns all project manager records

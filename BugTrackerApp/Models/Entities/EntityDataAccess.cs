@@ -374,7 +374,7 @@ namespace BugTrackerApp.Models
                         while (reader.Read())
                         {
                             newProject.ProjectId = Convert.ToInt32(reader["ProjectId"]);
-                            newProject.Date = DateOnly.Parse(reader["ProjectDate"].ToString());
+                            newProject.Date = DateOnly.Parse(reader["StartDate"].ToString());
                             newProject.ProjectTitle = Convert.ToString(reader["ProjectTitle"]);
                             newProject.Description = Convert.ToString(reader["Description"]);
                             newProject.Priority = Convert.ToString(reader["Priority"]);
@@ -384,6 +384,26 @@ namespace BugTrackerApp.Models
             }
 
             return newProject;
+        }
+
+        public IList<Bug> TruncateDescriptions(IList<Bug> bugs)
+        {
+            foreach (Bug bug in bugs.Where(bug => bug.Description.Length > 80))
+            {
+                bug.Description = bug.Description.Substring(0, 80) + "...";
+            }
+
+            return bugs;
+        }
+
+        public IList<Project> TruncateDescriptions(IList<Project> projects)
+        {
+            foreach (Project project in projects.Where(project => project.Description.Length > 80))
+            {
+                project.Description = project.Description.Substring(0, 80) + "...";
+            }
+
+            return projects;
         }
 
     }
