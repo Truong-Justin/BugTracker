@@ -9,7 +9,6 @@ public class IndexModel : PageModel
     EntityDataAccess ObjDataAccess = new EntityDataAccess();
     public IList<Bug> Bugs { get; set; }
     Bug Bug { get; set; }
-    public int Id { get; set; }
 
     public void OnGet()
     {

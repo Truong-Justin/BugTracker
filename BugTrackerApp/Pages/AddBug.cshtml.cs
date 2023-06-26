@@ -15,9 +15,6 @@ namespace BugTrackerApp.Pages
     {
         EntityDataAccess ObjDataAccess = new EntityDataAccess();
         public Bug Bug { get; set; }
-        public IList<Bug> Bugs { get; set; }
-        public static int Id { get; set; }
-
         public Project Project { get; set; }
         public IList<Project> Projects { get; set; }
         [BindProperty]
@@ -26,15 +23,13 @@ namespace BugTrackerApp.Pages
 
         public ActionResult OnGet()
         {
-            // Used for ID generation
-            AddBugModel.Id = ObjDataAccess.GetAllEntities(Bug).Count;
-
+            // Get a list of projects and use the project titles
+            // for bug assignment 
             Projects = ObjDataAccess.GetAllEntities(Project);
-
             return Page();
         }
 
-        public IEnumerable<SelectListItem> GetProjectDescriptions()
+        public IEnumerable<SelectListItem> GetProjectTitles()
         {
             // Converts the list of Projects to
             // a collection of SelectListItem objects
@@ -48,28 +43,12 @@ namespace BugTrackerApp.Pages
         {
             try
             {
-                AddBugModel.Id++;
-                ObjDataAccess.AddEntity(Id, SelectedProjectId, date, description, priority, assignment, Bug);
+                ObjDataAccess.AddEntity(SelectedProjectId, date, description, priority, assignment, Bug);
                 return RedirectToPage("./Index");
             }
 
-            // Ensures a unique ID is generated and used.
             catch (Microsoft.Data.Sqlite.SqliteException)
             {
-                Bugs = ObjDataAccess.GetAllEntities(Bug);
-
-                int newId = AddBugModel.Id;
-                foreach (Bug bug in Bugs)
-                {
-                    if (bug.BugId > newId)
-                    {
-                        newId = bug.BugId;
-                    }
-                }
-
-                newId++;
-
-                ObjDataAccess.AddEntity(newId, SelectedProjectId, date, description, priority, assignment, Bug);
                 return RedirectToPage("./Index");
             }
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Microsoft.Data.Sqlite;
-using System.Data.SqlClient;
 
 namespace BugTrackerApp.Models
 {
@@ -126,8 +125,42 @@ namespace BugTrackerApp.Models
             return projectsList.AsReadOnly();
         }
 
+        public IList<ProjectManager> GetAllEntities(ProjectManager projectManager)
+        {
+            List<ProjectManager> projectManagersList = new List<ProjectManager>();
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqliteCommand command = new SqliteCommand("SELECT * FROM ProjectManagers;", connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ProjectManager newProjectManager = new ProjectManager();
+
+                            newProjectManager.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
+                            newProjectManager.FirstName = Convert.ToString(reader["FirstName"]);
+                            newProjectManager.LastName = Convert.ToString(reader["LastName"]);
+                            newProjectManager.HireDate = DateOnly.Parse(reader["HireDate"].ToString());
+
+                            projectManagersList.Add(projectManager);
+                        }
+                    }
+                }
+            }
+
+            return projectManagersList.AsReadOnly();
+        }
+
         // Method adds a new bug record to the Bugs table
-        public void AddEntity(int id, int projectId, DateOnly date, string description, string priority, string assignment, Bug bug)
+        public void AddEntity(int projectId, DateOnly date, string description, string priority, string assignment, Bug bug)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -140,11 +173,10 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                        INSERT INTO Bugs (BugId, ProjectId, Date, Description, Priority, Assignment)
-                        VALUES ($id,$projectId,$date,$description,$priority,$assignment)
+                        INSERT INTO Bugs (ProjectId, Date, Description, Priority, Assignment)
+                        VALUES ($projectId,$date,$description,$priority,$assignment)
                     ";
 
-                    command.Parameters.AddWithValue("$id", id);
                     command.Parameters.AddWithValue("$projectId", projectId);
                     command.Parameters.AddWithValue("$date", date);
                     command.Parameters.AddWithValue("$description", description);
@@ -157,7 +189,7 @@ namespace BugTrackerApp.Models
         }
 
         // Method adds a new project record to the Projects table
-        public void AddEntity(int id, DateOnly date, string description, string priority, string assignment, Project project)
+        public void AddEntity(DateOnly date, string description, string priority, string assignment, int projectManagerId, Project project)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -170,11 +202,10 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                        INSERT INTO Projects (ProjectId, Date, Description, Priority, Assignment)
-                        VALUES ($id,$date,$description,$priority,$assignment)
+                        INSERT INTO Projects (Date, Description, Priority, Assignment)
+                        VALUES ($date,$description,$priority,$assignment)
                     ";
 
-                    command.Parameters.AddWithValue("$id", id);
                     command.Parameters.AddWithValue("$date", date);
                     command.Parameters.AddWithValue("$description", description);
                     command.Parameters.AddWithValue("$priority", priority);

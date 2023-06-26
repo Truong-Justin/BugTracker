@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using Microsoft.Data.Sqlite;
 
 namespace BugTrackerApp.Models.People
 {
@@ -6,15 +8,47 @@ namespace BugTrackerApp.Models.People
     public class PeopleDataAccess
 	{
 
-        //// Method returns all project manager records
-        //// from ProjectManagers table
-        //public IList<ProjectManager> GetAllPeople(Person person)
-        //{
+        // Method returns all project manager records
+        // from ProjectManagers table
 
-        //}
+        // !-- Method currently not functioning properly, as it is returning
+        // a null list object instead of one populated with project managers--!
+        public IList<ProjectManager> GetAllEntities(ProjectManager projectManager)
+        {
+            List<ProjectManager> projectManagersList = new List<ProjectManager>();
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var connectionString = configuration.GetConnectionString("SQLiteDb");
 
-        //// Method returns all employee records
-        //// from Employees table
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqliteCommand command = new SqliteCommand("SELECT * FROM ProjectManagers;", connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ProjectManager newProjectManager = new ProjectManager();
+
+                            newProjectManager.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
+                            newProjectManager.FirstName = Convert.ToString(reader["FirstName"]);
+                            newProjectManager.LastName = Convert.ToString(reader["LastName"]);
+                            newProjectManager.HireDate = DateOnly.Parse(reader["HireDate"].ToString());
+
+                            projectManagersList.Add(projectManager);
+                        }
+                    }
+                }
+            }
+
+            return projectManagersList.AsReadOnly();
+        }
+
+        // Method returns all employee records
+        // from Employees table
         //public IList<Employee> GetAllPeople(Employee employee)
         //{
 

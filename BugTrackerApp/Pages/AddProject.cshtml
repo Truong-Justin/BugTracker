@@ -1,0 +1,74 @@
+﻿@page
+@model BugTrackerApp.Pages.AddProjectModel
+@{ViewData["Title"] = "Add Project";
+
+}
+
+<div class="container">
+    <div class="my-5 mx-auto" id="container_items">
+        <div class="new-row shadow">
+            <div class="col-md-11 mx-auto">
+                <h2 class="mt-3 mx-auto"><span class="text-primary">Add</span> <span class="text-secondary">Project</span></h2>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-4">
+                        <label class="control-label">Project Manager Assignment</label>
+                        <select class="form-control shadow" asp-for="SelectedProjectManagerId" asp-items="@(Model.GetProjectManagers())">
+                            <option value="0">-- Select Project Manager --</option>
+                        </select>
+                    </div>
+                </form>
+                        
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
+    <div class="my-5 mx-auto" id="container_items">
+        <div class="new-row shadow">
+            <div class="col-md-11 mx-auto">
+                <h2 class="mt-3 mx-auto"><span class="text-primary">Add</span> <span class="text-secondary">Project</span></h2>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-4">
+                        <label class="control-label">Project Assignment</label>
+                        <select class="form-control shadow" asp-for="SelectedProjectManagerId" asp-items="@(Model.GetProjectManagers())">
+                            <option value="0">-- Select Project --</option>
+                        </select>
+                        <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4 mt-4">
+                        <label asp-for="Project.Date" class="control-label"></label>
+                        <input asp-for="Project.Date" type="date" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" name="Date" />
+                        <span asp-validation-for="Project.Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Project.Description" class="control-label"></label>
+                        <input asp-for="Project.Description" class="form-control shadow" name="Description" data-val;="true" data-val-required="A description is required." />
+                        <span asp-validation-for="Project.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Project.Priority" class="control-label"></label>
+                        <select asp-for="Project.Priority" class="form-control shadow" name="Priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        <span asp-validation-for="Project.Priority" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <a class="btn btn-secondary shadow" asp-page="/ProjectIndex">Back</a>
+                        <input type="submit" value="Add Bug" class="btn btn-primary shadow" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

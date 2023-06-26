@@ -41,7 +41,6 @@
                             <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
                             <dd id="high_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
                         }
-
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Project.ProjectId">
@@ -80,7 +79,7 @@
                         }
                         <div class="mx-auto">
                             <form method="post" asp-page-handler="View" asp-route-id="@Project.ProjectId">
-                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewBug" asp-route-id="@Project.ProjectId">View Bug</a>
+                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewProject" asp-route-id="@Project.ProjectId">View Project</a>
                             </form>
                         </div>
                     </div>
@@ -88,7 +87,7 @@
             }
         </div>
         <div class="mx-auto">
-            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddBug" style="display: inline-flex">+ Add a project</a>
+            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="#" style="display: inline-flex">+ Add a project</a>
         </div>
     </div>
 </div>
