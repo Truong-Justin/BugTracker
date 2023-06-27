@@ -20,7 +20,7 @@
                         <dd class="mb-4">@Html.DisplayFor(modelItem => ProjectManager.ProjectManagerId)</dd>
 
                         <dt id="text_underline">Project Manager Name</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => ProjectManager.FirstName + " " + ProjectManager.LastName)</dd>
+                        <dd class="mb-4">@Html.DisplayFor(modelItem => ProjectManager.FirstName)</dd>
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
@@ -42,7 +42,7 @@
                         </div>
                         <h5 class="card-title mt-4 mx-auto">Manager Name</h5>
                         <div class="mx-auto px-2" id="card-text">
-                            @Html.DisplayFor(modelItem => ProjectManager.FirstName + " " + ProjectManager.LastName)
+                            @Html.DisplayFor(modelItem => ProjectManager.FirstName)
                         </div>
                         <div class="mx-auto">
                             <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">

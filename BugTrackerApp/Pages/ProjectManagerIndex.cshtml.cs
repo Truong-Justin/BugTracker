@@ -22,10 +22,6 @@ namespace BugTrackerApp.Pages
         public ActionResult OnGet()
         {
             ProjectManagers = ObjDataAccess.GetAllEntities(ProjectManager);
-            foreach (ProjectManager PM in ProjectManagers)
-            {
-                Console.WriteLine(PM.FirstName);
-            }
             return Page();
         }
     }

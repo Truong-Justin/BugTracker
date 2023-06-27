@@ -125,40 +125,6 @@ namespace BugTrackerApp.Models
             return projectsList.AsReadOnly();
         }
 
-        public IList<ProjectManager> GetAllEntities(ProjectManager projectManager)
-        {
-            List<ProjectManager> projectManagersList = new List<ProjectManager>();
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
-
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                connection.Open();
-
-                using (SqliteCommand command = new SqliteCommand("SELECT * FROM ProjectManagers;", connection))
-                {
-                    command.CommandType = CommandType.Text;
-
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            ProjectManager newProjectManager = new ProjectManager();
-
-                            newProjectManager.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
-                            newProjectManager.FirstName = Convert.ToString(reader["FirstName"]);
-                            newProjectManager.LastName = Convert.ToString(reader["LastName"]);
-                            newProjectManager.HireDate = DateOnly.Parse(reader["HireDate"].ToString());
-
-                            projectManagersList.Add(projectManager);
-                        }
-                    }
-                }
-            }
-
-            return projectManagersList.AsReadOnly();
-        }
-
         // Method adds a new bug record to the Bugs table
         public void AddEntity(int projectId, DateOnly date, string description, string priority, string assignment, Bug bug)
         {
