@@ -34,7 +34,7 @@
         <div class="row mx-auto d-sm-inline-flex d-none">
             @foreach (var ProjectManager in Model.ProjectManagers)
             {
-                <div class="col-3 mb-3">
+                <div class="col-3 w-100 mb-3">
                     <div class="card new-row" id="row_hover">
                         <h5 class="card-title mx-auto mt-3">Date</h5>
                         <div class="mx-auto" id="card-text">
@@ -42,11 +42,11 @@
                         </div>
                         <h5 class="card-title mt-4 mx-auto">Manager Name</h5>
                         <div class="mx-auto px-2" id="card-text">
-                            @Html.DisplayFor(modelItem => ProjectManager.FirstName)
+                            @Html.DisplayFor(modelItem => ProjectManager.FirstName) @Html.DisplayFor(modelItem => ProjectManager.LastName)
                         </div>
                         <div class="mx-auto">
                             <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
-                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewBug" asp-route-id="@ProjectManager.ProjectManagerId">View Bug</a>
+                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewBug" asp-route-id="@ProjectManager.ProjectManagerId">View Manager</a>
                             </form>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Microsoft.Data.Sqlite;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BugTrackerApp.Models
 {
@@ -155,7 +156,7 @@ namespace BugTrackerApp.Models
         }
 
         // Method adds a new project record to the Projects table
-        public void AddEntity(DateOnly date, string description, string priority, string assignment, int projectManagerId, Project project)
+        public void AddEntity(int projectManagerId, DateOnly startDate, string projectTitle, string description, string priority, Project project)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var connectionString = configuration.GetConnectionString("SQLiteDb");
@@ -168,14 +169,15 @@ namespace BugTrackerApp.Models
                 {
                     command.CommandText =
                     @"
-                        INSERT INTO Projects (Date, Description, Priority, Assignment)
-                        VALUES ($date,$description,$priority,$assignment)
+                        INSERT INTO Projects (ProjectManagerId, StartDate, ProjectTitle, Description, Priority)
+                        VALUES ($projectManagerId,$startDate,$projectTitle,$description,$priority)
                     ";
 
-                    command.Parameters.AddWithValue("$date", date);
+                    command.Parameters.AddWithValue("$projectManagerId", projectManagerId);
+                    command.Parameters.AddWithValue("$startDate", startDate);
+                    command.Parameters.AddWithValue("$projectTitle", projectTitle);
                     command.Parameters.AddWithValue("$description", description);
                     command.Parameters.AddWithValue("$priority", priority);
-                    command.Parameters.AddWithValue("$assignment", assignment);
 
                     command.ExecuteNonQuery();
                 }
@@ -383,6 +385,7 @@ namespace BugTrackerApp.Models
             return newProject;
         }
 
+        // Method truncates description to prevent the UI from breaking
         public IList<Bug> TruncateDescriptions(IList<Bug> bugs)
         {
             foreach (Bug bug in bugs.Where(bug => bug.Description.Length > 80))
@@ -393,6 +396,7 @@ namespace BugTrackerApp.Models
             return bugs;
         }
 
+        // Method truncates description to prevent the UI from breaking
         public IList<Project> TruncateDescriptions(IList<Project> projects)
         {
             foreach (Project project in projects.Where(project => project.Description.Length > 80))

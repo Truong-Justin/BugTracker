@@ -17,7 +17,7 @@ namespace BugTrackerApp.Pages
     {
         PeopleDataAccess ObjDataAccess = new PeopleDataAccess();
         ProjectManager ProjectManager { get; set; }
-        public IList<ProjectManager> ProjectManagers { get; set; }
+        public required IList<ProjectManager> ProjectManagers { get; set; }
 
         public ActionResult OnGet()
         {

@@ -11,7 +11,7 @@ namespace BugTrackerApp.Pages
 	public class ProjectIndexModel : PageModel
     {
         EntityDataAccess ObjDataAccess = new EntityDataAccess();
-        public IList<Project> Projects { get; set; }
+        public required IList<Project> Projects { get; set; }
         Project Project { get; set; }
 
         public void OnGet()

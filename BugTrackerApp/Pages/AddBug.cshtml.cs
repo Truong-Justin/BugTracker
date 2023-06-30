@@ -37,8 +37,7 @@ namespace BugTrackerApp.Pages
             return Projects.Select(project => new SelectListItem { Value = project.ProjectId.ToString(), Text = project.ProjectTitle});
         }
 
-        // Collects the user input and adds a new bug record
-        // to the database.
+        
         public ActionResult OnPost(DateOnly date, string description, string priority, string assignment)
         {
             try

@@ -17,7 +17,6 @@
     <None Remove="Models\People\" />
     <None Remove="Models\People\Employees\" />
     <None Remove="Models\People\ProjectManagers\" />
-    <None Remove="Pages\BugPages\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -28,7 +27,6 @@
     <Folder Include="Models\People\" />
     <Folder Include="Models\People\Employees\" />
     <Folder Include="Models\People\ProjectManagers\" />
-    <Folder Include="Pages\BugPages\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />

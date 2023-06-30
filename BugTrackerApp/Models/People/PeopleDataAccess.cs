@@ -38,7 +38,7 @@ namespace BugTrackerApp.Models.People
                             newProjectManager.LastName = Convert.ToString(reader["LastName"]);
                             newProjectManager.HireDate = DateOnly.Parse(reader["HireDate"].ToString());
 
-                            projectManagersList.Add(projectManager);
+                            projectManagersList.Add(newProjectManager);
                         }
                     }
                 }

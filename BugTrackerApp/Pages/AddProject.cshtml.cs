@@ -11,10 +11,6 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 
-// !--View-Model currently going through troubleshooting process;
-// PeopleDataAccess.GetAllEntities() is returning a null object instead
-// of a populated list of project managers--!
-
 namespace BugTrackerApp.Pages
 {
     public class AddProjectModel : PageModel
@@ -42,41 +38,18 @@ namespace BugTrackerApp.Pages
         public IEnumerable<SelectListItem> GetProjectManagers()
         {
             // Converts the list of Project Managers to
-            // a collection of SelectListItem objects
-            // used to populate the asp-items for project manager
-
-            try
-            {
-                return ProjectManagers.Select(pm => new SelectListItem { Value = pm.ProjectManagerId.ToString(), Text = pm.FirstName });
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return ProjectManagers.Select(pm => new SelectListItem { Value = pm.ProjectManagerId.ToString(), Text = pm.FirstName });
-            }
-        }
-
-        // Test Method...Delete later
-        public IEnumerable<SelectListItem> GetProjectManagerss()
-        {
-            var ProjectManagers = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "1", Text = "Kenny"},
-                new SelectListItem { Value = "2", Text = "Uncle Tommy"}
-            };
-
-            Console.WriteLine(ProjectManagers);
-
-            return ProjectManagers;
+            // a collection of SelectListItem objects used 
+            // to populate the asp-items for project manager
+            return ProjectManagers.Select(pm => new SelectListItem { Value = pm.ProjectManagerId.ToString(), Text = pm.FirstName + " " + pm.LastName});
+            
         }
 
 
-        public ActionResult OnPost(string description, DateOnly date, string priority, string assignment)
+        public ActionResult OnPost(DateOnly startDate, string projectTitle, string description, string priority)
         {
             try
             {
-                EntityDataAccess.AddEntity(date, description, priority, assignment, SelectedProjectManagerId, Project);
+                EntityDataAccess.AddEntity(SelectedProjectManagerId, startDate, projectTitle, description, priority, Project);
                 return RedirectToPage("./ProjectIndex");
             }
 
