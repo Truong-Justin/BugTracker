@@ -16,7 +16,7 @@ namespace BugTrackerApp.Pages
         EntityDataAccess ObjDataAccess = new EntityDataAccess();
         public Bug Bug { get; set; }
         public Project Project { get; set; }
-        public IList<Project> Projects { get; set; }
+        public required IList<Project> Projects { get; set; }
         [BindProperty]
         public int SelectedProjectId { get; set; }
 

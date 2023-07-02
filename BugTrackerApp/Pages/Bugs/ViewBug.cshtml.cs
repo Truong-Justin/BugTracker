@@ -25,7 +25,7 @@ namespace BugTrackerApp.Pages
         public ActionResult OnPost(int id)
         {
             ObjDataAccess.DeleteEntity(id, Bug);
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Bugs/Index");
         }
     }
 }

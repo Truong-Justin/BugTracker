@@ -31,7 +31,7 @@
                 </dl>
                 <div class="mb-4">
                     <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Bug.BugId">
-                        <a class="btn btn-secondary shadow" asp-page="/Index">Home</a>
+                        <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Home</a>
                         <a class="btn btn-dark shadow" asp-page="EditBug" asp-route-id=@Model.Bug.BugId>Edit Bug</a>
                         <button class="btn btn-danger shadow" type="submit">Delete</button>
                     </form>

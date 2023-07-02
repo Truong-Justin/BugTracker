@@ -18,9 +18,9 @@ namespace BugTrackerApp.Pages
         EntityDataAccess EntityDataAccess = new EntityDataAccess();
         PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
         public Project Project { get; set; }
-        public IList<Project> Projects { get; set; }
-        public ProjectManager ProjectManager { get; set; }
-        public IList<ProjectManager> ProjectManagers { get; set; }
+        public required IList<Project> Projects { get; set; }
+        public required ProjectManager ProjectManager { get; set; }
+        public required IList<ProjectManager> ProjectManagers { get; set; }
         [BindProperty]
         public int SelectedProjectManagerId { get; set; }
 

@@ -7,7 +7,7 @@ namespace BugTrackerApp.Pages;
 public class IndexModel : PageModel
 {
     EntityDataAccess ObjDataAccess = new EntityDataAccess();
-    public IList<Bug> Bugs { get; set; }
+    public required IList<Bug> Bugs { get; set; }
     Bug Bug { get; set; }
 
     public void OnGet()

@@ -7,16 +7,13 @@ using BugTrackerApp.Models.People;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-// !--View-Model currently going through troubleshooting process;
-// PeopleDataAccess.GetAllEntities() is returning a null object instead
-// of a populated list of project managers--!
 
 namespace BugTrackerApp.Pages
 {
 	public class ProjectManagerIndexModel : PageModel
     {
         PeopleDataAccess ObjDataAccess = new PeopleDataAccess();
-        ProjectManager ProjectManager { get; set; }
+        public required ProjectManager ProjectManager { get; set; }
         public required IList<ProjectManager> ProjectManagers { get; set; }
 
         public ActionResult OnGet()
