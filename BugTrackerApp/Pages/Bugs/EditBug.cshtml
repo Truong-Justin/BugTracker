@@ -41,7 +41,7 @@
                             </select>
                         </div>
                         <div class="mb-4">
-                            <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Home</a>
+                            <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Back To Bugs</a>
                             <a class="btn btn-dark shadow" asp-page="ViewBug" asp-route-id="@Model.Bug.BugId">Back to Details</a>
                             <input type="submit" value="Save" class="btn btn-primary shadow"/>
                         </div>
@@ -49,7 +49,6 @@
                 </div>
             </div>
         </div>
-
 </div>
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}

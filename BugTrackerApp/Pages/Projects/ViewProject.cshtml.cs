@@ -13,13 +13,20 @@ namespace BugTrackerApp.Pages.Projects
     {
         EntityDataAccess EntityDataAccess = new EntityDataAccess();
         PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
-        public Project Project { get; set; }
-        public required ProjectManager ProjectManager { get; set; }
+        public required Project Project { get; set; }
+        public ProjectManager ProjectManager { get; set; }
+
 
         public void OnGet(int id)
         {
             Project = EntityDataAccess.ViewEntity(id, Project);
-            //ProjectManager = PeopleDataAccess.ViewPerson(Project.ProjectId, ProjectManager);
+            ProjectManager = PeopleDataAccess.ViewPerson(Project.ProjectManagerId, ProjectManager);
+        }
+
+        public ActionResult OnPost(int id)
+        {
+            EntityDataAccess.DeleteEntity(id, Project);
+            return RedirectToPage("/Projects/ProjectIndex");
         }
     }
 }

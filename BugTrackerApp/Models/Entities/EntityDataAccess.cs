@@ -1,17 +1,22 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using Microsoft.Data.Sqlite;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BugTrackerApp.Models
 {
     public class EntityDataAccess
     {
 
+        public string GetConnectionString()
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            string connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            return connectionString;
+        }
+
         public void MakeTable()
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -31,14 +36,13 @@ namespace BugTrackerApp.Models
             }
         }
 
-        // Methode sets journal mode to write-ahead-logging to simulate
+        // Method sets journal mode to write-ahead-logging to simulate
         // concurrent read/write access; SQLite does not support concurrent
         // read/write access natively so WAL is used to write to the database when
         // a new database connection can be made 
         public void SetJournalMode()
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -57,8 +61,7 @@ namespace BugTrackerApp.Models
         public IList<Bug> GetAllEntities(Bug bug)
         {
             List<Bug> bugsList = new List<Bug>();
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -93,8 +96,7 @@ namespace BugTrackerApp.Models
         public IList<Project> GetAllEntities(Project project)
         {
             List<Project> projectsList = new List<Project>();
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -129,8 +131,7 @@ namespace BugTrackerApp.Models
         // Method adds a new bug record to the Bugs table
         public void AddEntity(int projectId, DateOnly date, string description, string priority, string assignment, Bug bug)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -158,8 +159,7 @@ namespace BugTrackerApp.Models
         // Method adds a new project record to the Projects table
         public void AddEntity(int projectManagerId, DateOnly startDate, string projectTitle, string description, string priority, Project project)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -188,8 +188,7 @@ namespace BugTrackerApp.Models
         // using the given Id
         public void DeleteEntity(int id, Bug bug)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -213,8 +212,7 @@ namespace BugTrackerApp.Models
         // using the given Id
         public void DeleteEntity(int id, Project project)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -238,8 +236,7 @@ namespace BugTrackerApp.Models
         // using the given Id
         public void EditEntity(int id, DateOnly date, string description, string priority, string assignment, Bug bug)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -268,12 +265,11 @@ namespace BugTrackerApp.Models
             }
         }
 
-        // Method updates the fields of a bug record from the Projects table
+        // Method updates the fields of a project record from the Projects table
         // using the given Id
-        public void EditEntity(int id, DateOnly date, string description, string priority, string assignment, Project project)
+        public void EditEntity(int id, DateOnly startDate, string projectTitle, string description, string priority, Project project)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -284,17 +280,17 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         UPDATE Projects SET
-                        Date = $date,
+                        StartDate = $startDate,
+                        ProjectTitle = $projectTitle,
                         Description = $description,
-                        Priority = $priority,
-                        Assignment = $assignment
+                        Priority = $priority
                         WHERE ProjectId = $id
                     ";
 
-                    command.Parameters.AddWithValue("$date", date);
+                    command.Parameters.AddWithValue("$startDate", startDate);
+                    command.Parameters.AddWithValue("projectTitle", projectTitle);
                     command.Parameters.AddWithValue("$description", description);
                     command.Parameters.AddWithValue("$priority", priority);
-                    command.Parameters.AddWithValue("$assignment", assignment);
                     command.Parameters.AddWithValue("$id", id);
 
                     command.ExecuteNonQuery();
@@ -307,8 +303,7 @@ namespace BugTrackerApp.Models
         public Bug ViewEntity(int id, Bug bug)
         {
             Bug newBug = new Bug();
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -349,8 +344,7 @@ namespace BugTrackerApp.Models
         public Project ViewEntity(int id, Project project)
         {
             Project newProject = new Project();
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -377,6 +371,7 @@ namespace BugTrackerApp.Models
                             newProject.ProjectTitle = Convert.ToString(reader["ProjectTitle"]);
                             newProject.Description = Convert.ToString(reader["Description"]);
                             newProject.Priority = Convert.ToString(reader["Priority"]);
+                            newProject.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
                         }
                     }
                 }

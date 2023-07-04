@@ -1,0 +1,50 @@
+﻿@page
+@model BugTrackerApp.Pages.Projects.EditProjectModel
+@{
+}
+
+<div class="container">
+    <div class="my-5 mx-auto" id="container_items">
+        <div class="new-row shadow">
+            <div class="col-md-11 mx-auto">
+                <h2 class="mt-3 mx-auto"><span class="text-primary">Edit</span> <span class="text-secondary">Project</span></h2>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-4 mt-4">
+                        <label class="control-label">Start Date</label>
+                        <input asp-for="Project.Date" type="text" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" />
+                        <span asp-validation-for="Project.Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="control-label">Project Title</label>
+                        <input asp-for="Project.ProjectTitle" class="form-control shadow" data-val="true" data-val-required="A project title is required" />
+                        <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Project.Description" class="control-label"></label>
+                        <input asp-for="Project.Description" class="form-control shadow" data-val="true" data-val-required="A project description is required" />
+                        <span asp-validation-for="Project.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Project.Priority" class="control-label"></label>
+                        <select asp-for="Project.Priority" class="form-control shadow">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back To Projects</a>
+                        <a class="btn btn-dark shadow" asp-page="ViewBug" asp-route-id="@Model.Project.ProjectId">Back to Details</a>
+                        <input type="submit" value="Save" class="btn btn-primary shadow" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -11,7 +11,6 @@ namespace BugTrackerApp.Pages
 	public class EditBugModel : PageModel
     {
         EntityDataAccess ObjDataAccess = new EntityDataAccess();
-
         [BindProperty]
         public Bug Bug { get; set; }
 

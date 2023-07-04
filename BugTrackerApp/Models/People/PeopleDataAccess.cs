@@ -8,16 +8,20 @@ namespace BugTrackerApp.Models.People
     public class PeopleDataAccess
 	{
 
+        public string GetConnectionString()
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            string connectionString = configuration.GetConnectionString("SQLiteDb");
+
+            return connectionString;
+        }
+
         // Method returns all project manager records
         // from ProjectManagers table
-
-        // !-- Method currently not functioning properly, as it is returning
-        // a null list object instead of one populated with project managers--!
         public IList<ProjectManager> GetAllEntities(ProjectManager projectManager)
         {
             List<ProjectManager> projectManagersList = new List<ProjectManager>();
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var connectionString = configuration.GetConnectionString("SQLiteDb");
+            string connectionString = GetConnectionString();
 
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -96,12 +100,44 @@ namespace BugTrackerApp.Models.People
 
         //}
 
-        //// Method selects a specific project manager
-        //// record using given Id
-        //public ProjectManager ViewPerson()
-        //{
+        // Method selects a specific project manager
+        // record using given Id
+        public ProjectManager ViewPerson(int id, ProjectManager ProjectManager)
+        {
+            ProjectManager newManager = new ProjectManager();
+            string connectionString = GetConnectionString();
 
-        //}
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqliteCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    @"
+                        SELECT *
+                        FROM PROJECTMANAGERS
+                        WHERE ProjectManagerId = $id
+                    ";
+
+                    command.Parameters.AddWithValue("$id", id);
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            newManager.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
+                            newManager.FirstName = Convert.ToString(reader["FirstName"]);
+                            newManager.LastName = Convert.ToString(reader["LastName"]);
+                            newManager.HireDate = DateOnly.Parse(reader["HireDate"].ToString());
+                        }
+                    }
+                }
+            }
+
+            return newManager;
+        }
 
         //// Method selects a specific employee
         //// record using given Id
