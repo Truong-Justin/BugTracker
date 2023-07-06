@@ -117,7 +117,6 @@ namespace BugTrackerApp.Models
                             newProject.ProjectTitle = Convert.ToString(reader["ProjectTitle"]);
                             newProject.Description = Convert.ToString(reader["Description"]);
                             newProject.Priority = Convert.ToString(reader["Priority"]);
-                            newProject.ProjectManagerId = Convert.ToInt32(reader["ProjectManagerId"]);
 
                             projectsList.Add(newProject);
                         }

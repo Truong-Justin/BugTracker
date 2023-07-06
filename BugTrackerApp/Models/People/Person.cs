@@ -17,6 +17,15 @@ namespace BugTrackerApp.Models
 
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}"), Required]
         public DateOnly HireDate { get; set; }
+
+        [Required]
+        public string Phone { get; set; }
+
+        [Required]
+        public string Zip { get; set; }
+
+        [Required]
+        public string Address { get; set; }
     }
 }
 

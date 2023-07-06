@@ -18,7 +18,7 @@ namespace BugTrackerApp.Pages
 
         public ActionResult OnGet()
         {
-            ProjectManagers = ObjDataAccess.GetAllEntities(ProjectManager);
+            ProjectManagers = ObjDataAccess.GetAllPeople(ProjectManager);
             return Page();
         }
     }

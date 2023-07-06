@@ -29,7 +29,7 @@ namespace BugTrackerApp.Pages
         {
             // Get a list of project managers and use their first name and
             // last name for project manager assignment
-            ProjectManagers = PeopleDataAccess.GetAllEntities(ProjectManager);
+            ProjectManagers = PeopleDataAccess.GetAllPeople(ProjectManager);
             
             return Page();
         }
