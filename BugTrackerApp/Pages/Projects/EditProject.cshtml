@@ -11,15 +11,16 @@
                 <hr />
                 <form method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group mb-4 mt-4">
-                        <label class="control-label">Start Date</label>
-                        <input asp-for="Project.Date" type="text" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" />
-                        <span asp-validation-for="Project.Date" class="text-danger"></span>
-                    </div>
                     <div class="form-group mb-4">
                         <label class="control-label">Project Title</label>
                         <input asp-for="Project.ProjectTitle" class="form-control shadow" data-val="true" data-val-required="A project title is required" />
                         <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="control-label">Project Manager</label>
+                        <select class="form-control shadow" asp-for="SelectedProjectManagerId" asp-items="@(Model.GetProjectManagers())">
+                            <option value="0">-- Assign New Manager --</option>
+                        </select>
                     </div>
                     <div class="form-group mb-4">
                         <label asp-for="Project.Description" class="control-label"></label>

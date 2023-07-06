@@ -1,0 +1,41 @@
+﻿@page
+@model BugTrackerApp.Pages.ProjectManagers.ViewManagerModel
+@{
+    ViewData["Title"] = "Manager Details";
+}
+
+<div class="container">
+    <div class="my-5 mx-auto" id="container_items">
+        <div class="new-row shadow">
+            <div class="col-md-11 mx-auto">
+                <h2 class="mt-3 mx-auto"><span class="text-primary">Project Manager </span> <span class="text-secondary">Details</span></h2>
+                <hr />
+                <dl class="dl-horizontal mt-4">
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.ProjectManager.ProjectManagerId)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.ProjectManagerId)</dd>
+
+                    <dt>Hire Date</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.HireDate)</dd>
+
+                    <dt>Name</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.ProjectManager.Phone)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.Phone)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.ProjectManager.Zip)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.Zip)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.ProjectManager.Address)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.Address)</dd>
+                </dl>
+                <div class="mb-4">
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.ProjectManager.ProjectManagerId">
+                        <a class="btn btn-secondary shadow" asp-page="/ProjectManagers/ProjectManagerIndex">Back</a>
+                        <button class="btn btn-danger shadow" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

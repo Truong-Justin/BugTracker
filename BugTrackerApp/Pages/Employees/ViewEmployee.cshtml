@@ -1,0 +1,40 @@
+﻿@page
+@model BugTrackerApp.Pages.Employees.ViewEmployeeModel
+@{ViewData["Title"] = "Employee Details";
+}
+
+<div class="container">
+    <div class="my-5 mx-auto" id="container_items">
+        <div class="new-row shadow">
+            <div class="col-md-11 mx-auto">
+                <h2 class="mt-3 mx-auto"><span class="text-primary">Employee </span> <span class="text-secondary">Details</span></h2>
+                <hr />
+                <dl class="dl-horizontal mt-4">
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.EmployeeId)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.EmployeeId)</dd>
+
+                    <dt>Hire Date</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.HireDate)</dd>
+
+                    <dt>Name</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.FirstName) @Html.DisplayFor(modelItem => modelItem.Employee.LastName)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.Phone)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.Phone)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.Zip)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.Zip)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.Address)</dt>
+                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.Address)</dd>
+                </dl>
+                <div class="mb-4">
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId">
+                        <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
+                        <button class="btn btn-danger shadow" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

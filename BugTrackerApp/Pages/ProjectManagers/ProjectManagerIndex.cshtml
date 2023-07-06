@@ -24,7 +24,7 @@
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
-                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewBug" asp-route-id="@ProjectManager.ProjectManagerId">View</a>
+                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View</a>
                         </form>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         </div>*@
                         <div class="mx-auto">
                             <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
-                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewBug" asp-route-id="@ProjectManager.ProjectManagerId">View Manager</a>
+                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View Manager</a>
                             </form>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
             }
         </div>
         <div class="mx-auto">
-            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddBug" style="display: inline-flex">+ Add a PM</a>
+            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddProjectManager" style="display: inline-flex">+ Add a PM</a>
         </div>
     </div>
 </div>

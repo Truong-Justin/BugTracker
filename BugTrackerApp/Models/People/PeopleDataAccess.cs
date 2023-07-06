@@ -274,7 +274,7 @@ namespace BugTrackerApp.Models.People
 
         // Method selects a specific project manager
         // record using given Id
-        public ProjectManager ViewPerson(int id, ProjectManager ProjectManager)
+        public ProjectManager ViewPerson(int projectManagerId, ProjectManager ProjectManager)
         {
             ProjectManager newManager = new ProjectManager();
             string connectionString = GetConnectionString();
@@ -292,7 +292,7 @@ namespace BugTrackerApp.Models.People
                         WHERE ProjectManagerId = $projectManagerId
                     ";
 
-                    command.Parameters.AddWithValue("$projectManagerId", id);
+                    command.Parameters.AddWithValue("$projectManagerId", projectManagerId);
 
                     using (SqliteDataReader reader = command.ExecuteReader())
                     {
@@ -339,6 +339,7 @@ namespace BugTrackerApp.Models.People
                     {
                         while (reader.Read())
                         {
+                            newEmployee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
                             newEmployee.FirstName = Convert.ToString(reader["FirstName"]);
                             newEmployee.LastName = Convert.ToString(reader["LastName"]);
                             newEmployee.HireDate = DateOnly.Parse(reader["HireDate"].ToString());

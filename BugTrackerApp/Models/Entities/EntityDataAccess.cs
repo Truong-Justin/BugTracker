@@ -266,7 +266,7 @@ namespace BugTrackerApp.Models
 
         // Method updates the fields of a project record from the Projects table
         // using the given Id
-        public void EditEntity(int id, DateOnly startDate, string projectTitle, string description, string priority, Project project)
+        public void EditEntity(int id, string projectTitle, string description, string priority, int projectManagerId, Project project)
         {
             string connectionString = GetConnectionString();
 
@@ -279,17 +279,17 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         UPDATE Projects SET
-                        StartDate = $startDate,
                         ProjectTitle = $projectTitle,
                         Description = $description,
-                        Priority = $priority
+                        Priority = $priority,
+                        ProjectManagerId = $projectManagerId
                         WHERE ProjectId = $id
                     ";
 
-                    command.Parameters.AddWithValue("$startDate", startDate);
                     command.Parameters.AddWithValue("projectTitle", projectTitle);
                     command.Parameters.AddWithValue("$description", description);
                     command.Parameters.AddWithValue("$priority", priority);
+                    command.Parameters.AddWithValue("$projectManagerId", projectManagerId);
                     command.Parameters.AddWithValue("$id", id);
 
                     command.ExecuteNonQuery();

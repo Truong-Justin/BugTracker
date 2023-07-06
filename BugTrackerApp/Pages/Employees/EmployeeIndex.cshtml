@@ -46,7 +46,7 @@
                         </div>
                         <div class="mx-auto">
                             <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
-                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewBug" asp-route-id="@Employee.EmployeeId">View Manager</a>
+                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View Employee</a>
                             </form>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             }
         </div>
         <div class="mx-auto">
-            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddBug" style="display: inline-flex">+ Add an employee</a>
+            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddEmployee" style="display: inline-flex">+ Add an employee</a>
         </div>
     </div>
 </div>
