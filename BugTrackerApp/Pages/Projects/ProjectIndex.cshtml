@@ -11,36 +11,42 @@
         <!--UI for mobile view-->
         @foreach (var Project in Model.Projects)
         {
-            <div class="new-row d-sm-none shadow">
-                <div class="col-md-10 mx-auto">
-                    <img src="images/fixing-problem.png" class="w-25" />
-                    <h2 class="mt-3"><span class="text-primary">Project</span> <span class="text-secondary">Details</span></h2>
+            <div class="new-row d-sm-none shadow mb-3">
+                <div class="col-md-10">
+                    <div class="text-center">
+                        <h2 class="mt-3"><span class="text-primary">Project</span> <span class="text-secondary">Details</span></h2>
+                    </div>
                     <hr />
-                    <dl class="dl-horizontal mt-4 mx-auto">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.ProjectId)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Project.ProjectId)</dd>
-
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Date)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Project.Date)</dd>
-
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Description)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Project.Description)</dd>
-
-                        @if (Project.Priority == "Low")
-                        {
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
-                            <dd id="low_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
-                        }
-                        @if (Project.Priority == "Medium")
-                        {
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
-                            <dd id="medium_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
-                        }
-                        @if (Project.Priority == "High")
-                        {
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
-                            <dd id="high_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
-                        }
+                    <dl class="dl-horizontal mt-4">
+                        <div class="text-center">
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.ProjectId)</dt>
+                            <dd class="mb-4">@Html.DisplayFor(modelItem => Project.ProjectId)</dd>
+                        </div>
+                        <div class="text-center">
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Date)</dt>
+                            <dd class="mb-4">@Html.DisplayFor(modelItem => Project.Date)</dd>
+                        </div>
+                        <div class="text-center">
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Description)</dt>
+                            <dd class="mb-4">@Html.DisplayFor(modelItem => Project.Description)</dd>
+                        </div>
+                        <div class="text-center mb-4">
+                            @if (Project.Priority == "Low")
+                            {
+                                <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
+                                <dd id="low_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
+                            }
+                            @if (Project.Priority == "Medium")
+                            {
+                                <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
+                                <dd id="medium_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
+                            }
+                            @if (Project.Priority == "High")
+                            {
+                                <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
+                                <dd id="high_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
+                            }
+                        </div>
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Project.ProjectId">
@@ -52,9 +58,10 @@
         }
         <!--UI for desktop view-->
         <div class="row mx-auto d-sm-inline-flex d-none">
+            <h1 class="text-secondary text-center mb-5" id="text_underline"><span class="text-primary">Projects</span></h1>
             @foreach (var Project in Model.Projects)
             {
-                <div class="col-3 mb-3">
+                <div class="col-3 my-3">
                     <div class="card new-row" id="row_hover">
                         <h5 class="card-title mx-auto mt-3">Start Date</h5>
                         <div class="mx-auto" id="card-text">

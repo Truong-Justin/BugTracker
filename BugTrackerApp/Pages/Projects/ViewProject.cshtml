@@ -26,8 +26,21 @@
                     <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Description)</dt>
                     <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Project.Description)</dd>
 
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</dd>
+                    @if (Model.Project.Priority == "Low")
+                    {
+                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
+                        <div id="low_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</div>
+                    }
+                    @if (Model.Project.Priority == "Medium")
+                    {
+                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
+                        <div id="medium_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</div>
+                    }
+                    @if (Model.Project.Priority == "High")
+                    {
+                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
+                        <div id="high_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</div>
+                    }
                 </dl>
                 <div class="mb-4">
                     <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Project.ProjectId">

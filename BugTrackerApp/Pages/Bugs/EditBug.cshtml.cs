@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BugTrackerApp.Models;
+﻿using BugTrackerApp.Models;
+using BugTrackerApp.Models.People;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -10,15 +7,20 @@ namespace BugTrackerApp.Pages
 {
 	public class EditBugModel : PageModel
     {
-        EntityDataAccess ObjDataAccess = new EntityDataAccess();
+        EntityDataAccess EntityDataAccess = new EntityDataAccess();
+        public PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public Employee Employee { get; set; }
+        public IList<Employee> Employees { get; set; }
         [BindProperty]
         public Bug Bug { get; set; }
+        [BindProperty]
+        public string SelectedEmployee { get; set; }
 
-        // When the page is loaded, output a form to collect
-        // new data from user to update bug record.
+
         public IActionResult OnGet(int Id)
         {
-            Bug = ObjDataAccess.ViewEntity(Id, Bug);
+            Bug = EntityDataAccess.ViewEntity(Id, Bug);
+            Employees = PeopleDataAccess.GetAllPeople(Employee);
             return Page();
         }
 
@@ -32,8 +34,12 @@ namespace BugTrackerApp.Pages
             description = Bug.Description;
             priority = Bug.Priority;
             assignment = Bug.Assignment;
+            if (SelectedEmployee == "0")
+            {
+                SelectedEmployee = "Un-Assigned";
+            }
 
-            ObjDataAccess.EditEntity(id, date, description, priority, assignment, Bug);
+            EntityDataAccess.EditEntity(id, date, description, priority, SelectedEmployee, Bug);
 
             return RedirectToPage("Index");
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BugTrackerApp.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using BugTrackerApp.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BugTrackerApp.Pages

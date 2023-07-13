@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.Sqlite;
 
 namespace BugTrackerApp.Models
@@ -125,6 +126,14 @@ namespace BugTrackerApp.Models
             }
 
             return projectsList.AsReadOnly();
+        }
+
+        // Converts the list of Projects to
+        // a collection of SelectListItem objects
+        // used to populate the asp-items for project assignment
+        public IEnumerable<SelectListItem> GetProjectTitles(IList<Project> Projects)
+        {
+            return Projects.Select(project => new SelectListItem { Value = project.ProjectId.ToString(), Text = project.ProjectTitle });
         }
 
         // Method adds a new bug record to the Bugs table

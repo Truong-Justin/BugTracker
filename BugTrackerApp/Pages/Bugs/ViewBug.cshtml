@@ -22,10 +22,21 @@
 
                     <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Description)</dt>
                     <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.Description)</dd>
-
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Priority)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</dd>
-
+                    @if (Model.Bug.Priority == "Low")
+                    {
+                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Priority)</dt>
+                        <div id="low_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</div>
+                    }
+                    @if (Model.Bug.Priority == "Medium")
+                    {
+                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Priority)</dt>
+                        <div id="medium_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</div>
+                    }
+                    @if (Model.Bug.Priority == "High")
+                    {
+                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Priority)</dt>
+                        <div id="high_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</div>
+                    }
                     <dt>@Html.DisplayNameFor(modelItem => modelItem.Bug.Assignment)</dt>
                     <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Bug.Assignment)</dd>
                 </dl>

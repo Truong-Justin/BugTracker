@@ -7,8 +7,8 @@ namespace BugTrackerApp.Pages
 	public class ViewBugModel : PageModel
     {
         EntityDataAccess ObjDataAccess = new EntityDataAccess();
-        public Bug Bug { get; set; }
-        public Project Project { get; set; }
+        public required Bug Bug { get; set; }
+        public required Project Project { get; set; }
              
         // Data from the selected bug is saved within the bug object
         // and used to output information to user on GET request.

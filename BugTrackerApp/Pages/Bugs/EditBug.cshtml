@@ -33,11 +33,8 @@
                         </div>
                         <div class="form-group mb-4">
                             <label asp-for="Bug.Assignment" class="control-label"></label>
-                            <select asp-for="Bug.Assignment" class="form-control shadow">
-                                <option value="Lucy">Lucy</option>
-                                <option value="Luke">Luke</option>
-                                <option value="Allison">Allison</option>
-                                <option value="Justin">Justin</option>
+                            <select asp-for="SelectedEmployee" class="form-control shadow" asp-items="@(Model.PeopleDataAccess.GetEmployeeNames(Model.Employees))">
+                                <option value="0">-- Assign an Employee --</option>
                             </select>
                         </div>
                         <div class="mb-4">

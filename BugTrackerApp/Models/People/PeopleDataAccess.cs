@@ -2,6 +2,7 @@
 using System.Data;
 using System.Net;
 using System.Numerics;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.Sqlite;
 
 namespace BugTrackerApp.Models.People
@@ -91,7 +92,23 @@ namespace BugTrackerApp.Models.People
                 }
             }
 
-            return employeesList;
+            return employeesList.AsReadOnly();
+        }
+
+        // Converts the list of Project Managers to
+        // a collection of SelectListItem objects used 
+        // to populate the asp-items for project manager
+        public IEnumerable<SelectListItem> GetProjectManagerNames(IList<ProjectManager> projectManagers)
+        {
+            return projectManagers.Select(pm => new SelectListItem { Value = pm.ProjectManagerId.ToString(), Text = pm.FirstName + " " + pm.LastName });
+        }
+
+        // Converts the list of Employees to a collection
+        // of SelectListItem objects used to populate the
+        // asp-items for employee names
+        public IEnumerable<SelectListItem> GetEmployeeNames(IList<Employee> employees)
+        {
+            return employees.Select(employee => new SelectListItem { Value = employee.FirstName.ToString() + " " + employee.LastName, Text = employee.FirstName + " " + employee.LastName });
         }
 
         //// Method adds a new project manager record

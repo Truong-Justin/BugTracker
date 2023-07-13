@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BugTrackerApp.Models;
+﻿using BugTrackerApp.Models;
 using BugTrackerApp.Models.People;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,7 +9,7 @@ namespace BugTrackerApp.Pages.Projects
 	public class EditProjectModel : PageModel
     {
         EntityDataAccess EntityDataAccess = new EntityDataAccess();
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
         [BindProperty]
         public required Project Project { get; set; }
         public required ProjectManager ProjectManager { get; set; }
@@ -27,14 +23,6 @@ namespace BugTrackerApp.Pages.Projects
             Project = EntityDataAccess.ViewEntity(id, Project);
             ProjectManagers = PeopleDataAccess.GetAllPeople(ProjectManager);
             return Page();
-        }
-
-        public IEnumerable<SelectListItem> GetProjectManagers()
-        {
-            // Converts the list of Project Managers
-            // to a collection of SelectListItem objects
-            // used to populate the asp-items for project manager assignment
-            return ProjectManagers.Select(projectManager => new SelectListItem { Value = projectManager.ProjectManagerId.ToString(), Text = projectManager.FirstName + " " + projectManager.LastName});
         }
 
         public IActionResult OnPost(int id, string projectTitle, string description, string priority)

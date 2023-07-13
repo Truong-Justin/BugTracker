@@ -1,48 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BugTrackerApp.Models;
-using System.Xml.Linq;
-using System.ComponentModel.DataAnnotations;
+using BugTrackerApp.Models.People;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BugTrackerApp.Pages
 {
     public class AddBugModel : PageModel
     {
-        EntityDataAccess ObjDataAccess = new EntityDataAccess();
+        public EntityDataAccess EntityDataAccess = new EntityDataAccess();
+        public PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
         public Bug Bug { get; set; }
         public Project Project { get; set; }
         public required IList<Project> Projects { get; set; }
+        public Employee Employee { get; set; }
+        public required IList<Employee> Employees { get; set; }
         [BindProperty]
         public int SelectedProjectId { get; set; }
+        [BindProperty]
+        public string SelectedEmployee { get; set; }
 
 
         public ActionResult OnGet()
         {
             // Get a list of projects and use the project titles
             // for bug assignment 
-            Projects = ObjDataAccess.GetAllEntities(Project);
+            Projects = EntityDataAccess.GetAllEntities(Project);
+            Employees = PeopleDataAccess.GetAllPeople(Employee);
             return Page();
         }
-
-        public IEnumerable<SelectListItem> GetProjectTitles()
-        {
-            // Converts the list of Projects to
-            // a collection of SelectListItem objects
-            // used to populate the asp-items for project assignment
-            return Projects.Select(project => new SelectListItem { Value = project.ProjectId.ToString(), Text = project.ProjectTitle});
-        }
-
         
-        public ActionResult OnPost(DateOnly date, string description, string priority, string assignment)
+        public ActionResult OnPost(DateOnly date, string description, string priority)
         {
             try
             {
-                ObjDataAccess.AddEntity(SelectedProjectId, date, description, priority, assignment, Bug);
+                if (SelectedEmployee == "0")
+                {
+                    SelectedEmployee = "Un-Assigned";
+                }
+
+                EntityDataAccess.AddEntity(SelectedProjectId, date, description, priority, SelectedEmployee, Bug);
                 return RedirectToPage("./Index");
             }
 

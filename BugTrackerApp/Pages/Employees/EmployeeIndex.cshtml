@@ -10,17 +10,21 @@
         <!--UI for mobile view-->
         @foreach (var Employee in Model.Employees)
         {
-            <div class="new-row d-sm-none shadow">
+            <div class="new-row d-sm-none shadow mb-3">
                 <div class="col-md-10 mx-auto">
-                    <img src="images/fixing-problem.png" class="w-25" />
-                    <h2 class="mt-3"><span class="text-primary">Employee</span> <span class="text-secondary">Details</span></h2>
+                    <div class="text-center">
+                        <h2 class="mt-3"><span class="text-primary">Employee</span> <span class="text-secondary">Details</span></h2>
+                    </div>
                     <hr />
-                    <dl class="dl-horizontal mt-4 mx-auto">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Employee.EmployeeId)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Employee.EmployeeId)</dd>
-
-                        <dt id="text_underline">Employee Name</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</dd>
+                    <dl class="dl-horizontal mt-4">
+                        <div class="text-center">
+                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Employee.EmployeeId)</dt>
+                            <dd class="mb-4">@Html.DisplayFor(modelItem => Employee.EmployeeId)</dd>
+                        </div>
+                        <div class="text-center">
+                            <dt id="text_underline">Employee Name</dt>
+                            <dd class="mb-4">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</dd>
+                        </div>
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
@@ -31,28 +35,29 @@
             </div>
         }
         <!--UI for desktop view-->
-        <div class="row mx-auto d-sm-inline-flex d-none">
-            @foreach (var Employee in Model.Employees)
-            {
-                <div class="col-3 w-100 mb-3">
-                    <div class="card new-row" id="row_hover">
-                        <h5 class="card-title mt-4 mx-auto">Employee Id</h5>
-                        <div class="mx-auto" id="card-text">
-                            @Html.DisplayFor(modelItem => Employee.EmployeeId)
-                        </div>
-                        <h5 class="card-title mt-4 mx-auto">Employee Name</h5>
-                        <div class="mx-auto px-2" id="card-text">
-                            @Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)
-                        </div>
-                        <div class="mx-auto">
-                            <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
-                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View Employee</a>
-                            </form>
-                        </div>
+    <div class="row mx-auto d-sm-inline-flex d-none">
+        <h1 class="text-secondary text-center mb-5" id="text_underline"><span class="text-primary">Projects</span></h1>
+        @foreach (var Employee in Model.Employees)
+        {
+            <div class="col-3 w-100 mb-3">
+                <div class="card new-row" id="row_hover">
+                    <h5 class="card-title mt-4 mx-auto">Employee Id</h5>
+                    <div class="text-center" id="card-text">
+                        @Html.DisplayFor(modelItem => Employee.EmployeeId)
+                    </div>
+                    <h5 class="card-title mt-4 mx-auto">Employee Name</h5>
+                    <div class="text-center px-2" id="card-text">
+                        @Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)
+                    </div>
+                    <div class="mx-auto">
+                        <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
+                            <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View Employee</a>
+                        </form>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
         <div class="mx-auto">
             <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddEmployee" style="display: inline-flex">+ Add an employee</a>
         </div>
