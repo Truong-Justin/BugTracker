@@ -6,7 +6,6 @@ namespace BugTrackerApp.Models
 {
     public class EntityDataAccess
     {
-
         public string GetConnectionString()
         {
             IConfigurationRoot configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();

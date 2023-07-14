@@ -46,9 +46,7 @@ The direction of this application will make it more of a `Project Management App
 
    These entities and their associated data access classes will be inherited from abstract classes to support code-reusability and method overloading. This design choice will also    be my attempt to include high extensibility, high cohesion, and low coupling. I want to implement these design features so that when new additions/features are added, major refactoring of the codebase or changes to the underlying architecture won't be necessary.  
 
-2. Currently, a `SQLite database is being used` because it is supported on Windows, MacOS, and Linux. A goal for this project is to keep it OS/platform independent, but I do want to replace the SQLite database with Microsoft SQL Server to better align with the current tech stack used by Microsoft/.NET developers. To accomplish this, I intend to use `Azure SQL` to host and manage a cloud based <ins>SQL Server database</ins> and `Azure Key Vault` to <ins>securely store and access</ins> the connection string. 
-
-3. As this project is also an application with a focus on UI/UX design, I would like to change the way records are shown to the user when a report is outputted. The information of each database record is placed within a container that is shaped like a long horizontal row. Instead of this design, I would like to implement an <ins>interface that will have three vertical sections</ins>:
+2. As this project is also an application with a focus on UI/UX design, I would like to change the way records are shown to the user when a report is outputted. The information of each database record is placed within a container that is shaped like a long horizontal row. Instead of this design, I would like to implement an <ins>interface that will have three vertical sections</ins>:
     - `Projects that aren't being worked on yet || Projects that are currently being worked on || Projects that are finished.` 
     - `Bugs that aren't being worked on yet || Bugs that are currently being worked on || Bugs that have been finished.`
     
