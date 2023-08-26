@@ -7,13 +7,18 @@ namespace BugTrackerApp.Pages.Employees
 {
 	public class EmployeeIndexModel : PageModel
     {
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required Employee Employee { get; set; }
         public required IList<Employee> Employees { get; set; }
 
+        public EmployeeIndexModel(PeopleDataAccess peopleDataAccess)
+        {
+            _peopleDataAccess = peopleDataAccess;
+        }
+
         public ActionResult OnGet()
         {
-            Employees = PeopleDataAccess.GetAllPeople(Employee);
+            Employees = _peopleDataAccess.GetAllPeople(Employee);
             return Page();
         }
     }

@@ -7,21 +7,27 @@ namespace BugTrackerApp.Pages.Projects
 {
 	public class ViewProjectModel : PageModel
     {
-        EntityDataAccess EntityDataAccess = new EntityDataAccess();
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly EntityDataAccess _entityDataAccess;
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required Project Project { get; set; }
         public ProjectManager ProjectManager { get; set; }
+
+        public ViewProjectModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
+        {
+            _entityDataAccess = entityDataAccess;
+            _peopleDataAccess = peopleDataAccess;
+        }
 
 
         public void OnGet(int id)
         {
-            Project = EntityDataAccess.ViewEntity(id, Project);
-            ProjectManager = PeopleDataAccess.ViewPerson(Project.ProjectManagerId, ProjectManager);
+            Project = _entityDataAccess.ViewEntity(id, Project);
+            ProjectManager = _peopleDataAccess.ViewPerson(Project.ProjectManagerId, ProjectManager);
         }
 
         public ActionResult OnPost(int id)
         {
-            EntityDataAccess.DeleteEntity(id, Project);
+            _entityDataAccess.DeleteEntity(id, Project);
             return RedirectToPage("/Projects/ProjectIndex");
         }
     }

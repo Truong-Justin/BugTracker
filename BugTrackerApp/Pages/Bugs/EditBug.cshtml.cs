@@ -7,8 +7,8 @@ namespace BugTrackerApp.Pages
 {
 	public class EditBugModel : PageModel
     {
-        EntityDataAccess EntityDataAccess = new EntityDataAccess();
-        public PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly EntityDataAccess _entityDataAccess;
+        public readonly PeopleDataAccess _peopleDataAccess;
         public Employee Employee { get; set; }
         public IList<Employee> Employees { get; set; }
         [BindProperty]
@@ -16,11 +16,16 @@ namespace BugTrackerApp.Pages
         [BindProperty]
         public string SelectedEmployee { get; set; }
 
+        public EditBugModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
+        {
+            _entityDataAccess = entityDataAccess;
+            _peopleDataAccess = peopleDataAccess;
+        }
 
         public IActionResult OnGet(int Id)
         {
-            Bug = EntityDataAccess.ViewEntity(Id, Bug);
-            Employees = PeopleDataAccess.GetAllPeople(Employee);
+            Bug = _entityDataAccess.ViewEntity(Id, Bug);
+            Employees = _peopleDataAccess.GetAllPeople(Employee);
             return Page();
         }
 
@@ -33,13 +38,13 @@ namespace BugTrackerApp.Pages
             date = Bug.Date;
             description = Bug.Description;
             priority = Bug.Priority;
-            assignment = Bug.Assignment;
+            assignment = SelectedEmployee;
             if (SelectedEmployee == "0")
             {
-                SelectedEmployee = "Un-Assigned";
+                assignment = "Un-Assigned";
             }
 
-            EntityDataAccess.EditEntity(id, date, description, priority, SelectedEmployee, Bug);
+            _entityDataAccess.EditEntity(id, date, description, priority, assignment, Bug);
 
             return RedirectToPage("Index");
         }
