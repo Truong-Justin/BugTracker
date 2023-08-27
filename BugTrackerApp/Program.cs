@@ -1,10 +1,16 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using BugTrackerApp.Models;
+using BugTrackerApp.Models.People;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
 {
     options.Conventions.AddPageRoute("/Bugs/Index", "");
 });
+
+builder.Services.AddTransient<EntityDataAccess>();
+builder.Services.AddTransient<PeopleDataAccess>();
 
 var app = builder.Build();
 

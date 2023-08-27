@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BugTrackerApp.Models
 {
@@ -7,8 +6,7 @@ namespace BugTrackerApp.Models
     // and code-reusability for future subclasses
     public abstract class Entity
     {
-
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}"), Required]
+        [Required]
         public DateOnly Date { get; set; }
 
         [Required]

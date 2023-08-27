@@ -7,17 +7,22 @@ namespace BugTrackerApp.Pages.Employees
 {
 	public class ViewEmployeeModel : PageModel
     {
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required Employee Employee { get; set; }
+
+        public ViewEmployeeModel(PeopleDataAccess peopleDataAccess)
+        {
+            _peopleDataAccess = peopleDataAccess;
+        }
 
         public void OnGet(int id)
         {
-            Employee = PeopleDataAccess.ViewPerson(id, Employee);
+            Employee = _peopleDataAccess.ViewPerson(id, Employee);
         }
 
         public ActionResult OnPost(int id)
         {
-            PeopleDataAccess.DeletePerson(id, Employee);
+            _peopleDataAccess.DeletePerson(id, Employee);
             return RedirectToPage("Employees/EmployeeIndex");
         }
     }

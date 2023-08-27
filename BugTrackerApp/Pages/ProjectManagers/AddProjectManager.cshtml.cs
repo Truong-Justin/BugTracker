@@ -7,19 +7,25 @@ namespace BugTrackerApp.Pages.ProjectManagers
 {
 	public class AddProjectManagerModel : PageModel
     {
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required ProjectManager ProjectManager { get; set; }
+
+        public AddProjectManagerModel(PeopleDataAccess peopleDataAccess)
+        {
+            _peopleDataAccess = peopleDataAccess;
+        }
 
         public ActionResult OnPost(string firstName, string lastName, DateOnly hireDate, string phone, string zip, string address)
         {
             try
             {
-                PeopleDataAccess.AddPerson(firstName, lastName, hireDate, phone, zip, address, ProjectManager);
+                _peopleDataAccess.AddPerson(firstName, lastName, hireDate, phone, zip, address, ProjectManager);
                 return RedirectToPage("./ProjectManagerIndex");
             }
 
-            catch (Microsoft.Data.Sqlite.SqliteException)
+            catch (Exception exception)
             {
+                Console.WriteLine("Error, exception: " + exception);
                 return RedirectToPage("./ProjectManagerIndex");
             }
         }

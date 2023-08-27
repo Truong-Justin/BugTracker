@@ -7,19 +7,25 @@ namespace BugTrackerApp.Pages.Employees
 {
 	public class AddEmployeeModel : PageModel
     {
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required Employee Employee { get; set; }
+
+        public AddEmployeeModel(PeopleDataAccess peopleDataAccess)
+        {
+            _peopleDataAccess = peopleDataAccess;
+        }
 
         public ActionResult OnPost(string firstName, string lastName, DateOnly hireDate, string phone, string zip, string address)
         {
             try
             {
-                PeopleDataAccess.AddPerson(firstName, lastName, hireDate, phone, zip, address, Employee);
+                _peopleDataAccess.AddPerson(firstName, lastName, hireDate, phone, zip, address, Employee);
                 return RedirectToPage("./EmployeeIndex");
             }
 
-            catch(Microsoft.Data.Sqlite.SqliteException)
+            catch(Exception exception)
             {
+                Console.WriteLine("Error, exception: " + exception);
                 return RedirectToPage("./EmployeeIndex");
             }
         }

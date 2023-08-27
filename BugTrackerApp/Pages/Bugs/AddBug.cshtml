@@ -14,7 +14,7 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group mb-4">
                             <label class="control-label">Project Assignment</label>
-                            <select class="form-control shadow" asp-for="SelectedProjectId" asp-items="@(Model.EntityDataAccess.GetProjectTitles(Model.Projects))">
+                            <select class="form-control shadow" asp-for="SelectedProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))">
                                 <option value="0">-- Select Project --</option>
                             </select>
                             <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label asp-for="Bug.Assignment" class="control-label"></label>
-                            <select asp-for="SelectedEmployee" class="form-control shadow" asp-items="@(Model.PeopleDataAccess.GetEmployeeNames(Model.Employees))">
+                            <select asp-for="SelectedEmployee" class="form-control shadow" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
                                 <option value="0">-- Assign an Employee --</option>
                             </select>
                             <span asp-validation-for="Bug.Assignment" class="text-danger"></span>

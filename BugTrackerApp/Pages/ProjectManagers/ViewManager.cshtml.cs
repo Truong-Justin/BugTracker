@@ -7,17 +7,22 @@ namespace BugTrackerApp.Pages.ProjectManagers
 {
 	public class ViewManagerModel : PageModel
     {
-        PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required ProjectManager ProjectManager { get; set; }
+
+        public ViewManagerModel(PeopleDataAccess peopleDataAccess)
+        {
+            _peopleDataAccess = peopleDataAccess;
+        }
 
         public void OnGet(int id)
         {
-            ProjectManager = PeopleDataAccess.ViewPerson(id, ProjectManager);
+            ProjectManager = _peopleDataAccess.ViewPerson(id, ProjectManager);
         }
 
         public ActionResult OnPost(int id)
         {
-            PeopleDataAccess.DeletePerson(id, ProjectManager);
+            _peopleDataAccess.DeletePerson(id, ProjectManager);
             return RedirectToPage("/ProjectManagers/ProjectManagerIndex");
         }
     }

@@ -8,13 +8,18 @@ namespace BugTrackerApp.Pages
 {
 	public class ProjectManagerIndexModel : PageModel
     {
-        PeopleDataAccess ObjDataAccess = new PeopleDataAccess();
+        public readonly PeopleDataAccess _peopleDataAccess;
         public required ProjectManager ProjectManager { get; set; }
         public required IList<ProjectManager> ProjectManagers { get; set; }
 
+        public ProjectManagerIndexModel(PeopleDataAccess peopleDataAccess)
+        {
+            _peopleDataAccess = peopleDataAccess;
+        }
+
         public ActionResult OnGet()
         {
-            ProjectManagers = ObjDataAccess.GetAllPeople(ProjectManager);
+            ProjectManagers = _peopleDataAccess.GetAllPeople(ProjectManager);
             return Page();
         }
     }

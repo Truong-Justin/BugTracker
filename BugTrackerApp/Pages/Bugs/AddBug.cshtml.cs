@@ -2,14 +2,13 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BugTrackerApp.Models;
 using BugTrackerApp.Models.People;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BugTrackerApp.Pages
 {
     public class AddBugModel : PageModel
     {
-        public EntityDataAccess EntityDataAccess = new EntityDataAccess();
-        public PeopleDataAccess PeopleDataAccess = new PeopleDataAccess();
+        public readonly EntityDataAccess _entityDataAccess;
+        public readonly PeopleDataAccess _peopleDataAccess;
         public Bug Bug { get; set; }
         public Project Project { get; set; }
         public required IList<Project> Projects { get; set; }
@@ -20,13 +19,19 @@ namespace BugTrackerApp.Pages
         [BindProperty]
         public string SelectedEmployee { get; set; }
 
+        public AddBugModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
+        {
+            _entityDataAccess = entityDataAccess;
+            _peopleDataAccess = peopleDataAccess;
+        }
+
 
         public ActionResult OnGet()
         {
             // Get a list of projects and use the project titles
             // for bug assignment 
-            Projects = EntityDataAccess.GetAllEntities(Project);
-            Employees = PeopleDataAccess.GetAllPeople(Employee);
+            Projects = _entityDataAccess.GetAllEntities(Project);
+            Employees = _peopleDataAccess.GetAllPeople(Employee);
             return Page();
         }
         
@@ -39,12 +44,13 @@ namespace BugTrackerApp.Pages
                     SelectedEmployee = "Un-Assigned";
                 }
 
-                EntityDataAccess.AddEntity(SelectedProjectId, date, description, priority, SelectedEmployee, Bug);
+                _entityDataAccess.AddEntity(SelectedProjectId, date, description, priority, SelectedEmployee, Bug);
                 return RedirectToPage("./Index");
             }
 
-            catch (Microsoft.Data.Sqlite.SqliteException)
+            catch (Exception exception)
             {
+                Console.WriteLine("Error, exception: " + exception);
                 return RedirectToPage("./Index");
             }
         }
