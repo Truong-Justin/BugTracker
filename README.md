@@ -2,7 +2,7 @@
 ---
 
 ## Project Description
-This responsive full-stack web application was made using C#, SQLite, HTML/CSS and ASP.NET Core Razor Pages. The user is able to create, view, update/edit or delete bugs from a SQLite database. ADO.NET was used to establish a connection between the application and the data source, the SQLite database, in order to better understand what an ORM framework does and what is happening in the background. The Bug class in the Models folder inherits from the Entity abstract class, and is the data model used to represent the data attributes we will be working with when working with the Bug entities. The BugDataAccess class, which is inherited from the EntityDataAccess abstract class, holds the database access logic that is used to manipulate/read from the database. The initial focus and goal of this project was to build and deploy a full-stack ASP.NET web application, with a focus on UI and UX design and <ins>includes a **UI for both desktop and mobile views**</ins>. 
+This responsive full-stack web application was made using C#, Microsoft SQL Server, HTML/CSS and ASP.NET Core Razor Pages. The user is able to create, view, update/edit or delete bugs from a Microsoft SQL Server database. ADO.NET was used to establish a connection between the application and the data source, the Microsoft SQL Server database, in order to better understand what an ORM framework does and what is happening in the background. The Bug class in the Models folder inherits from the Entity abstract class, and is the data model used to represent the data attributes we will be working with when working with the Bug entities. The BugDataAccess class, which is inherited from the EntityDataAccess abstract class, holds the database access logic that is used to manipulate/read from the database. The initial focus and goal of this project was to build and deploy a full-stack ASP.NET web application, with a focus on UI and UX design and <ins>includes a **UI for both desktop and mobile views**</ins>. 
 
 The direction of this application will make it more of a `Project Management Application` that will <ins>include</ins>: `Project Managers`, `Projects that may or may not have bugs`, and `Employees that will be working on these projects`. The planned changes/additions are documented below within the ```Planned additions section``` of this document.
 
@@ -34,7 +34,7 @@ The direction of this application will make it more of a `Project Management App
 1. .NET 7.0 & C#
 2. HTML/CSS, Bootstrap 5 & ASP.NET Core Razor Pages for the UI
 3. Microsoft Azure App Services to host and deploy the application
-4. SQLite database 
+4. Microsoft SQL Server and Azure SQL to implement and host the database
 
 
 ---
