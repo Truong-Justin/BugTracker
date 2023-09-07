@@ -1,135 +1,51 @@
-﻿html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
-.section {
-    display: flex;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    border-width: 2px;
-    border-color: black;
-}
-
-#container_items {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+﻿.hero-banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/projectbackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     max-width: 100%;
 }
 
-.new-row {
-    border-style: ridge;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 10px;
-    border-width: 1.5px;
-    border-color: black;
-    background-color: rgb(224, 229, 236);
-    margin-bottom: 5px;
-    transition-duration: .75s;
+section {
+    height: 25em;
+    max-width: 100%;
 }
 
-#row_hover:hover {
-    background-color: white;
-}
-
-#new-row-hover:hover {
-    background-color: #343a40;
-}
-
-h4 {
-    text-decoration-line: underline;
-}
-
-.col {
+.hero-text {
+    font-size: 3em;
     text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.center-image {
+    width: 50%;
+}
+
+.col-md-4 {
+    display: grid;
+    place-items: center;
 }
 
 .card {
     height: 100%;
-    margin-right: -5px;
-    margin-left: -5px;
+}
+
+.card-text {
+    padding-right: 25px;
 }
 
 .card-title {
-    text-decoration: underline;
+    margin-top: 10px;
 }
 
-.btn-danger {
-    background-color: rgb(217, 72, 85);
-}
-
-#card-text {
-    color: #696880;
-}
-
-#card-headers {
-    text-decoration-color: white;
-}
-
-#low_priority {
-    display: inline-flex;
-    border-radius: 5%;
-    padding: 5px;
-    background-color: rgb(13, 192, 13);
-}
-
-#medium_priority {
-    display: inline-flex;
-    border-radius: 5%;
-    padding: 5px;
-    background-color: rgb(244, 212, 6);
-}
-
-#high_priority {
-    display: inline-flex;
-    border-radius: 5%;
-    padding: 5px;
-    background-color: #ED4337;
-}
-
-#assignment {
-    display: inline-flex;
-    border-radius: 4%;
-    padding: 5px;
-    background-color: lightsteelblue;
-}
-
-#text_underline {
+.card:hover h5 {
     text-decoration-line: underline;
 }
 
-#center_text {
-    text-align: center;
-}
-
-#nav-buttons {
+.menu-container {
     display: inline-flex;
-    width: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: 2%;
-    color: white;
 }

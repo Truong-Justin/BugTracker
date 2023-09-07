@@ -57,37 +57,25 @@
             </div>
         }
         <!--UI for desktop view-->
-        <div class="row mx-auto d-sm-inline-flex d-none">
-            <h1 class="text-secondary text-center mb-5" id="text_underline"><span class="text-primary">Projects</span></h1>
+        <div class="row my-5">
             @foreach (var Project in Model.Projects)
             {
-                <div class="col-3 my-3">
-                    <div class="card new-row" id="row_hover">
-                        <h5 class="card-title mx-auto mt-3">Start Date</h5>
-                        <div class="mx-auto" id="card-text">
-                            @Html.DisplayFor(modelItem => Project.Date)
-                        </div>
-                        <h5 class="card-title mt-4 mx-auto">Short Description</h5>
-                        <div class="mx-auto px-2" id="card-text">
-                            @Html.DisplayFor(modelItem => Project.Description)
-                        </div>
-                        <h5 class="card-title mt-4 mx-auto">Priority</h5>
-                        @if (Project.Priority == "Low")
-                        {
-                            <div id="low_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => Project.Priority)</div>
-                        }
-                        @if (Project.Priority == "Medium")
-                        {
-                            <div id="medium_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => Project.Priority)</div>
-                        }
-                        @if (Project.Priority == "High")
-                        {
-                            <div id="high_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelIteam => Project.Priority)</div>
-                        }
-                        <div class="mx-auto">
-                            <form method="post" asp-page-handler="View" asp-route-id="@Project.ProjectId">
-                                <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewProject" asp-route-id="@Project.ProjectId">View Project</a>
-                            </form>
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/images/project-picture.png" class="img-fluid center-image" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => Project.ProjectTitle)</h5>
+                                    <p class="card-text">@Html.DisplayFor(modelItem => Project.Description)</p>
+                                    <p class="card-text"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => Project.Date)</small></p>
+                                    <form method="post" asp-page-handler="View" asp-route-id="@Project.ProjectId">
+                                        <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewProject" asp-route-id="@Project.ProjectId">View Details</a>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

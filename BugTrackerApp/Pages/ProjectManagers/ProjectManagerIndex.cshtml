@@ -35,34 +35,30 @@
             </div>
         }
         <!--UI for desktop view-->
-    <div class="row mx-auto d-sm-inline-flex d-none">
-        <h1 class="text-secondary text-center mb-5" id="text_underline"><span class="text-primary">Project</span> Managers</h1>
-        @foreach (var ProjectManager in Model.ProjectManagers)
-        {
-            <div class="col-3 w-100 my-3">
-                <div class="card new-row" id="row_hover">
-                    <h5 class="card-title mt-4 mx-auto">Manager Id</h5>
-                    <div class="mx-auto" id="card-text">
-                        @Html.DisplayFor(modelItem => ProjectManager.ProjectManagerId)
-                    </div>
-                    <h5 class="card-title mt-4 mx-auto">Manager Name</h5>
-                    <div class="mx-auto px-2" id="card-text">
-                        @Html.DisplayFor(modelItem => ProjectManager.FirstName) @Html.DisplayFor(modelItem => ProjectManager.LastName)
-                    </div>
-                    <!--TODO => Make a back-end call that outputs the number of projects this project manager is in charge of-->
-                    @*<h5 class="card-title mt-4 mx-auto"># Of Projects</h5>
-                    <div class="mx-auto px-2" id="card-text">
-                        6
-                    </div>*@
-                    <div class="mx-auto">
-                        <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
-                            <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View Manager</a>
-                        </form>
+        <div class="row my-5">
+            @foreach (var ProjectManager in Model.ProjectManagers)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/images/person-picture.png" class="img-fluid center-image" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => ProjectManager.FirstName) @Html.DisplayFor(modelItem => ProjectManager.LastName)</h5>
+                                    <p class="card-text">@Html.DisplayFor(modelItem => ProjectManager.ProjectManagerId)</p>
+                                    <p class="card-text"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => ProjectManager.HireDate)</small></p>
+                                    <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
+                                        <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View Details</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
         <div class="mx-auto">
             <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddProjectManager" style="display: inline-flex">+ Add a PM</a>
         </div>

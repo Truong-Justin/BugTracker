@@ -7,21 +7,17 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BugTrackerApp.styles.css" asp-append-version="true" />
-
 </head>
 <body>
-    <header>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
-            <div class="container" style="max-width:75%">
-                <a href="/Bugs/Index" class="navbar-brand">Bug <span class="text-primary">Tracker</span></a>
+    <section class="hero-banner">
+        <nav class="navbar navbar-expand-lg navbar-dark py-3">
+            <div class="container">
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navmenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navmenu">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
@@ -38,47 +34,33 @@
                 </div>
             </div>
         </nav>
-    </header>
-
-    <!--Banner-->
-    <section class="p-5 bg-dark">
-        <div class="container" style="max-width:75%">
-            <div class="new-row row align-items-center justify-content-between">
-                <div class="col-md p-5">
-                    <h2 class="text-secondary" id="text_underline"><span class="text-primary">Bug</span> Tracker</h2>
-                    <p class="text-dark lead">
-                        A place to store, document, and update software bugs you are dealing with. Annoyed with a project you've been working on? Share it anonymously
-                        here!
-                    </p>
-                </div>
-                <img src="/images/bugPic.svg" class="img-fluid w-25 my-3 d-none d-sm-block" alt="Stock App">
-            </div>
-            <div class="new-row row px-5" id="new-row-hover">
-                <a href="/Projects/ProjectIndex" class="btn-sm btn-secondary shadow" id="nav-buttons">
-                    Projects
-                </a>
-                <a href="/Bugs/Index" class="btn-sm btn-secondary shadow" id="nav-buttons">
-                    Bugs
-                </a>
-                <a href="/ProjectManagers/ProjectManagerIndex" class="btn-sm btn-secondary shadow" id="nav-buttons">
-                    Managers
-                </a>
-                <a href="/Employees/EmployeeIndex" class="btn-sm btn-secondary shadow" id="nav-buttons">
-                    Employees
-                </a>
-            </div>
-        </div>
-
+        <h1 class="text-center text-light position-hero-text hero-text">Bug tracking and project support</h1>
     </section>
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container">
+        <div class="text-center my-3">
+            <a href="/Projects/ProjectIndex" class="btn-sm btn-secondary shadow mx-1">
+                Projects
+            </a>
+            <a href="/Bugs/Index" class="btn-sm btn-secondary shadow mx-1">
+                Bugs
+            </a>
+            <a href="/ProjectManagers/ProjectManagerIndex" class="btn-sm btn-secondary shadow mx-1">
+                Managers
+            </a>
+            <a href="/Employees/EmployeeIndex" class="btn-sm btn-secondary shadow mx-1">
+                Employees
+            </a>
+        </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+            <div>
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+            @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

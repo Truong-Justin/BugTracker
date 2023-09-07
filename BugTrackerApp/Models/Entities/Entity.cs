@@ -6,7 +6,6 @@ namespace BugTrackerApp.Models
     // and code-reusability for future subclasses
     public abstract class Entity
     {
-        [Required]
         public DateOnly Date { get; set; }
 
         [Required]

@@ -35,29 +35,30 @@
             </div>
         }
         <!--UI for desktop view-->
-    <div class="row mx-auto d-sm-inline-flex d-none">
-        <h1 class="text-secondary text-center mb-5" id="text_underline"><span class="text-primary">Projects</span></h1>
-        @foreach (var Employee in Model.Employees)
-        {
-            <div class="col-3 w-100 mb-3">
-                <div class="card new-row" id="row_hover">
-                    <h5 class="card-title mt-4 mx-auto">Employee Id</h5>
-                    <div class="text-center" id="card-text">
-                        @Html.DisplayFor(modelItem => Employee.EmployeeId)
-                    </div>
-                    <h5 class="card-title mt-4 mx-auto">Employee Name</h5>
-                    <div class="text-center px-2" id="card-text">
-                        @Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)
-                    </div>
-                    <div class="mx-auto">
-                        <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
-                            <a class="btn btn-sm btn-secondary shadow mx-auto mt-5" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View Employee</a>
-                        </form>
+        <div class="row my-5">
+            @foreach (var Employee in Model.Employees)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/images/person-picture.png" class="img-fluid center-image" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</h5>
+                                    <p class="card-text">Employee Id: @Html.DisplayFor(modelItem => Employee.EmployeeId)</p>
+                                    <p class="card-text"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => Employee.HireDate)</small></p>
+                                    <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
+                                        <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View Details</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
         <div class="mx-auto">
             <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddEmployee" style="display: inline-flex">+ Add an employee</a>
         </div>
