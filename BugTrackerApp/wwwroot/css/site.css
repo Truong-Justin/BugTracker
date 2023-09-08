@@ -1,21 +1,42 @@
-﻿.hero-banner {
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.navbar-right-justify {
+    right: 5%;
+    position: absolute;
+}
+
+.hero-banner {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/projectbackground.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     max-width: 100%;
+    height:  50%;
 }
 
-section {
-    height: 25em;
-    max-width: 100%;
-}
-
-.hero-text {
+.hero-title-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 3em;
+    font: bolder;
     text-align: center;
     position: absolute;
     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.hero-small-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
