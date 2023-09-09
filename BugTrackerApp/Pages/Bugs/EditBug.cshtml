@@ -4,49 +4,59 @@
     ViewData["Title"] = "Edit Bug";
 }
 
-
+<!--Desktop UI-->
 <div class="container">
-        <div class="my-5 mx-auto" id="container_items">
-            <div class="new-row shadow">
-                <div class="col-md-11 mx-auto">
-                    <h2 class="mt-3 mx-auto"><span class="text-primary">Edit</span> <span class="text-secondary">Bug</span></h2>
-                    <hr />
-                    <form method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group mb-4 mt-4">
-                            <label asp-for="Bug.Date" class="control-label"></label>
-                            <input asp-for="Bug.Date" type="text" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" />
-                            <span asp-validation-for="Bug.Date" class="text-danger"></span>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label asp-for="Bug.Description" class="control-label"></label>
-                            <input asp-for="Bug.Description" class="form-control shadow" data-val="true" data-val-required="A description is required" />
-                            <span asp-validation-for="Bug.Description" class="text-danger"></span>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label asp-for="Bug.Priority" class="control-label"></label>
-                            <select asp-for="Bug.Priority" class="form-control shadow">
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label asp-for="Bug.Assignment" class="control-label"></label>
-                            <select asp-for="SelectedEmployee" class="form-control shadow" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
-                                <option value="0">-- Un-Assign Bug --</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Back To Bugs</a>
-                            <a class="btn btn-dark shadow" asp-page="ViewBug" asp-route-id="@Model.Bug.BugId">Back to Details</a>
-                            <input type="submit" value="Save" class="btn btn-primary shadow"/>
-                        </div>
-                    </form>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card px-5 py-5 mx-5 my-5">
+            <h1 class="mb-5 text-primary">Add Bug</h1>
+            <div class="row my-5">
+                <div class="col">
+                    <div class="form-outline">
+                        <h4 class="text-decoration-underline">Date Submitted</h4>
+                        <input asp-for="Bug.Date" type="date" class="shadow form-control w-75" asp-format="{0:MM-dd-yyyy}" name="Date" />
+                        <span asp-validation-for="Bug.Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <h4 class="text-decoration-underline">Assignment</h4>
+                        <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                            <option value="0">-- Assign an Employee --</option>
+                        </select>
+                        <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
+            <div class="row my-5">
+                <div class="col">
+                    <div class="form-outline">
+                        <h4 class="text-decoration-underline">Priority</h4>
+                        <select asp-for="Bug.Priority" class="form-control shadow w-75" name="Priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        <span asp-validation-for="Bug.Priority" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="form-outline">
+                    <h4 class="text-decoration-underline">Description</h4>
+                    <textarea placeholder="Enter a description." rows="4" asp-for="Bug.Description" type="text" class="form-control" name="Description" data-val;="True" data-val-required="A description is required."></textarea>
+                    <span asp-validation-for="Bug.Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mt-5">
+                <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Back To Bugs</a>
+                <a class="btn btn-dark shadow" asp-page="ViewBug" asp-route-id="@Model.Bug.BugId">Back to Details</a>
+                <input type="submit" value="Save" class="btn btn-primary shadow" />
+            </div>
         </div>
+    </form>
 </div>
+
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

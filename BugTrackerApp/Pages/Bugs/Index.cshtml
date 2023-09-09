@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title mx-auto">Bug Id: @Html.DisplayFor(modelItem => Bug.BugId)</h5>
+                                    <h5 class="card-title mx-auto" id="text-underline">Bug Id: @Html.DisplayFor(modelItem => Bug.BugId)</h5>
                                     <p class="card-text">@Html.DisplayFor(modelItem => Bug.Description)</p>
                                     <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => Bug.Date)</small></p>
                                     <form method="post" asp-page-handler="View" asp-route-id="@Bug.BugId">
@@ -82,7 +82,7 @@
                 </div>
             }
         </div>
-        <div class="mx-auto">
-            <a class="my-5 btn btn-md btn-secondary mx-auto shadow text-center" href="/Bugs/AddBug" style="display: inline-flex">+ Add a bug</a>
+        <div class="text-center">
+            <a class="my-5 btn btn-md btn-secondary shadow" href="/Bugs/AddBug" style="display: inline-flex">+ Add a bug</a>
         </div>
 </div>

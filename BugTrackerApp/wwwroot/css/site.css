@@ -63,7 +63,7 @@ body {
     margin-top: 10px;
 }
 
-.card:hover h5 {
+.card:hover #text-underline {
     text-decoration-line: underline;
 }
 
