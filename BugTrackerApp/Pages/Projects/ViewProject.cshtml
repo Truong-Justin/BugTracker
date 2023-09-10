@@ -4,52 +4,58 @@
     ViewData["Title"] = "Project Details";
 }
 
-<div class="container">
-    <div class="my-5 mx-auto" id="container_items">
-        <div class="new-row shadow">
-            <div class="col-md-11 mx-auto">
-                <h2 class="mt-3 mx-auto"><span class="text-primary">Project</span> <span class="text-secondary">Details</span></h2>
-                <hr />
-                <dl class="dl-horizontal mt-4">
-                    <dt>Project Id</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Project.ProjectId)</dd>
-
-                    <dt>Project Manager</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</dd>
-
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Date)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(model => model.Project.Date)</dd>
-
-                    <dt>Project Title</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</dd>
-
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Description)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Project.Description)</dd>
-
-                    @if (Model.Project.Priority == "Low")
-                    {
-                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
-                        <div id="low_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</div>
-                    }
-                    @if (Model.Project.Priority == "Medium")
-                    {
-                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
-                        <div id="medium_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</div>
-                    }
-                    @if (Model.Project.Priority == "High")
-                    {
-                        <dt>@Html.DisplayNameFor(modelItem => modelItem.Project.Priority)</dt>
-                        <div id="high_priority" class="shadow mx-auto mb-3">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</div>
-                    }
-                </dl>
-                <div class="mb-4">
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Project.ProjectId">
-                        <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back</a>
-                        <a class="btn btn-dark shadow" asp-page="EditProject" asp-route-id=@Model.Project.ProjectId>Edit Project</a>
-                        <button class="btn btn-danger shadow" type="submit">Delete</button>
-                    </form>
+<div class="container my-5">
+    <div class="card px-5 py-5 mx-5 mt-5 shadow bg-light">
+        <h1 class="text-secondary text-decoration-underline text-center">Project Details</h1>
+        <hr />
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Project Id</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectId)</h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Project Title</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Project Manager</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Start Date</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Date)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Priority</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Description</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Description)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Project.ProjectId">
+                <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back</a>
+                <a class="btn btn-dark shadow" asp-page="EditProject" asp-route-id=@Model.Project.ProjectId>Edit Project</a>
+                <button class="btn btn-danger shadow" type="submit">Delete</button>
+            </form>
+        </div>
+    </div> 
 </div>

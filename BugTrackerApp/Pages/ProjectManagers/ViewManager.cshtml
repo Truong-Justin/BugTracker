@@ -4,7 +4,7 @@
     ViewData["Title"] = "Manager Details";
 }
 
-<div class="container">
+@*<div class="container">
     <div class="my-5 mx-auto" id="container_items">
         <div class="new-row shadow">
             <div class="col-md-11 mx-auto">
@@ -36,6 +36,69 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>*@
+<!--Desktop UI-->
+<div class="container">
+    <div class="card px-5 py-5 mx-5 mt-5 shadow bg-light">
+        <h1 class="text-secondary text-decoration-underline text-center">Manager Details</h1>
+        <hr />
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">First Name</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName)</h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Last Name</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Manager Id</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.ProjectManagerId)</h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Hire Date</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.HireDate)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Address</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.Address)</h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Zip Code</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.Zip)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <div class="form-outline">
+                    <h3 class="text-decoration-underline">Phone Number</h3>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.Phone)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.ProjectManager.ProjectManagerId">
+                <a class="btn btn-secondary shadow" asp-page="/ProjectManagers/ProjectManagerIndex">Back</a>
+                <button class="btn btn-danger shadow" type="submit">Delete</button>
+            </form>
         </div>
     </div>
 </div>

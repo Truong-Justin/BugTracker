@@ -47,7 +47,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => ProjectManager.FirstName) @Html.DisplayFor(modelItem => ProjectManager.LastName)</h5>
-                                    <p class="card-text">@Html.DisplayFor(modelItem => ProjectManager.ProjectManagerId)</p>
+                                    <p class="card-text">Manager Id: @Html.DisplayFor(modelItem => ProjectManager.ProjectManagerId)</p>
                                     <p class="card-text"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => ProjectManager.HireDate)</small></p>
                                     <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
                                         <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View Details</a>
@@ -59,8 +59,8 @@
                 </div>
             }
         </div>
-        <div class="mx-auto">
-            <a class="my-5 btn btn-md btn-secondary mx-auto shadow" href="AddProjectManager" style="display: inline-flex">+ Add a PM</a>
+        <div class="text-center">
+            <a class="my-5 btn btn-md btn-secondary shadow" href="AddProjectManager">+ Add a PM</a>
         </div>
     </div>
 </div>

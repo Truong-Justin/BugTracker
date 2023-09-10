@@ -328,28 +328,38 @@ namespace BugTrackerApp.Models
             return newProject;
         }
 
-        // Method truncates description to prevent the UI from breaking
-        public IList<Bug> TruncateDescriptions(IList<Bug> bugs)
+        // Method truncates the project titles so that the card containers will all look uniform
+        public IList<Project> TruncateTitles(IList<Project> projects)
         {
-            foreach (Bug bug in bugs.Where(bug => bug.Description.Length > 80))
+            foreach (Project project in projects.Where(project => project.ProjectTitle.Length > 40))
             {
-                bug.Description = bug.Description.Substring(0, 80) + "...";
-            }
-
-            return bugs;
-        }
-
-        // Method truncates description to prevent the UI from breaking
-        public IList<Project> TruncateDescriptions(IList<Project> projects)
-        {
-            foreach (Project project in projects.Where(project => project.Description.Length > 80))
-            {
-                project.Description = project.Description.Substring(0, 80) + "...";
+                project.ProjectTitle = project.ProjectTitle.Substring(0, 40) + "...";
             }
 
             return projects;
         }
 
+        // Method truncates bug description to keep the card containers looking uniform
+        public IList<Bug> TruncateDescriptions(IList<Bug> bugs)
+        {
+            foreach (Bug bug in bugs.Where(bug => bug.Description.Length > 70))
+            {
+                bug.Description = bug.Description.Substring(0, 70) + "...";
+            }
+
+            return bugs;
+        }
+
+        // Method truncates project description to keep the card containers looking uniform
+        public IList<Project> TruncateDescriptions(IList<Project> projects)
+        {
+            foreach (Project project in projects.Where(project => project.Description.Length > 70))
+            {
+                project.Description = project.Description.Substring(0, 70) + "...";
+            }
+
+            return projects;
+        }
     }
 }
 

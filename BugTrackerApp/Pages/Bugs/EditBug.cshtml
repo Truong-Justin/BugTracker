@@ -9,7 +9,7 @@
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="card px-5 py-5 mx-5 my-5">
-            <h1 class="mb-5 text-primary">Add Bug</h1>
+            <h1 class="mb-5 text-primary">Edit Bug</h1>
             <div class="row my-5">
                 <div class="col">
                     <div class="form-outline">
@@ -22,7 +22,6 @@
                     <div class="form-outline">
                         <h4 class="text-decoration-underline">Assignment</h4>
                         <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
-                            <option value="0">-- Assign an Employee --</option>
                         </select>
                         <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
                     </div>

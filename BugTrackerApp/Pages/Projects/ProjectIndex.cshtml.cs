@@ -21,6 +21,7 @@ namespace BugTrackerApp.Pages
             {
                 Projects = _entityDataAccess.GetAllEntities(Project);
                 Projects = _entityDataAccess.TruncateDescriptions(Projects);
+                Projects = _entityDataAccess.TruncateTitles(Projects);
             }
 
             // If database doesn't exist, create the database file and

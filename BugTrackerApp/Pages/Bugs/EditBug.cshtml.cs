@@ -38,11 +38,7 @@ namespace BugTrackerApp.Pages
             date = Bug.Date;
             description = Bug.Description;
             priority = Bug.Priority;
-            assignment = SelectedEmployee;
-            if (SelectedEmployee == "0")
-            {
-                assignment = "Un-Assigned";
-            }
+            assignment = Bug.Assignment;
 
             _entityDataAccess.EditEntity(id, date, description, priority, assignment, Bug);
 

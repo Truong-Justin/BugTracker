@@ -5,20 +5,21 @@
 }
 
 <!--Desktop UI-->
-<div class="container">
-    <div class="card px-5 py-5 mx-5 my-5 shadow light">
-        <h1 class="mb-5 text-primary text-decoration-underline">Bug Details</h1>
+<div class="container my-5">
+    <div class="card px-5 py-5 mx-5 mt-5 shadow bg-light">
+        <h1 class="text-secondary text-decoration-underline text-center">Bug Details</h1>
+        <hr />
         <div class="row my-5">
             <div class="col">
                 <div class="form-outline">
                     <h4 class="text-decoration-underline">Project</h4>
-                    <h5>@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
                 </div>
             </div>
             <div class="col">
                 <div class="form-outline">
                     <h4 class="text-decoration-underline">Bug Id</h4>
-                    <h5>@Html.DisplayFor(modelItem => modelItem.Bug.BugId)</h5>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Bug.BugId)</h5>
                 </div>
             </div>
         </div>
@@ -26,13 +27,13 @@
             <div class="col">
                 <div class="form-outline">
                     <h4 class="text-decoration-underline">Date Submitted</h4>
-                    <h5>@Html.DisplayFor(modelItem => modelItem.Bug.Date)</h5>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Bug.Date)</h5>
                 </div>
             </div>
             <div class="col">
                 <div class="form-outline">
                     <h4 class="text-decoration-underline">Priority Level</h4>
-                    <h5>@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</h5>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</h5>
                 </div>
             </div>
         </div>
@@ -40,13 +41,13 @@
             <div class="col">
                 <div class="form-outline">
                     <h4 class="text-decoration-underline">Assigned-To</h4>
-                    <h5>@Html.DisplayFor(modelItem => modelItem.Bug.Assignment)</h5>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Bug.Assignment)</h5>
                 </div>
             </div>
             <div class="col">
                 <div class="form-outline">
                     <h4 class="text-decoration-underline">Description</h4>
-                    <h5>@Html.DisplayFor(modelItem => modelItem.Bug.Description)</h5>
+                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Bug.Description)</h5>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
                     <div class="form-outline">
                         <h4 class="text-decoration-underline">Project Assignment</h4>
                         <select class="form-control shadow w-75" asp-for="SelectedProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))">
-                            <option value="0" class="text-center">-- Select Project --</option>
+                            <option value="0" class="text-center">-- Select project --</option>
                         </select>
                         <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
                     </div>
@@ -24,7 +24,7 @@
                     <div class="form-outline">
                         <h4 class="text-decoration-underline">Assignment</h4>
                         <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
-                            <option value="0">-- Assign an Employee --</option>
+                            <option value="0">-- Assign an employee --</option>
                         </select>
                         <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
                     </div>
