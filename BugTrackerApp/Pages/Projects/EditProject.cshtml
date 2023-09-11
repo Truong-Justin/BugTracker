@@ -3,101 +3,64 @@
 @{
 }
 
-@*<div class="container">
-        <div class="my-5 mx-auto" id="container_items">
-            <div class="new-row shadow">
-                <div class="col-md-11 mx-auto">
-                    <h2 class="mt-3 mx-auto"><span class="text-primary">Edit</span> <span class="text-secondary">Project</span></h2>
-                    <hr />
-                    <form method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group mb-4">
-                            <label class="control-label">Project Title</label>
-                            <input asp-for="Project.ProjectTitle" class="form-control shadow" data-val="true" data-val-required="A project title is required" />
-                            <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+<!--Desktop UI-->
+<div class="container">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Edit Project</h1>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card px-5 py-5 mx-5 my-5 shadow">
+                        <div class="row my-5">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Project Title</h4>
+                                    <input placeholder="Enter a title." asp-for="Project.ProjectTitle" class="form-control w-75" name="ProjectTitle" data-val="True" data-val-required="A title is required." />
+                                    <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Project Manager Assignment</h4>
+                                    <select class="form-control shadow w-75" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))">
+                                        <option value="0">-- Assign a project manager --</option>
+                                    </select>
+                                    <span asp-validation-for="Project.ProjectManagerId" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group mb-4">
-                            <label class="control-label">Project Manager</label>
-                            <select class="form-control shadow" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))">
-                                <option value="0">-- Assign New Manager --</option>
-                            </select>
+                        <div class="row my-5">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Priority</h4>
+                                    <select asp-for="Project.Priority" class="form-control shadow w-75" name="Priority">
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                    <span asp-validation-for="Project.Priority" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group mb-4">
-                            <label asp-for="Project.Description" class="control-label"></label>
-                            <input asp-for="Project.Description" class="form-control shadow" data-val="true" data-val-required="A project description is required" />
-                            <span asp-validation-for="Project.Description" class="text-danger"></span>
+                        <div class="row my-5">
+                            <div class="form-outline">
+                                <h4 class="text-decoration-underline">Description</h4>
+                                <textarea placeholder="Enter a description." rows="4" asp-for="Project.Description" class="form-control" name="Description" data-val;="True" data-val-required="A description is required."></textarea>
+                                <span asp-validation-for="Project.Description" class="text-danger"></span>
+                            </div>
                         </div>
-                        <div class="form-group mb-4">
-                            <label asp-for="Project.Priority" class="control-label"></label>
-                            <select asp-for="Project.Priority" class="form-control shadow">
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
+                        <div class="mt-5">
                             <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back To Projects</a>
-                            <a class="btn btn-dark shadow" asp-page="ViewBug" asp-route-id="@Model.Project.ProjectId">Back to Details</a>
+                            <a class="btn btn-dark shadow" asp-page="ViewProject" asp-route-id="@Model.Project.ProjectId">Back to Details</a>
                             <input type="submit" value="Save" class="btn btn-primary shadow" />
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>*@
-
-<!--Desktop UI-->
-<div class="container my-5">
-    <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="card px-5 py-5 mx-5 mt-5">
-            <h1 class="mb-5 text-primary">Edit Project</h1>
-            <hr />
-            <div class="row my-5">
-                <div class="col">
-                    <div class="form-outline">
-                        <h4 class="text-decoration-underline">Project Title</h4>
-                        <input placeholder="Enter a title." asp-for="Project.ProjectTitle" class="form-control w-75" name="ProjectTitle" data-val="True" data-val-required="A title is required." />
-                        <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <h4 class="text-decoration-underline">Project Manager Assignment</h4>
-                        <select class="form-control shadow w-75" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))">
-                            <option value="0">-- Assign a project manager --</option>
-                        </select>
-                        <span asp-validation-for="Project.ProjectManagerId" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5">
-                <div class="col">
-                    <div class="form-outline">
-                        <h4 class="text-decoration-underline">Priority</h4>
-                        <select asp-for="Project.Priority" class="form-control shadow w-75" name="Priority">
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                        <span asp-validation-for="Project.Priority" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5">
-                <div class="form-outline">
-                    <h4 class="text-decoration-underline">Description</h4>
-                    <textarea placeholder="Enter a description." rows="4" asp-for="Project.Description" class="form-control" name="Description" data-val;="True" data-val-required="A description is required."></textarea>
-                    <span asp-validation-for="Project.Description" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="mt-5">
-                <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back To Projects</a>
-                <a class="btn btn-dark shadow" asp-page="ViewProject" asp-route-id="@Model.Project.ProjectId">Back to Details</a>
-                <input type="submit" value="Save" class="btn btn-primary shadow" />
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 @section Scripts {

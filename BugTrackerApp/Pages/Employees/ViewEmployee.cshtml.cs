@@ -23,7 +23,7 @@ namespace BugTrackerApp.Pages.Employees
         public ActionResult OnPost(int id)
         {
             _peopleDataAccess.DeletePerson(id, Employee);
-            return RedirectToPage("Employees/EmployeeIndex");
+            return RedirectToPage("./EmployeeIndex");
         }
     }
 }

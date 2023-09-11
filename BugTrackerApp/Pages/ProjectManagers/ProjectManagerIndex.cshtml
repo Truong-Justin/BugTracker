@@ -28,7 +28,7 @@
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
-                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View</a>
+                            <a class="card-link" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId"></a>
                         </form>
                     </div>
                 </div>
@@ -39,18 +39,18 @@
             @foreach (var ProjectManager in Model.ProjectManagers)
             {
                 <div class="col-md-4 mb-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow bg-light">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/images/person-picture.png" class="img-fluid center-image" alt="...">
+                                <img src="/images/person-picture.png" class="img-fluid center-image transform-image" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => ProjectManager.FirstName) @Html.DisplayFor(modelItem => ProjectManager.LastName)</h5>
+                                    <h5 class="card-title mx-auto" id="text-underline">@Html.DisplayFor(modelItem => ProjectManager.FirstName) @Html.DisplayFor(modelItem => ProjectManager.LastName)</h5>
                                     <p class="card-text">Manager Id: @Html.DisplayFor(modelItem => ProjectManager.ProjectManagerId)</p>
                                     <p class="card-text"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => ProjectManager.HireDate)</small></p>
                                     <form method="post" asp-page-handler="View" asp-route-id="@ProjectManager.ProjectManagerId">
-                                        <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId">View Details</a>
+                                        <a class="card-link" asp-page="ViewManager" asp-route-id="@ProjectManager.ProjectManagerId"></a>
                                     </form>
                                 </div>
                             </div>

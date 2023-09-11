@@ -29,7 +29,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: rgb(179, 219, 222);
 }
 
 .hero-small-text {
@@ -39,7 +39,7 @@ body {
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: rgb(255,248,220);
 }
 
 .center-image {
@@ -51,8 +51,25 @@ body {
     place-items: center;
 }
 
+.transform-img {
+    transform: scale(1);
+    transition-duration: .5s;
+}
+
+.mobile-img {
+    transform: scale(.5);
+}
+
 .card {
     height: 100%;
+}
+
+.card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .card-text {
@@ -65,6 +82,11 @@ body {
 
 .card:hover #text-underline {
     text-decoration-line: underline;
+}
+
+.card:hover img{
+    transform: scale(1.4);
+    transition-duration: .5s;
 }
 
 .menu-container {

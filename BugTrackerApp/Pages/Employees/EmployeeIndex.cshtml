@@ -28,7 +28,7 @@
                     </dl>
                     <div class="mb-4">
                         <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
-                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View</a>
+                            <a class="card-link" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId"></a>
                         </form>
                     </div>
                 </div>
@@ -39,18 +39,18 @@
             @foreach (var Employee in Model.Employees)
             {
                 <div class="col-md-4 mb-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow bg-light">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/images/person-picture.png" class="img-fluid center-image" alt="...">
+                                <img src="/images/person-picture.png" class="img-fluid center-image transform-image" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</h5>
+                                    <h5 class="card-title mx-auto" id="text-underline">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</h5>
                                     <p class="card-text">Employee Id: @Html.DisplayFor(modelItem => Employee.EmployeeId)</p>
                                     <p class="card-text"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => Employee.HireDate)</small></p>
                                     <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
-                                        <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId">View Details</a>
+                                        <a class="card-link" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId"></a>
                                     </form>
                                 </div>
                             </div>

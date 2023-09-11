@@ -8,55 +8,30 @@
         <div class="mb-3">
         </div>
         <!--UI for mobile view-->
-        @foreach (var Bug in Model.Bugs)
-        {
-            <div class="d-sm-none shadow mb-3">
-                <div class="col-md-10 text-center">
-                    <h2 class="mt-3"><span class="text-primary">Bug</span> <span class="text-secondary">Details</span></h2>
-                    <hr />
-                    <dl class="dl-horizontal mt-4">
-                        <div class="text-center">
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.BugId)</dt>
-                            <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.BugId)</dd>
+        <div class="row my-5">
+            @foreach (var Bug in Model.Bugs)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-3 shadow bg-light">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/images/laptop-bug.png" class="img-fluid center-image mobile-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center" id="text-underline">Bug Id: @Html.DisplayFor(modelItem => Bug.BugId)</h5>
+                                    <p class="card-text text-center">@Html.DisplayFor(modelItem => Bug.Description)</p>
+                                    <p class="card-text text-center"><small class="text-muted">Date Submitted: @Html.DisplayFor(modelItem => Bug.Date)</small></p>
+                                    <form method="post" asp-page-handler="View" asp-route-id="@Bug.BugId">
+                                        <a class="card-link" asp-page="ViewBug" asp-route-id="@Bug.BugId"></a>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Date)</dt>
-                            <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Date)</dd>
-                        </div>
-                        <div class="text-center">
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Description)</dt>
-                            <dd class="mb-4">@Html.DisplayFor(modelItem => Bug.Description)</dd>
-                        </div>
-                        <div class="text-center">
-                            @if (Bug.Priority == "Low")
-                            {
-                                <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Priority)</dt>
-                                <dd id="low_priority" class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
-                            }
-                            @if (Bug.Priority == "Medium")
-                            {
-                                <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Priority)</dt>
-                                <dd id="medium_priority" class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
-                            }
-                            @if (Bug.Priority == "High")
-                            {
-                                <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Priority)</dt>
-                                <dd id="high_priority" class="mb-4">@Html.DisplayFor(modelItem => Bug.Priority)</dd>
-                            }
-                        </div>
-                        <div class="text-center mb-4">
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Bug.Assignment)</dt>
-                            <dd id="assignment" class="mb-4">@Html.DisplayFor(modelItem => Bug.Assignment)</dd>
-                        </div>
-                    </dl>
-                    <div class="mb-4">
-                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Bug.BugId">
-                            <a class="btn btn-sm btn-dark shadow" asp-page="ViewBug" asp-route-id="@Bug.BugId">View</a>
-                        </form>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
         <!--UI for desktop view-->
         <div class="row my-5">
             @foreach (var Bug in Model.Bugs)
@@ -65,15 +40,15 @@
                     <div class="card mb-3 shadow bg-light">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/images/laptop-bug.png" class="img-fluid center-image" alt="...">
+                                <img src="/images/laptop-bug.png" class="img-fluid center-image transform-image" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title mx-auto" id="text-underline">Bug Id: @Html.DisplayFor(modelItem => Bug.BugId)</h5>
                                     <p class="card-text">@Html.DisplayFor(modelItem => Bug.Description)</p>
-                                    <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => Bug.Date)</small></p>
+                                    <p class="card-text"><small class="text-muted">Date Submitted: @Html.DisplayFor(modelItem => Bug.Date)</small></p>
                                     <form method="post" asp-page-handler="View" asp-route-id="@Bug.BugId">
-                                        <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewBug" asp-route-id="@Bug.BugId">View Details</a>
+                                        <a class="card-link" asp-page="ViewBug" asp-route-id="@Bug.BugId"></a>
                                     </form>
                                 </div>
                             </div>

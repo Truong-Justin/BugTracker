@@ -10,7 +10,7 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
     options.Conventions.AddPageRoute("/Bugs/Index", "");
 });
 
-// Adds a rate limiting middleware that applies rate limit of 30 requests per minute
+// Adds a rate limiting middleware that applies rate limit of 50 requests per minute
 builder.Services.AddRateLimiter(options =>
 {
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
@@ -19,7 +19,7 @@ builder.Services.AddRateLimiter(options =>
             factory: partition => new FixedWindowRateLimiterOptions
             {
                 AutoReplenishment = true,
-                PermitLimit = 30,
+                PermitLimit = 50,
                 QueueLimit = 0,
                 Window = TimeSpan.FromMinutes(1)
             }));

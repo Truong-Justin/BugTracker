@@ -63,15 +63,15 @@
                 <div class="card mb-3 shadow bg-light">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="/images/project-picture.png" class="img-fluid center-image" alt="...">
+                            <img src="/images/project-picture.png" class="img-fluid center-image transform-image" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title mx-auto">@Html.DisplayFor(modelItem => Project.ProjectTitle)</h5>
+                                <h5 class="card-title mx-auto" id="text-underline">@Html.DisplayFor(modelItem => Project.ProjectTitle)</h5>
                                 <p class="card-text">@Html.DisplayFor(modelItem => Project.Description)</p>
                                 <p class="card-text"><small class="text-muted">Start Date: @Html.DisplayFor(modelItem => Project.Date)</small></p>
                                 <form method="post" asp-page-handler="View" asp-route-id="@Project.ProjectId">
-                                    <a class="btn btn-secondary btn-sm mt-1 shadow" asp-page="ViewProject" asp-route-id="@Project.ProjectId">View Details</a>
+                                    <a class="card-link" asp-page="ViewProject" asp-route-id="@Project.ProjectId"></a>
                                 </form>
                             </div>
                         </div>

@@ -4,58 +4,64 @@
     ViewData["Title"] = "Project Details";
 }
 
-<div class="container my-5">
-    <div class="card px-5 py-5 mx-5 mt-5 shadow bg-light">
-        <h1 class="text-secondary text-decoration-underline text-center">Project Details</h1>
-        <hr />
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Project Id</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectId)</h5>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Project Title</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
+<div class="container">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="text-decoration-underline text-center">Project Details</h1>
+                <hr />
+                <div class="card px-5 py-5 mx-5 my-5 shadow">
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Project Id</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectId)</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Project Title</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Project Manager</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Start Date</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Date)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Priority</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Description</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Description)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Project.ProjectId">
+                            <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back</a>
+                            <a class="btn btn-dark shadow" asp-page="EditProject" asp-route-id=@Model.Project.ProjectId>Edit Project</a>
+                            <button class="btn btn-danger shadow" type="submit">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Project Manager</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Start Date</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Date)</h5>
-                </div>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Priority</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</h5>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Description</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Description)</h5>
-                </div>
-            </div>
-        </div>
-        <div class="mt-5">
-            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Project.ProjectId">
-                <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back</a>
-                <a class="btn btn-dark shadow" asp-page="EditProject" asp-route-id=@Model.Project.ProjectId>Edit Project</a>
-                <button class="btn btn-danger shadow" type="submit">Delete</button>
-            </form>
-        </div>
-    </div> 
+    </div>
 </div>

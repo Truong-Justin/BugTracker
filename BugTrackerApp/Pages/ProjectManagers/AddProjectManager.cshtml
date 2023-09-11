@@ -8,39 +8,39 @@
     <div class="my-5 mx-auto">
         <div class="card shadow bg-light">
             <div class="col-md-11 mx-auto">
-                <h2 class="mt-3 mx-auto"><span class="text-primary">Add</span> <span class="text-secondary">Project Manager</span></h2>
+                <h2 class="mt-3 mx-auto">Add Project Manager</h2>
                 <hr />
                 <form method="post">
                     <div class="card px-5 py-5 mx-5 my-5 shadow">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group mb-4 mt-4">
-                            <label asp-for="ProjectManager.HireDate" class="control-label"></label>
-                            <input asp-for="ProjectManager.HireDate" type="date" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" name="HireDate" />
+                            <label class="control-label">Hire Date</label>
+                            <input asp-for="ProjectManager.HireDate" type="date" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" name="HireDate" data-val="True" data-val-required="A hire date must be chosen."/>
                             <span asp-validation-for="ProjectManager.HireDate" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
                             <label class="control-label">First Name</label>
-                            <input asp-for="ProjectManager.FirstName" class="form-control shadow" name="FirstName" data-val;="true" data-val-required="A first name is required." />
+                            <input asp-for="ProjectManager.FirstName" class="form-control shadow" name="FirstName" data-val="true" data-val-required="A first name is required." />
                             <span asp-validation-for="ProjectManager.FirstName" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
                             <label class="control-label">Last Name</label>
-                            <input asp-for="ProjectManager.LastName" class="form-control shadow" name="LastName" data-val;="true" data-val-required="A last name is required." />
+                            <input asp-for="ProjectManager.LastName" class="form-control shadow" name="LastName" data-val="true" data-val-required="A last name is required." />
                             <span asp-validation-for="ProjectManager.LastName" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
                             <label asp-for="ProjectManager.Phone" class="control-label"></label>
-                            <input asp-for="ProjectManager.Phone" class="form-control shadow" name="Phone" data-val;="true" data-val-required="A phone number is required." />
+                            <input asp-for="ProjectManager.Phone" class="form-control shadow" name="Phone" data-val="true" data-val-required="A phone number is required." />
                             <span asp-validation-for="ProjectManager.Phone" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
                             <label asp-for="ProjectManager.Zip" class="control-label"></label>
-                            <input asp-for="ProjectManager.Zip" class="form-control shadow" name="Zip" data-val;="true" data-val-required="A zip-code is required." />
+                            <input asp-for="ProjectManager.Zip" class="form-control shadow" name="Zip" data-val="true" data-val-required="A zip-code is required." />
                             <span asp-validation-for="ProjectManager.Zip" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
                             <label asp-for="ProjectManager.Address" class="control-label"></label>
-                            <input asp-for="ProjectManager.Address" class="form-control shadow" name="Address" data-val;="true" data-val-required="An address is required." />
+                            <input asp-for="ProjectManager.Address" class="form-control shadow" name="Address" data-val="true" data-val-required="An address is required." />
                             <span asp-validation-for="ProjectManager.Address" class="text-danger"></span>
                         </div>
                         <div class="form-group mt-5">

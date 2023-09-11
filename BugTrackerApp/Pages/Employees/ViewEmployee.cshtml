@@ -3,101 +3,70 @@
 @{ViewData["Title"] = "Employee Details";
 }
 
-@*<div class="container">
-    <div class="my-5 mx-auto" id="container_items">
-        <div class="new-row shadow">
-            <div class="col-md-11 mx-auto">
-                <h2 class="mt-3 mx-auto"><span class="text-primary">Employee </span> <span class="text-secondary">Details</span></h2>
-                <hr />
-                <dl class="dl-horizontal mt-4">
-                    <dt>Id</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.EmployeeId)</dd>
-
-                    <dt>Hire Date</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.HireDate)</dd>
-
-                    <dt>Name</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.FirstName) @Html.DisplayFor(modelItem => modelItem.Employee.LastName)</dd>
-
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.Phone)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.Phone)</dd>
-
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.Zip)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.Zip)</dd>
-
-                    <dt>@Html.DisplayNameFor(modelItem => modelItem.Employee.Address)</dt>
-                    <dd class="mb-4">@Html.DisplayFor(modelItem => modelItem.Employee.Address)</dd>
-                </dl>
-                <div class="mb-4">
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId">
-                        <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
-                        <button class="btn btn-danger shadow" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
 <div class="container">
-    <div class="card px-5 py-5 mx-5 mt-5 shadow bg-light">
-        <h1 class="text-secondary text-decoration-underline text-center">Manager Details</h1>
-        <hr />
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">First Name</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.FirstName)</h5>
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">View Employee</h1>
+                <div class="card px-5 py-5 mx-5 my-5 shadow">
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">First Name</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.FirstName)</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Last Name</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.LastName)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Employee Id</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.EmployeeId)</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Hire Date</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.HireDate)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Address</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.Address)</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Zip Code</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.Zip)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h3 class="text-decoration-underline">Phone Number</h3>
+                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.Phone)</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId">
+                            <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
+                            <button class="btn btn-danger shadow" type="submit">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Last Name</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.LastName)</h5>
-                </div>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Employee Id</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.EmployeeId)</h5>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Hire Date</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.HireDate)</h5>
-                </div>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Address</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.Address)</h5>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Zip Code</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.Zip)</h5>
-                </div>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col">
-                <div class="form-outline">
-                    <h3 class="text-decoration-underline">Phone Number</h3>
-                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Employee.Phone)</h5>
-                </div>
-            </div>
-        </div>
-        <div class="mt-5">
-            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId">
-                <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
-                <button class="btn btn-danger shadow" type="submit">Delete</button>
-            </form>
         </div>
     </div>
 </div>
