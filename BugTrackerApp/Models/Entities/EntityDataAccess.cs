@@ -188,7 +188,7 @@ namespace BugTrackerApp.Models
 
         // Method updates the fields of a bug record from the Bugs table
         // using the given Id
-        public void EditEntity(int id, DateOnly date, string description, string priority, string assignment, Bug bug)
+        public void EditEntity(int id, string description, string priority, string assignment, Bug bug)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -199,14 +199,12 @@ namespace BugTrackerApp.Models
                     command.CommandText =
                     @"
                         UPDATE Bugs SET
-                        Date = @date,
                         Description = @description,
                         Priority = @priority,
                         Assignment = @assignment
                         WHERE BugId = @id
                     ";
 
-                    command.Parameters.AddWithValue("@date", date);
                     command.Parameters.AddWithValue("@description", description);
                     command.Parameters.AddWithValue("@priority", priority);
                     command.Parameters.AddWithValue("@assignment", assignment);

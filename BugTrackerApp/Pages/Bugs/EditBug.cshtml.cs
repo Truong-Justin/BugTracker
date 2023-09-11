@@ -16,6 +16,7 @@ namespace BugTrackerApp.Pages
         [BindProperty]
         public string SelectedEmployee { get; set; }
 
+
         public EditBugModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
         {
             _entityDataAccess = entityDataAccess;
@@ -29,18 +30,27 @@ namespace BugTrackerApp.Pages
             return Page();
         }
 
-        // Populate the fields with the attributes of the selected
+        // Populate the form fields with the attributes of the selected
         // bug the user wants to update.
-        // When the user enters the
-        // new data and clicks the save button, the bug record is updated.
-        public IActionResult OnPost(int id, DateOnly date, string description, string priority, string assignment)
+        // When the user enters new data into the form,
+        // the bug record is updated.
+        public IActionResult OnPost(int id, string description, string priority, string assignment)
         {
-            date = Bug.Date;
+            
+            Bug = _entityDataAccess.ViewEntity(id, Bug);
             description = Bug.Description;
             priority = Bug.Priority;
             assignment = Bug.Assignment;
 
-            _entityDataAccess.EditEntity(id, date, description, priority, assignment, Bug);
+            // If a user chooses a new employee from the
+            // drop-down menu, the new record's assignment
+            // is set to the selected employee
+            if (SelectedEmployee != "0")
+            {
+                assignment = SelectedEmployee;
+            }
+
+            _entityDataAccess.EditEntity(id, description, priority, assignment, Bug);
 
             return RedirectToPage("Index");
         }

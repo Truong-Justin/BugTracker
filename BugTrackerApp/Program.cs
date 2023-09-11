@@ -10,7 +10,9 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
     options.Conventions.AddPageRoute("/Bugs/Index", "");
 });
 
-// Adds a rate limiting middleware that applies rate limit of 50 requests per minute
+// Adds a rate limiting middleware that applies rate limit of 50 requests per minute.
+// This was added to help prevent a DDOS attack from bringing the application down by
+// overloading the host server with too many requests in a short amount of time.
 builder.Services.AddRateLimiter(options =>
 {
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>

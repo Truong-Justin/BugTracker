@@ -17,23 +17,6 @@
                         <div class="row my-5">
                             <div class="col">
                                 <div class="form-outline">
-                                    <h4 class="text-decoration-underline">Date Submitted</h4>
-                                    <input asp-for="Bug.Date" type="date" class="shadow form-control w-75" asp-format="{0:MM-dd-yyyy}" name="Date" />
-                                    <span asp-validation-for="Bug.Date" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-outline">
-                                    <h4 class="text-decoration-underline">Assignment</h4>
-                                    <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
-                                    </select>
-                                    <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-5">
-                            <div class="col">
-                                <div class="form-outline">
                                     <h4 class="text-decoration-underline">Priority</h4>
                                     <select asp-for="Bug.Priority" class="form-control shadow w-75" name="Priority">
                                         <option value="Low">Low</option>
@@ -43,6 +26,17 @@
                                     <span asp-validation-for="Bug.Priority" class="text-danger"></span>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Assignment</h4>
+                                    <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                                        <option value="0">Select another employee to re-assign</option>
+                                    </select>
+                                    <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-5">
                         </div>
                         <div class="row my-5">
                             <div class="form-outline">
