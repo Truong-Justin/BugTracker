@@ -51,13 +51,9 @@ body {
     place-items: center;
 }
 
-.transform-img {
+img {
     transform: scale(1);
     transition-duration: .5s;
-}
-
-.mobile-img {
-    transform: scale(.5);
 }
 
 .card {
