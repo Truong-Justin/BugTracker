@@ -8,62 +8,39 @@
     <div class="mb-3">
     </div>
     <!--UI for mobile view-->
-    @foreach (var Project in Model.Projects)
-    {
-        <div class="d-sm-none shadow mb-3">
-            <div class="col-md-10">
-                <div class="text-center">
-                    <h2 class="mt-3"><span class="text-primary">Project</span> <span class="text-secondary">Details</span></h2>
-                </div>
-                <hr />
-                <dl class="dl-horizontal mt-4">
-                    <div class="text-center">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.ProjectId)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Project.ProjectId)</dd>
-                    </div>
-                    <div class="text-center">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Date)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Project.Date)</dd>
-                    </div>
-                    <div class="text-center">
-                        <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Description)</dt>
-                        <dd class="mb-4">@Html.DisplayFor(modelItem => Project.Description)</dd>
-                    </div>
-                    <div class="text-center mb-4">
-                        @if (Project.Priority == "Low")
-                        {
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
-                            <dd id="low_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
-                        }
-                        @if (Project.Priority == "Medium")
-                        {
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
-                            <dd id="medium_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
-                        }
-                        @if (Project.Priority == "High")
-                        {
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Project.Priority)</dt>
-                            <dd id="high_priority" class="mb-4">@Html.DisplayFor(modelItem => Project.Priority)</dd>
-                        }
-                    </div>
-                </dl>
-                <div class="mb-4">
-                    <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Project.ProjectId">
-                        <a class="btn btn-sm btn-dark shadow" asp-page="ViewProject" asp-route-id="@Project.ProjectId">View</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    }
-    <!--UI for desktop view-->
-    <div class="row my-5">
+    <div class="row my-5 d-sm-none">
         @foreach (var Project in Model.Projects)
         {
             <div class="col-md-4 mb-3">
                 <div class="card mb-3 shadow bg-light">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="/images/project-picture.png" class="img-fluid center-image transform-image" alt="...">
+                            <img src="/images/project-picture.png" class="w-25 mt-5" alt="project document picture">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-center" id="text-underline">Bug Id: @Html.DisplayFor(modelItem => Project.ProjectTitle)</h5>
+                                <p class="card-text text-center">@Html.DisplayFor(modelItem => Project.Description)</p>
+                                <p class="card-text text-center"><small class="text-muted">Start Date: @Html.DisplayFor(modelItem => Project.Date)</small></p>
+                                <form method="post" asp-page-handler="View" asp-route-id="@Project.ProjectId">
+                                    <a class="card-link" asp-page="ViewProject" asp-route-id="@Project.ProjectId"></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!--UI for desktop view-->
+    <div class="row my-5 d-sm-inline-flex d-none">
+        @foreach (var Project in Model.Projects)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card mb-3 shadow bg-light">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="/images/project-picture.png" class="img-fluid center-image transform-image" alt="project document picture">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

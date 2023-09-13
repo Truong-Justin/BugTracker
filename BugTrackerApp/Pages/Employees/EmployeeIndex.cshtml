@@ -4,45 +4,43 @@
 }
 
 <div class="mx-auto">
-    <div class="container mx-auto" id="container_items">
+    <div class="container mx-auto">
         <div class="mb-3">
         </div>
         <!--UI for mobile view-->
-        @foreach (var Employee in Model.Employees)
-        {
-            <div class="new-row d-sm-none shadow mb-3">
-                <div class="col-md-10 mx-auto">
-                    <div class="text-center">
-                        <h2 class="mt-3"><span class="text-primary">Employee</span> <span class="text-secondary">Details</span></h2>
-                    </div>
-                    <hr />
-                    <dl class="dl-horizontal mt-4">
-                        <div class="text-center">
-                            <dt id="text_underline">@Html.DisplayNameFor(modelItem => Employee.EmployeeId)</dt>
-                            <dd class="mb-4">@Html.DisplayFor(modelItem => Employee.EmployeeId)</dd>
-                        </div>
-                        <div class="text-center">
-                            <dt id="text_underline">Employee Name</dt>
-                            <dd class="mb-4">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</dd>
-                        </div>
-                    </dl>
-                    <div class="mb-4">
-                        <form method="post" id="center_text" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
-                            <a class="card-link" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId"></a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        }
-        <!--UI for desktop view-->
-        <div class="row my-5">
+        <div class="row my-5 d-sm-none">
             @foreach (var Employee in Model.Employees)
             {
                 <div class="col-md-4 mb-3">
                     <div class="card mb-3 shadow bg-light">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/images/person-picture.png" class="img-fluid center-image transform-image" alt="...">
+                                <img src="/images/person-picture.png" class="w-25 mt-5" alt="person avatar picture">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title mx-auto text-center" id="text-underline">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</h5>
+                                    <p class="card-text text-center">Employee Id: @Html.DisplayFor(modelItem => Employee.EmployeeId)</p>
+                                    <p class="card-text text-center"><small class="text-muted">Hire Date: @Html.DisplayFor(modelItem => Employee.HireDate)</small></p>
+                                    <form method="post" asp-page-handler="View" asp-route-id="@Employee.EmployeeId">
+                                        <a class="card-link" asp-page="ViewEmployee" asp-route-id="@Employee.EmployeeId"></a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--UI for desktop view-->
+        <div class="row my-5 d-sm-inline-flex d-none">
+            @foreach (var Employee in Model.Employees)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-3 shadow bg-light">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/images/person-picture.png" class="img-fluid center-image transform-image" alt="person avatar picture">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

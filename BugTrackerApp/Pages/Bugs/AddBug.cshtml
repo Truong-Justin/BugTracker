@@ -3,7 +3,57 @@
 @{ViewData["Title"] = "Add Bug";
 
 }
-
+<!--Mobile UI-->
+@*<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="shadow">
+            <div class="col-md-11 mx-auto">
+                <h2 class="pt-3 mt-3 mx-auto"><span class="text-primary">Add</span> <span class="text-secondary">Bug</span></h2>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-4">
+                        <label class="control-label">Project Assignment</label>
+                        <select class="form-control shadow" asp-for="SelectedProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))">
+                            <option value="0">-- Select Project --</option>
+                        </select>
+                        <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4 mt-4">
+                        <label asp-for="Bug.Date" class="control-label"></label>
+                        <input asp-for="Bug.Date" type="date" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" name="Date" />
+                        <span asp-validation-for="Bug.Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Bug.Description" class="control-label"></label>
+                        <input asp-for="Bug.Description" class="form-control shadow" name="Description" data-val;="true" data-val-required="A description is required." />
+                        <span asp-validation-for="Bug.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Bug.Priority" class="control-label"></label>
+                        <select asp-for="Bug.Priority" class="form-control shadow" name="Priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        <span asp-validation-for="Bug.Priority" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Bug.Assignment" class="control-label"></label>
+                        <select asp-for="SelectedEmployee" class="form-control shadow" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                            <option value="0">-- Assign an Employee --</option>
+                        </select>
+                        <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Back</a>
+                        <input type="submit" value="Add Bug" class="btn btn-primary shadow" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
 <!--Desktop UI-->
 <div class="container">
     <div class="my-5 mx-auto">

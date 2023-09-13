@@ -15,7 +15,7 @@ namespace BugTrackerApp.Pages.Projects
         public required ProjectManager ProjectManager { get; set; }
         public required IList<ProjectManager> ProjectManagers { get; set; }
         [BindProperty]
-        public int SelectedProjectManagerId { get; set; }
+        public string SelectedProjectManagerId { get; set; }
 
         public EditProjectModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
         {
@@ -31,23 +31,30 @@ namespace BugTrackerApp.Pages.Projects
             return Page();
         }
 
-        public IActionResult OnPost(int id, string projectTitle, string description, string priority)
+        public IActionResult OnPost(int id, string projectTitle, string description, string priority, int projectManagerId)
         {
             // Try to update the project record with user given values,
             // If an exception occurs default back to the original record values
             try
             {
+                Project = _entityDataAccess.ViewEntity(id, Project);
                 projectTitle = Project.ProjectTitle;
                 description = Project.Description;
                 priority = Project.Priority;
-                SelectedProjectManagerId = Project.ProjectManagerId;
+                projectManagerId = Project.ProjectManagerId;
 
-                _entityDataAccess.EditEntity(id, projectTitle, description, priority, SelectedProjectManagerId, Project);
+                if (SelectedProjectManagerId != "0")
+                {
+                    projectManagerId = Convert.ToInt32(SelectedProjectManagerId);
+                }
+
+                _entityDataAccess.EditEntity(id, projectTitle, description, priority, projectManagerId, Project);
                 return RedirectToPage("/Projects/ProjectIndex");
             }
 
             catch (Exception exception)
             {
+                Project = _entityDataAccess.ViewEntity(id, Project);
                 _entityDataAccess.EditEntity(Project.ProjectId, Project.ProjectTitle, Project.Description, Project.Priority, Project.ProjectManagerId, Project);
                 return RedirectToPage("/Projects/ProjectIndex");
             }
