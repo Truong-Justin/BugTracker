@@ -11,11 +11,12 @@
                 <h2 class="mt-3 mx-auto">Add Project Manager</h2>
                 <hr />
                 <form method="post">
-                    <div class="card px-5 py-5 mx-5 my-5 shadow">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card px-3 py-3 mx-3 my-4 shadow">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group mb-4 mt-4">
                             <label class="control-label">Hire Date</label>
-                            <input asp-for="ProjectManager.HireDate" type="date" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" name="HireDate" data-val="True" data-val-required="A hire date must be chosen."/>
+                            <input asp-for="ProjectManager.HireDate" type="date" class="form-control shadow" asp-format="{0:MM-dd-yyyy}" name="HireDate" data-val="True" data-val-required="A hire date must be chosen." />
                             <span asp-validation-for="ProjectManager.HireDate" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-4">
@@ -43,9 +44,10 @@
                             <input asp-for="ProjectManager.Address" class="form-control shadow" name="Address" data-val="true" data-val-required="An address is required." />
                             <span asp-validation-for="ProjectManager.Address" class="text-danger"></span>
                         </div>
-                        <div class="form-group mt-5">
+                        <hr />
+                        <div class="text-center">
                             <a class="btn btn-secondary shadow" asp-page="/ProjectManagers/ProjectManagerIndex">Back</a>
-                            <input type="submit" value="Add Project Manager" class="btn btn-primary shadow" />
+                            <input type="submit" value="Add Manager" class="btn btn-primary shadow" />
                         </div>
                     </div>
                 </form>

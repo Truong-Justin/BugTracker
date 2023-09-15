@@ -4,8 +4,52 @@
     ViewData["Title"] = "Bug Details";
 }
 
+<!--Mobile UI-->
+<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Bug Details</h1>
+                <hr />
+                <div class="card px-3 py-3 mx-3 my-4 shadow">
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Project</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Bug Id</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.BugId)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Date Submitted</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.Date)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Priority Level</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Assignment</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.Assignment)</h5>
+                    </div>
+                    <div class="row my-5">
+                        <h4 class="text-decoration-underline text-center">Description</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.Description)</h5>
+                    </div>
+                    <div class="mt-5 py-3 text-center card shadow">
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Bug.BugId">
+                            <a class="btn btn-secondary shadow" asp-page="/Bugs/Index">Back</a>
+                            <a class="btn btn-dark shadow" asp-page="EditBug" asp-route-id=@Model.Bug.BugId>Edit Bug</a>
+                            <button class="btn btn-danger shadow" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--Desktop UI-->
-<div class="container">
+<div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">
         <div class="card shadow bg-light">
             <div class="col-md-11 mx-auto">

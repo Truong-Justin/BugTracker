@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title text-center" id="text-underline">Bug Id: @Html.DisplayFor(modelItem => Project.ProjectTitle)</h5>
+                                <h5 class="card-title text-center" id="text-underline">@Html.DisplayFor(modelItem => Project.ProjectTitle)</h5>
                                 <p class="card-text text-center">@Html.DisplayFor(modelItem => Project.Description)</p>
                                 <p class="card-text text-center"><small class="text-muted">Start Date: @Html.DisplayFor(modelItem => Project.Date)</small></p>
                                 <form method="post" asp-page-handler="View" asp-route-id="@Project.ProjectId">

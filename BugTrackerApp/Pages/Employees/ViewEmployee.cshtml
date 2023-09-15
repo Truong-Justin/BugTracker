@@ -3,7 +3,51 @@
 @{ViewData["Title"] = "Employee Details";
 }
 
-<div class="container">
+<!--Mobile UI-->
+<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Manager Details</h1>
+                <hr />
+                <div class="card px-3 py-3 mx-3 my-4 shadow">
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Employee Id</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Employee.EmployeeId)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Name</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Employee.FirstName) @Html.DisplayFor(modelItem => modelItem.Employee.LastName)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Hire Date</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Employee.HireDate)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Address</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Employee.Address)</h5>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="text-decoration-underline text-center">Zip Code</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Employee.Zip)</h5>
+                    </div>
+                    <div class="row my-5">
+                        <h4 class="text-decoration-underline text-center">Phone Number</h4>
+                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Employee.Phone)</h5>
+                    </div>
+                    <div class="mt-5 py-3 text-center card shadow">
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId">
+                            <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
+                            <button class="btn btn-danger shadow" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Desktop UI-->
+<div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">
         <div class="card shadow bg-light">
             <div class="col-md-11 mx-auto">

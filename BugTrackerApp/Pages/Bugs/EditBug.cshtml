@@ -4,8 +4,53 @@
     ViewData["Title"] = "Edit Bug";
 }
 
+<!--Mobile UI-->
+<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Bug Details</h1>
+                <hr />
+                <form method="post">
+                    <div class="card px-3 py-3 mx-3 my-4 shadow">
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline text-center">Priority Level</h4>
+                                <select asp-for="Bug.Priority" class="form-control shadow w-75 mx-auto" name="Priority">
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                                <span asp-validation-for="Bug.Priority" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline text-center">Assignment</h4>
+                                <select class="form-control shadow w-75 mx-auto" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                                    <option value="0">Select to re-assign</option>
+                                </select>
+                                <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row my-5">
+                            <h4 class="text-decoration-underline text-center">Description</h4>
+                            <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.Description)</h5>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a class="btn btn-dark shadow" asp-page="ViewBug" asp-route-id="@Model.Bug.BugId">Back to Details</a>
+                            <input type="submit" value="Save" class="btn btn-primary shadow" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--Desktop UI-->
-<div class="container">
+<div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">
         <div class="card shadow bg-light">
             <div class="col-md-11 mx-auto">

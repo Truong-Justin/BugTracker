@@ -3,8 +3,57 @@
 @{
 }
 
+<!--Mobile UI-->
+<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Edit Project</h1>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card px-3 py-3 mx-3 my-4 shadow">
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline text-center">Project Title</h4>
+                                <input placeholder="Enter a title." asp-for="Project.ProjectTitle" type="text" class="form-control w-75 mx-auto text-center" name="ProjectTitle" data-val="True" data-val-required="A title is required." />
+                                <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <h4 class="text-decoration-underline">Project Manager Assignment</h4>
+                            <select class="form-control shadow w-75 mx-auto" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="True" data-val-required="A project manager must be assigned.">
+                                <option value="0">-- Assign a manager --</option>
+                            </select>
+                            <span asp-validation-for="Project.ProjectManagerId" class="text-danger"></span>
+                        </div>
+                        <div class="row mt-5">
+                            <h4 class="text-decoration-underline text-center">Priority</h4>
+                            <select asp-for="Project.Priority" class="form-control shadow w-75 mx-auto text-center" name="Priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                            <span asp-validation-for="Project.Priority" class="text-danger"></span>
+                        </div>
+                        <div class="row my-5">
+                            <h4 class="text-decoration-underline text-center">Description</h4>
+                            <textarea placeholder="Enter a description." rows="4" asp-for="Project.Description" type="text" class="form-control mx-auto text-center w-75" name="Description" data-val;="True" data-val-required="A description is required."></textarea>
+                            <span asp-validation-for="Project.Description" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back</a>
+                            <input type="submit" value="Add Project" class="btn btn-primary shadow" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!--Desktop UI-->
-<div class="container">
+<div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">
         <div class="card shadow bg-light">
             <div class="col-md-11 mx-auto">
@@ -52,8 +101,7 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <a class="btn btn-secondary shadow" asp-page="/Projects/ProjectIndex">Back To Projects</a>
-                            <a class="btn btn-dark shadow" asp-page="ViewProject" asp-route-id="@Model.Project.ProjectId">Back to Details</a>
+                            <a class="btn btn-dark shadow" asp-page="ViewProject" asp-route-id="@Model.Project.ProjectId">Back</a>
                             <input type="submit" value="Save" class="btn btn-primary shadow" />
                         </div>
                     </div>
