@@ -8,7 +8,9 @@ namespace BugTrackerApp.Pages.Employees
 	public class ViewEmployeeModel : PageModel
     {
         public readonly PeopleDataAccess _peopleDataAccess;
+        public readonly EntityDataAccess _entityDataAccess;
         public required Employee Employee { get; set; }
+
 
         public ViewEmployeeModel(PeopleDataAccess peopleDataAccess)
         {

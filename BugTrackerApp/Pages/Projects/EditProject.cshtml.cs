@@ -14,8 +14,7 @@ namespace BugTrackerApp.Pages.Projects
         public required Project Project { get; set; }
         public required ProjectManager ProjectManager { get; set; }
         public required IList<ProjectManager> ProjectManagers { get; set; }
-        [BindProperty]
-        public string SelectedProjectManagerId { get; set; }
+
 
         public EditProjectModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
         {
@@ -37,26 +36,20 @@ namespace BugTrackerApp.Pages.Projects
             // If an exception occurs default back to the original record values
             try
             {
-                Project = _entityDataAccess.ViewEntity(id, Project);
                 projectTitle = Project.ProjectTitle;
                 description = Project.Description;
                 priority = Project.Priority;
                 projectManagerId = Project.ProjectManagerId;
 
-                if (SelectedProjectManagerId != "0")
-                {
-                    projectManagerId = Convert.ToInt32(SelectedProjectManagerId);
-                }
-
                 _entityDataAccess.EditEntity(id, projectTitle, description, priority, projectManagerId, Project);
-                return RedirectToPage("/Projects/ProjectIndex");
+                return RedirectToPage("./ProjectIndex");
             }
 
             catch (Exception exception)
             {
                 Project = _entityDataAccess.ViewEntity(id, Project);
                 _entityDataAccess.EditEntity(Project.ProjectId, Project.ProjectTitle, Project.Description, Project.Priority, Project.ProjectManagerId, Project);
-                return RedirectToPage("/Projects/ProjectIndex");
+                return RedirectToPage("./ProjectIndex");
             }
         }
     }

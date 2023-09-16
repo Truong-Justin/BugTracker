@@ -8,6 +8,9 @@ namespace BugTrackerApp.Models
     {
         private readonly string _connectionString;
 
+        // IConfiguration service is dependency injected into class constructor
+        // so that the configuration object can retrieve the connection string
+        // from host environment variable.
         public EntityDataAccess(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("CONNECTION");

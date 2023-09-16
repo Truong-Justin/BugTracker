@@ -9,6 +9,9 @@ namespace BugTrackerApp.Models.People
 	{
         private readonly string _connectionString;
 
+        // IConfiguration service is dependency injected into class constructor
+        // so that the configuration object can retrieve the connection string
+        // from host environment variable.
         public PeopleDataAccess(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("CONNECTION");
@@ -134,7 +137,7 @@ namespace BugTrackerApp.Models.People
 
         //// Method adds a new employee record
         //// to Employees table 
-        public void AddPerson(string firstName, string lastName,  DateOnly hireDate, string phone, string zip, string address, Employee employee)
+        public void AddPerson(string firstName, string lastName,  DateOnly hireDate, string phone, string zip, string address, int projectId, Employee employee)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -144,8 +147,8 @@ namespace BugTrackerApp.Models.People
                 {
                     command.CommandText =
                     @"
-                        INSERT INTO Employees (FirstName, LastName, HireDate, Phone, Zip, Address)
-                        VALUES (@firstName, @lastName, @hireDate, @phone, @zip, @address)
+                        INSERT INTO Employees (FirstName, LastName, HireDate, Phone, Zip, Address, ProjectId)
+                        VALUES (@firstName, @lastName, @hireDate, @phone, @zip, @address, @projectId)
                      ";
 
                     command.Parameters.AddWithValue("@firstName", firstName);
@@ -154,6 +157,7 @@ namespace BugTrackerApp.Models.People
                     command.Parameters.AddWithValue("@phone", phone);
                     command.Parameters.AddWithValue("@zip", zip);
                     command.Parameters.AddWithValue("@address", address);
+                    command.Parameters.AddWithValue("projectId", projectId);
 
                     command.ExecuteNonQuery();
                 }

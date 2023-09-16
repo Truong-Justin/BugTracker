@@ -17,7 +17,7 @@
                         <div class="row mt-5">
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline text-center">Project Assignment</h4>
-                                <select class="form-control shadow w-75 mx-auto text-center" asp-for="SelectedProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))">
+                                <select class="form-control shadow w-75 mx-auto text-center" asp-for="SelectedProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))" data-val="true" data-val-required="This bug must belong to an existing project.">
                                     <option value="0">-- Select Project --</option>
                                 </select>
                                 <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="row mt-5">
                             <h4 class="text-decoration-underline text-center">Date Submitted</h4>
-                            <input asp-for="Bug.Date" type="date" class="form-control shadow w-75 mx-auto text-center" asp-format="{0:MM-dd-yyyy}" name="Date" />
+                            <input asp-for="Bug.Date" type="date" class="form-control shadow w-75 mx-auto text-center" asp-format="{0:MM-dd-yyyy}" name="Date" data-val="true" data-val-required="A date is required."/>
                             <span asp-validation-for="Bug.Date" class="text-danger"></span>
                         </div>
                         <div class="row mt-5">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="row mt-5">
                             <h4 class="text-decoration-underline text-center">Priority</h4>
-                            <select asp-for="Bug.Priority" class="form-control shadow w-75 mx-auto" name="Priority">
+                            <select asp-for="Bug.Priority" class="form-control shadow w-75 mx-auto" name="Priority" data-val="true" data-val-required="A priority is required.">
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="row my-5">
                             <h4 class="text-decoration-underline text-center">Employee Assignment</h4>
-                            <select asp-for="SelectedEmployee" class="form-control shadow w-75 mx-auto text-center" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                            <select asp-for="SelectedEmployee" class="form-control shadow w-75 mx-auto text-center" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))" data-val="true" data-val-required="An employee must be assigned.">
                                 <option value="0">-- Assign an Employee --</option>
                             </select>
                             <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
@@ -83,7 +83,7 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <h4 class="text-decoration-underline">Employee Assignment</h4>
-                                    <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                                    <select class="form-control shadow w-75" asp-for="SelectedEmployee" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))" data-val="true" data-val-required="An employee must be assigned.">
                                         <option value="0">-- Assign an employee --</option>
                                     </select>
                                     <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
