@@ -34,12 +34,16 @@ namespace BugTrackerApp.Pages
 
         public ActionResult OnPost(DateOnly startDate, string projectTitle, string description, string priority)
         {
+            // Insert a new project record into 
+            // the Projects table.
             try
             {
                 _entityDataAccess.AddEntity(SelectedProjectManagerId, startDate, projectTitle, description, priority, Project);
                 return RedirectToPage("./ProjectIndex");
             }
 
+            // If an exception occurs, redirect
+            // back to the project index page.
             catch (Exception exception)
             {
                 Console.WriteLine("Error, exception: " + exception);

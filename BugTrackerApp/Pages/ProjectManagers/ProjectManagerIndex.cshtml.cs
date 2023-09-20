@@ -1,6 +1,5 @@
 ﻿using BugTrackerApp.Models;
 using BugTrackerApp.Models.People;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
@@ -17,10 +16,9 @@ namespace BugTrackerApp.Pages
             _peopleDataAccess = peopleDataAccess;
         }
 
-        public ActionResult OnGet()
+        public void OnGet()
         {
             ProjectManagers = _peopleDataAccess.GetAllPeople(ProjectManager);
-            return Page();
         }
     }
 }

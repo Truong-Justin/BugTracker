@@ -340,6 +340,7 @@ namespace BugTrackerApp.Models.People
                         while (reader.Read())
                         {
                             newEmployee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
+                            newEmployee.ProjectId = Convert.ToInt32(reader["ProjectId"]);
                             newEmployee.FirstName = Convert.ToString(reader["FirstName"]);
                             newEmployee.LastName = Convert.ToString(reader["LastName"]);
                             newEmployee.HireDate = DateOnly.FromDateTime((DateTime)reader["HireDate"]);

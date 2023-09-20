@@ -17,14 +17,13 @@
                         <div class="row mt-5">
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline text-center">Project Title</h4>
-                                <input placeholder="Enter a title." asp-for="Project.ProjectTitle" type="text" class="form-control w-75 mx-auto text-center" name="ProjectTitle" data-val="true" data-val-required="A title is required." />
+                                <textarea placeholder="Enter a project title." rows="2" asp-for="Project.ProjectTitle" type="text" class="form-control mx-auto text-center w-75" name="ProjectTitle" data-val="true" data-val-required="A description is required."></textarea>
                                 <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <h4 class="text-decoration-underline">Project Manager Assignment</h4>
                             <select class="form-control shadow w-75 mx-auto" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="true" data-val-required="A project manager must be assigned.">
-                                <option value="0">-- Assign a manager --</option>
                             </select>
                             <span asp-validation-for="Project.ProjectManagerId" class="text-danger"></span>
                         </div>
@@ -72,15 +71,14 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <h4 class="text-decoration-underline">Project Title</h4>
-                                    <input placeholder="Enter a title." asp-for="Project.ProjectTitle" type="text" class="form-control w-75" name="ProjectTitle" data-val="True" data-val-required="A title is required." />
+                                    <textarea placeholder="Enter a project title." rows="2" asp-for="Project.ProjectTitle" type="text" class="form-control w-75 shadow" name="ProjectTitle" data-val="true" data-val-required="A description is required."></textarea>
                                     <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline">
                                     <h4 class="text-decoration-underline">Project Manager Assignment</h4>
-                                    <select class="form-control shadow w-75" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="True" data-val-required="A project manager must be assigned.">
-                                        <option value="0">-- Assign a project manager --</option>
+                                    <select class="form-control shadow w-75" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="true" data-val-required="A project manager must be assigned.">
                                     </select>
                                     <span asp-validation-for="Project.ProjectManagerId" class="text-danger"></span>
                                 </div>
@@ -90,14 +88,14 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <h4 class="text-decoration-underline">Start Date</h4>
-                                    <input asp-for="Project.Date" type="date" class="shadow form-control w-75" asp-format="{0:MM-dd-yyyy}" name="StartDate" data-val="True" data-val-required="A start date must be chosen." />
+                                    <input asp-for="Project.Date" type="date" class="shadow form-control w-75" asp-format="{0:MM-dd-yyyy}" name="StartDate" data-val="true" data-val-required="A start date must be chosen." />
                                     <span asp-validation-for="Project.Date" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline">
                                     <h4 class="text-decoration-underline">Priority</h4>
-                                    <select asp-for="Project.Priority" class="form-control shadow w-75" name="Priority" data-val="True" data-val-required="A priority must be assigned.">
+                                    <select asp-for="Project.Priority" class="form-control shadow w-75" name="Priority" data-val="true" data-val-required="A priority must be assigned.">
                                         <option value="Low">Low</option>
                                         <option value="Medium">Medium</option>
                                         <option value="High">High</option>
@@ -109,7 +107,7 @@
                         <div class="row my-5">
                             <div class="form-outline">
                                 <h4 class="text-decoration-underline">Description</h4>
-                                <textarea placeholder="Enter a description." rows="4" asp-for="Project.Description" type="text" class="form-control" name="Description" data-val;="True" data-val-required="A description is required."></textarea>
+                                <textarea placeholder="Enter a description." rows="4" asp-for="Project.Description" type="text" class="form-control shadow" name="Description" data-val="true" data-val-required="A description is required."></textarea>
                                 <span asp-validation-for="Project.Description" class="text-danger"></span>
                             </div>
                         </div>

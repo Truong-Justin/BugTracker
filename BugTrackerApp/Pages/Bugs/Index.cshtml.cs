@@ -7,7 +7,7 @@ public class IndexModel : PageModel
 {
     public readonly EntityDataAccess _entityDataAccess;
     public required IList<Bug> Bugs { get; set; }
-    Bug Bug { get; set; }
+    public required Bug Bug { get; set; }
 
     public IndexModel(EntityDataAccess entityDataAccess)
     {
@@ -16,7 +16,9 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        // Try to load page with list of bugs from bugs database.
+        // Get all the bug records from the Bugs table,
+        // and truncate the descriptions so that the cards
+        // they populate in the View will all be uniform.
         try
         {
             Bugs = _entityDataAccess.GetAllEntities(Bug);
@@ -24,7 +26,7 @@ public class IndexModel : PageModel
         }
 
         // If an exception is thrown, output the exception
-        // to console
+        // to console.
         catch (Exception exception)
         {
             Console.WriteLine("Error, exception: " + exception);

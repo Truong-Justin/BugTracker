@@ -16,7 +16,9 @@ namespace BugTrackerApp.Pages
 
         public void OnGet()
         {
-            // Try to load page with list of bugs from bugs database.
+            // Get all the project records from the Projects table,
+            // and truncate the descriptions and tiles so that the cards
+            // they populate in the View will all be uniform
             try
             {
                 Projects = _entityDataAccess.GetAllEntities(Project);
@@ -24,8 +26,7 @@ namespace BugTrackerApp.Pages
                 Projects = _entityDataAccess.TruncateTitles(Projects);
             }
 
-            // If database doesn't exist, create the database file and
-            // set the journal mode to Write-Ahead-Logging
+            // If an exception is thrown, output it to the console
             catch (Exception exception)
             {
                 Console.WriteLine("Error, exception: " + exception);

@@ -28,14 +28,13 @@
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline text-center">Assignment</h4>
                                 <select class="form-control shadow w-75 mx-auto" asp-for="Bug.Assignment" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
-                                    <option value="0">Select to re-assign</option>
                                 </select>
                                 <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row my-5">
                             <h4 class="text-decoration-underline text-center">Description</h4>
-                            <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Bug.Description)</h5>
+                            <textarea placeholder="Enter a description." rows="4" asp-for="Bug.Description" type="text" class="form-control" data-val="true" data-val-required="A description is required."></textarea>
                         </div>
                         <hr />
                         <div class="text-center">

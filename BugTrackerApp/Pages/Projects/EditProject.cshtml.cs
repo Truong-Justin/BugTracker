@@ -30,27 +30,19 @@ namespace BugTrackerApp.Pages.Projects
             return Page();
         }
 
+        // Populate the form fields with the attributes of the selected
+        // bug the user wants to update.
+        // When the user enters new data into the form,
+        // the bug record is updated with new values.
         public IActionResult OnPost(int id, string projectTitle, string description, string priority, int projectManagerId)
         {
-            // Try to update the project record with user given values,
-            // If an exception occurs default back to the original record values
-            try
-            {
-                projectTitle = Project.ProjectTitle;
-                description = Project.Description;
-                priority = Project.Priority;
-                projectManagerId = Project.ProjectManagerId;
+            projectTitle = Project.ProjectTitle;
+            description = Project.Description;
+            priority = Project.Priority;
+            projectManagerId = Project.ProjectManagerId;
 
-                _entityDataAccess.EditEntity(id, projectTitle, description, priority, projectManagerId, Project);
-                return RedirectToPage("./ProjectIndex");
-            }
-
-            catch (Exception exception)
-            {
-                Project = _entityDataAccess.ViewEntity(id, Project);
-                _entityDataAccess.EditEntity(Project.ProjectId, Project.ProjectTitle, Project.Description, Project.Priority, Project.ProjectManagerId, Project);
-                return RedirectToPage("./ProjectIndex");
-            }
+            _entityDataAccess.EditEntity(id, projectTitle, description, priority, projectManagerId, Project);
+            return RedirectToPage("./ProjectIndex");
         }
     }
 }

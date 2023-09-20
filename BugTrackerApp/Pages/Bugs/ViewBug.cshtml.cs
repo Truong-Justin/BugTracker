@@ -16,8 +16,10 @@ namespace BugTrackerApp.Pages
         }
 
              
-        // Data from the selected bug is saved within the bug object
-        // and used to output information to user on GET request.
+        // A specific bug record is retrieved from the
+        // Bugs table, and that bug record's project id
+        // is used to retrieve the project the bug
+        // belongs to.
         public void OnGet(int id)
         {
             Bug = _entityDataAccess.ViewEntity(id, Bug);

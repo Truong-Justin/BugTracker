@@ -18,7 +18,11 @@ namespace BugTrackerApp.Pages.Projects
             _peopleDataAccess = peopleDataAccess;
         }
 
-
+        // A specific project record is retrieved
+        // from the Projects table, and that project
+        // record's project manager id is used to
+        // retrieve the project manager that is in
+        // charge of that project.
         public void OnGet(int id)
         {
             Project = _entityDataAccess.ViewEntity(id, Project);
