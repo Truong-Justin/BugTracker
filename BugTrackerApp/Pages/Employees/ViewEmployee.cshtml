@@ -21,7 +21,7 @@
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Project Assigned-To</h4>
-                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
+                        <a asp-page="Projects/ViewProject" asp-route-id="@Model.Project.ProjectId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5></a>
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Hire Date</h4>
@@ -75,9 +75,7 @@
                         <div class="col">
                             <div class="form-outline">
                                 <h3 class="text-decoration-underline">Project Assigned-To</h3>
-                                <form method="post" asp-page-handler="View" asp-route-id="@Model.Project.ProjectId">
-                                    <a asp-page="/Projects/ViewProject" asp-route-id="@Model.Project.ProjectId"><h4 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h4></a>
-                                </form>
+                                <a asp-page="/Projects/ViewProject" asp-route-id="@Model.Project.ProjectId"><h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5></a>
                             </div>
                         </div>
                         <div class="col">

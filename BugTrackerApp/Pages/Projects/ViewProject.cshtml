@@ -22,7 +22,7 @@
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Project Manager</h4>
-                        <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                        <a asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5></a>
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Start Date</h4>
@@ -74,7 +74,7 @@
                         <div class="col">
                             <div class="form-outline">
                                 <h3 class="text-decoration-underline">Project Manager</h3>
-                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                                <a asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId"><h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5></a>
                             </div>
                         </div>
                         <div class="col">
