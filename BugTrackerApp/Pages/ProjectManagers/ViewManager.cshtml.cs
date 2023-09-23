@@ -9,6 +9,7 @@ namespace BugTrackerApp.Pages.ProjectManagers
     {
         public readonly PeopleDataAccess _peopleDataAccess;
         public required ProjectManager ProjectManager { get; set; }
+        public IList<Project> ProjectManagerProjects { get; set; }
 
         public ViewManagerModel(PeopleDataAccess peopleDataAccess)
         {
@@ -18,6 +19,7 @@ namespace BugTrackerApp.Pages.ProjectManagers
         public void OnGet(int id)
         {
             ProjectManager = _peopleDataAccess.ViewPerson(id, ProjectManager);
+            ProjectManagerProjects = _peopleDataAccess.GetAllProjectsForManager(ProjectManager.ProjectManagerId);
         }
 
         public ActionResult OnPost(int id)

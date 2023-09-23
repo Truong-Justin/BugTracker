@@ -18,7 +18,7 @@ namespace BugTrackerApp.Models.People
         }
 
         // Method returns all project manager records
-        // from ProjectManagers table
+        // from ProjectManagers table.
         public IList<ProjectManager> GetAllPeople(ProjectManager projectManager)
         {
             List<ProjectManager> projectManagersList = new List<ProjectManager>();
@@ -54,8 +54,49 @@ namespace BugTrackerApp.Models.People
             return projectManagersList.AsReadOnly();
         }
 
+        // Method returns all the projects a Project Manager
+        // is currently in charge of using an Inner Join
+        // between the ProjectManagers and Projects tables.
+        public IList<Project> GetAllProjectsForManager(int projectManagerId)
+        {
+            List<Project> projectsList = new List<Project>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    @"
+                        SELECT Projects.ProjectTitle, Projects.ProjectId
+                        FROM Projects INNER JOIN ProjectManagers
+                        ON Projects.ProjectManagerId = ProjectManagers.ProjectManagerId
+                        WHERE Projects.ProjectManagerId = @projectManagerId
+                    ";
+
+                    command.Parameters.AddWithValue("@rojectManagerId", projectManagerId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Project newProject = new Project();
+
+                            newProject.ProjectTitle = Convert.ToString(reader["ProjectTitle"]);
+                            newProject.ProjectId = Convert.ToInt32(reader["ProjectId"]);
+
+                            projectsList.Add(newProject);
+                        }
+                    }
+                }
+            }
+
+            return projectsList.AsReadOnly();
+        }
+
         // Method returns all employee records
-        // from Employees table
+        // from Employees table.
         public IList<Employee> GetAllPeople(Employee employee)
         {
             List<Employee> employeesList = new List<Employee>();
@@ -93,7 +134,7 @@ namespace BugTrackerApp.Models.People
 
         // Converts the list of Project Managers to
         // a collection of SelectListItem objects used 
-        // to populate the asp-items for project manager
+        // to populate the asp-items for project manager.
         public IEnumerable<SelectListItem> GetProjectManagerNames(IList<ProjectManager> projectManagers)
         {
             return projectManagers.Select(pm => new SelectListItem { Value = pm.ProjectManagerId.ToString(), Text = pm.FirstName + " " + pm.LastName });
@@ -101,14 +142,14 @@ namespace BugTrackerApp.Models.People
 
         // Converts the list of Employees to a collection
         // of SelectListItem objects used to populate the
-        // asp-items for employee names
+        // asp-items for employee names.
         public IEnumerable<SelectListItem> GetEmployeeNames(IList<Employee> employees)
         {
             return employees.Select(employee => new SelectListItem { Value = employee.FirstName.ToString() + " " + employee.LastName, Text = employee.FirstName + " " + employee.LastName });
         }
 
         //// Method adds a new project manager record
-        //// to ProjectManagers table
+        //// to ProjectManagers table.
         public void AddPerson(string firstName, string lastName, DateOnly hireDate, string phone, string zip, string address, ProjectManager projectManager)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -136,7 +177,7 @@ namespace BugTrackerApp.Models.People
         }
 
         //// Method adds a new employee record
-        //// to Employees table 
+        //// to Employees table.
         public void AddPerson(string firstName, string lastName,  DateOnly hireDate, string phone, string zip, string address, int projectId, Employee employee)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -165,7 +206,7 @@ namespace BugTrackerApp.Models.People
         }
 
         //// Method deletes a project manager record
-        //// from ProjectManagers table using given Id
+        //// from ProjectManagers table using given Id.
         public void DeletePerson(int projectManagerId, ProjectManager projectManager)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -187,7 +228,7 @@ namespace BugTrackerApp.Models.People
         }
 
         //// Method deletes an employee record
-        //// from Employees table using given Id
+        //// from Employees table using given Id.
         public void DeletePerson(int employeeId, Employee employee)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -209,7 +250,7 @@ namespace BugTrackerApp.Models.People
         }
 
         //// Method updates the fields of a project
-        //// manager record using given Id
+        //// manager record using given Id.
         public void EditPerson(int projectManagerId, DateOnly hireDate, string firstName, string lastName, string phone, string zip, string address, ProjectManager projectManager)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -242,7 +283,7 @@ namespace BugTrackerApp.Models.People
         }
 
         //// Method updates the fields of an employee
-        //// record using given Id
+        //// record using given Id.
         public void EditPerson(int employeeId, DateOnly hireDate, string firstName, string lastName, string phone, string zip, string address, Employee employee)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -275,7 +316,7 @@ namespace BugTrackerApp.Models.People
         }
 
         // Method selects a specific project manager
-        // record using given Id
+        // record using given Id.
         public ProjectManager ViewPerson(int projectManagerId, ProjectManager ProjectManager)
         {
             ProjectManager newManager = new ProjectManager();
@@ -316,7 +357,7 @@ namespace BugTrackerApp.Models.People
         }
 
         //// Method selects a specific employee
-        //// record using given Id
+        //// record using given Id.
         public Employee ViewPerson(int employeeId, Employee employee)
         {
             Employee newEmployee = new Employee();

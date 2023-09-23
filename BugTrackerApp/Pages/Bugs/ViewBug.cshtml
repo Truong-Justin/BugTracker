@@ -14,7 +14,7 @@
                 <div class="card px-3 py-3 mx-3 my-4 shadow">
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Project</h4>
-                        <a asp-page="/Projects/ViewProject" asp-route-id="@Model.Project.ProjectId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5></a>
+                        <a class="text-center" asp-page="/Projects/ViewProject" asp-route-id="@Model.Project.ProjectId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5></a>
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Bug Id</h4>

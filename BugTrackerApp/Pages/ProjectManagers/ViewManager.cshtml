@@ -111,6 +111,11 @@
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
                     </div>
+                    <hr />
+                    @foreach (var Project in Model.ProjectManagerProjects)
+                    {
+                        <ul>@Html.DisplayFor(modelItem => Project.ProjectTitle)</ul>
+                    }
                 </div>
             </div>
         </div>

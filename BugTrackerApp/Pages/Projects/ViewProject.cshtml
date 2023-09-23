@@ -22,7 +22,7 @@
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Project Manager</h4>
-                        <a asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5></a>
+                        <a class="text-center" asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5></a>
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Start Date</h4>
@@ -104,6 +104,22 @@
                             <a class="btn btn-dark shadow" asp-page="EditProject" asp-route-id=@Model.Project.ProjectId>Edit Project</a>
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
+                    </div>
+                    <div>
+                        <ul>
+                            @foreach (var Bug in Model.Bugs)
+                            {
+                                <li><a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            @foreach (var Employee in Model.Employees)
+                            {
+                                <li><a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a></li>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
