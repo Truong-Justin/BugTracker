@@ -6,7 +6,6 @@ namespace BugTrackerApp.Models
 	{
 		[Required]
 		public int ProjectManagerId { get; set; }
-
 	}
 }
 

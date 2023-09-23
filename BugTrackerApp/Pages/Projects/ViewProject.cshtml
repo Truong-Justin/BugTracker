@@ -105,21 +105,32 @@
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
                     </div>
-                    <div>
-                        <ul>
-                            @foreach (var Bug in Model.Bugs)
-                            {
-                                <li><a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a></li>
-                            }
-                        </ul>
-                    </div>
-                    <div>
-                        <ul>
-                            @foreach (var Employee in Model.Employees)
-                            {
-                                <li><a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a></li>
-                            }
-                        </ul>
+                    <hr class="my-5"/>
+                    <div class="card bg-light shadow">
+                        <div class="row my-5 px-5">
+                            <div class="col px-5">
+                                <div class="form-outline">
+                                    <h3 class="text-decoration-underline">Project Bugs</h3>
+                                    <ol>
+                                        @foreach (var Bug in Model.Bugs)
+                                        {
+                                            <li><a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a></li>
+                                        }
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="col px-5">
+                                <div class="form-outline">
+                                    <h3 class="text-decoration-underline">Assigned Employees</h3>
+                                <ol>
+                                    @foreach (var Employee in Model.Employees)
+                                    {
+                                        <li><a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a></li>
+                                    }
+                                </ol>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

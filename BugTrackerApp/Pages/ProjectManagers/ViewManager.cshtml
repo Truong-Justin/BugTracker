@@ -111,11 +111,22 @@
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
                     </div>
-                    <hr />
-                    @foreach (var Project in Model.ProjectManagerProjects)
-                    {
-                        <ul>@Html.DisplayFor(modelItem => Project.ProjectTitle)</ul>
-                    }
+                    <hr class="my-5"/>
+                    <div class="card bg-light shadow">
+                        <div class="row my-5">
+                            <div class="col px-5">
+                                <div class="form-outline">
+                                    <h3 class="text-decoration-underline">Projects In-Charge Of</h3>
+                                    <ol>
+                                        @foreach (var Project in Model.ProjectManagerProjects)
+                                        {
+                                            <li><a asp-page="/Projects/ViewProject" asp-route-id="@Project.ProjectId">@Html.DisplayFor(modelItem => Project.ProjectTitle)</a></li>
+                                        }
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

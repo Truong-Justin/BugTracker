@@ -75,7 +75,7 @@ namespace BugTrackerApp.Models.People
                         WHERE Projects.ProjectManagerId = @projectManagerId
                     ";
 
-                    command.Parameters.AddWithValue("@rojectManagerId", projectManagerId);
+                    command.Parameters.AddWithValue("@projectManagerId", projectManagerId);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
