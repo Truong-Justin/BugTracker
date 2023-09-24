@@ -1,15 +1,16 @@
 ﻿using BugTrackerApp.Models;
+using BugTrackerApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BugTrackerApp.Pages;
 
 public class IndexModel : PageModel
 {
-    public readonly EntityDataAccess _entityDataAccess;
+    public readonly IEntityDataAccess _entityDataAccess;
     public required IList<Bug> Bugs { get; set; }
     public required Bug Bug { get; set; }
 
-    public IndexModel(EntityDataAccess entityDataAccess)
+    public IndexModel(IEntityDataAccess entityDataAccess)
     {
         _entityDataAccess = entityDataAccess;
     }

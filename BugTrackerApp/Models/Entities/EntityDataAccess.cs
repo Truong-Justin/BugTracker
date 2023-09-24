@@ -1,10 +1,11 @@
 ﻿using System.Data;
+using BugTrackerApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 
 namespace BugTrackerApp.Models
 {
-    public class EntityDataAccess
+    public class EntityDataAccess : IEntityDataAccess
     {
         private readonly string _connectionString;
 

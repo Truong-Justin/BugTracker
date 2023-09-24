@@ -1,5 +1,6 @@
 ﻿using BugTrackerApp.Models;
 using BugTrackerApp.Models.People;
+using BugTrackerApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,15 +9,15 @@ namespace BugTrackerApp.Pages.Projects
 {
 	public class EditProjectModel : PageModel
     {
-        public readonly EntityDataAccess _entityDataAccess;
-        public readonly PeopleDataAccess _peopleDataAccess;
+        public readonly IEntityDataAccess _entityDataAccess;
+        public readonly IPeopleDataAccess _peopleDataAccess;
         [BindProperty]
         public required Project Project { get; set; }
         public required ProjectManager ProjectManager { get; set; }
         public required IList<ProjectManager> ProjectManagers { get; set; }
 
 
-        public EditProjectModel(EntityDataAccess entityDataAccess, PeopleDataAccess peopleDataAccess)
+        public EditProjectModel(IEntityDataAccess entityDataAccess, IPeopleDataAccess peopleDataAccess)
         {
             _entityDataAccess = entityDataAccess;
             _peopleDataAccess = peopleDataAccess;

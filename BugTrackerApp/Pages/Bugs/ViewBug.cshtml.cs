@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BugTrackerApp.Models;
+using BugTrackerApp.Models.Entities;
 
 namespace BugTrackerApp.Pages
 {
 	public class ViewBugModel : PageModel
     {
-        public readonly EntityDataAccess _entityDataAccess;
+        public readonly IEntityDataAccess _entityDataAccess;
         public required Bug Bug { get; set; }
         public required Project Project { get; set; }
 
-        public ViewBugModel(EntityDataAccess entityDataAccess)
+        public ViewBugModel(IEntityDataAccess entityDataAccess)
         {
             _entityDataAccess = entityDataAccess;
         }

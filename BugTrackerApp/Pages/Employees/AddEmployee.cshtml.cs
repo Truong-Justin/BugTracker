@@ -1,5 +1,6 @@
 ﻿using BugTrackerApp.Models;
 using BugTrackerApp.Models.People;
+using BugTrackerApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,14 +8,14 @@ namespace BugTrackerApp.Pages.Employees
 {
     public class AddEmployeeModel : PageModel
     {
-        public readonly PeopleDataAccess _peopleDataAccess;
-        public readonly EntityDataAccess _entityDataAccess;
+        public readonly IPeopleDataAccess _peopleDataAccess;
+        public readonly IEntityDataAccess _entityDataAccess;
         [BindProperty]
         public required Employee Employee { get; set; }
         public Project Project { get; set; }
         public IList<Project> Projects { get; set; }
 
-        public AddEmployeeModel(PeopleDataAccess peopleDataAccess, EntityDataAccess entityDataAccess)
+        public AddEmployeeModel(IPeopleDataAccess peopleDataAccess, IEntityDataAccess entityDataAccess)
         {
             _peopleDataAccess = peopleDataAccess;
             _entityDataAccess = entityDataAccess;

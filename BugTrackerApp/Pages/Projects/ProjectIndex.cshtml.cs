@@ -1,15 +1,16 @@
 ﻿using BugTrackerApp.Models;
+using BugTrackerApp.Models.Entities;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BugTrackerApp.Pages
 {
 	public class ProjectIndexModel : PageModel
     {
-        public readonly EntityDataAccess _entityDataAccess;
+        public readonly IEntityDataAccess _entityDataAccess;
         public required IList<Project> Projects { get; set; }
         Project Project { get; set; }
 
-        public ProjectIndexModel(EntityDataAccess entityDataAccess)
+        public ProjectIndexModel(IEntityDataAccess entityDataAccess)
         {
             _entityDataAccess = entityDataAccess;
         }

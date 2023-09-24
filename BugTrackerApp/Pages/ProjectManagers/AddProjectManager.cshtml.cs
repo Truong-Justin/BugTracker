@@ -7,10 +7,10 @@ namespace BugTrackerApp.Pages.ProjectManagers
 {
 	public class AddProjectManagerModel : PageModel
     {
-        public readonly PeopleDataAccess _peopleDataAccess;
+        public readonly IPeopleDataAccess _peopleDataAccess;
         public required ProjectManager ProjectManager { get; set; }
 
-        public AddProjectManagerModel(PeopleDataAccess peopleDataAccess)
+        public AddProjectManagerModel(IPeopleDataAccess peopleDataAccess)
         {
             _peopleDataAccess = peopleDataAccess;
         }

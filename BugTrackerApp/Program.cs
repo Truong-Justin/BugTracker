@@ -1,6 +1,7 @@
 ﻿using System.Threading.RateLimiting;
 using BugTrackerApp.Models;
 using BugTrackerApp.Models.People;
+using BugTrackerApp.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,8 +44,8 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 
-builder.Services.AddTransient<EntityDataAccess>();
-builder.Services.AddTransient<PeopleDataAccess>();
+builder.Services.AddTransient<IEntityDataAccess, EntityDataAccess>();
+builder.Services.AddTransient<IPeopleDataAccess, PeopleDataAccess>();
 
 var app = builder.Build();
 

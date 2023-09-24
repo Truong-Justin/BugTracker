@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 namespace BugTrackerApp.Models.People
 {
 
-    public class PeopleDataAccess
+    public class PeopleDataAccess : IPeopleDataAccess
 	{
         private readonly string _connectionString;
 
