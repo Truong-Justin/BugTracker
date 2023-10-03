@@ -88,3 +88,7 @@ img {
 .menu-container {
     display: inline-flex;
 }
+
+select {
+    text-align-last: center;
+}

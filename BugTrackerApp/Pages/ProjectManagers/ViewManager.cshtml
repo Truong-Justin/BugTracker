@@ -42,6 +42,18 @@
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
                     </div>
+                    <hr />
+                    <div class="py-3 px-3 card shadow">
+                        <h1 class="text-decoration-underline text-center">Projects In Charge Of</h1>
+                        <!--All projects that this project manager is in charge of
+                            is outputted as a list of links that point to each project page-->
+                        <ol class="mt-3">
+                            @foreach (var Project in Model.ProjectManagerProjects)
+                            {
+                                <li><a asp-page="/Projects/ViewProject" asp-route-id="@Project.ProjectId">@Html.DisplayFor(modelItem => Project.ProjectTitle)</a></li>
+                            }
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,6 +129,8 @@
                             <div class="col px-5">
                                 <div class="form-outline">
                                     <h3 class="text-decoration-underline">Projects In-Charge Of</h3>
+                                    <!--All projects that this project manager is in charge of
+                                        is outputted as a list of links that point to each project page-->
                                     <ol>
                                         @foreach (var Project in Model.ProjectManagerProjects)
                                         {

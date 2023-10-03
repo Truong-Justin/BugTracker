@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
 {
-    options.Conventions.AddPageRoute("/Bugs/Index", "");
+    options.Conventions.AddPageRoute("/Projects/ProjectIndex", "");
 });
 
 // Adds a rate limiting middleware that applies rate limit of 50 requests per minute.

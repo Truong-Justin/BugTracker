@@ -13,16 +13,18 @@
                 <hr />
                 <div class="card px-3 py-3 mx-3 my-4 shadow">
                     <div class="row mt-5">
-                        <h4 class="text-decoration-underline text-center">Project</h4>
+                        <h4 class="text-decoration-underline text-center">Project Id</h4>
                         <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectId)</h5>
                     </div>
                     <div class="row mt-5">
-                        <h4 class="text-decoration-underline text-center">Bug Id</h4>
+                        <h4 class="text-decoration-underline text-center">Project Title</h4>
                         <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.Project.ProjectTitle)</h5>
                     </div>
-                    <div class="row mt-5">
+                    <div class="row mt-5 text-center">
                         <h4 class="text-decoration-underline text-center">Project Manager</h4>
-                        <a class="text-center" asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId"><h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5></a>
+                        <a class="text-center" asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId">
+                            <h5 class="fw-light text-center card-text">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                        </a>
                     </div>
                     <div class="row mt-5">
                         <h4 class="text-decoration-underline text-center">Start Date</h4>
@@ -42,6 +44,40 @@
                             <a class="btn btn-dark shadow" asp-page="EditProject" asp-route-id=@Model.Project.ProjectId>Edit Project</a>
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
+                    </div>
+                    <hr />
+                    <div class="py-3 px-3 card shadow">
+                        <h1 class="text-decoration-underline text-center">Project Bugs</h1>
+                        @if (Model.Bugs.Count == 0)
+                        {
+                            <p class="text-primary text-center">Project has no bugs.</p>
+                        }
+                        <!--All bugs that a project has are outputted as a list of links
+                            that point to each bug page-->
+                        <ol class="my-3">
+                            @foreach (var Bug in Model.Bugs)
+                            {
+                                <li>
+                                    <a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a>
+                                </li>
+                            }
+                        </ol>
+                        <h1 class="text-decoration-underline text-center mt-3">Assigned Employees</h1>
+                        @if (Model.Employees.Count == 0)
+                        {
+                            <p class="text-primary text-center">No employees assigned yet.</p>
+                        }
+                        <!--All employees that are assigned to the project are outputted
+                            as a list of links that point to each employee page-->
+                        <ol>
+                            @foreach (var Employee in Model.Employees)
+                            {
+                                <li>
+                                    <a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a>
+                                </li>
+                            }
+                        </ol>
+
                     </div>
                 </div>
             </div>
@@ -74,7 +110,9 @@
                         <div class="col">
                             <div class="form-outline">
                                 <h3 class="text-decoration-underline">Project Manager</h3>
-                                <a asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId"><h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5></a>
+                                <a asp-page="/ProjectManagers/ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId">
+                                    <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.ProjectManager.FirstName) @Html.DisplayFor(modelItem => modelItem.ProjectManager.LastName)</h5>
+                                </a>
                             </div>
                         </div>
                         <div class="col">
@@ -111,10 +149,14 @@
                             <div class="col px-5">
                                 <div class="form-outline">
                                     <h3 class="text-decoration-underline">Project Bugs</h3>
+                                    <!--All bugs that a project has are outputted as a list of links
+                                        that point to each bug page-->
                                     <ol>
                                         @foreach (var Bug in Model.Bugs)
                                         {
-                                            <li><a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a></li>
+                                            <li>
+                                                <a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a>
+                                            </li>
                                         }
                                     </ol>
                                 </div>
@@ -122,12 +164,16 @@
                             <div class="col px-5">
                                 <div class="form-outline">
                                     <h3 class="text-decoration-underline">Assigned Employees</h3>
-                                <ol>
-                                    @foreach (var Employee in Model.Employees)
-                                    {
-                                        <li><a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a></li>
-                                    }
-                                </ol>
+                                    <!--All employees that are assigned to the project are outputted
+                                        as a list of links that point to each employee page-->
+                                    <ol>
+                                        @foreach (var Employee in Model.Employees)
+                                        {
+                                            <li>
+                                                <a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a>
+                                            </li>
+                                        }
+                                    </ol>
                                 </div>
                             </div>
                         </div>

@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <h4 class="text-decoration-underline">Project Manager Assignment</h4>
+                            <h4 class="text-decoration-underline text-center">Project Manager Assignment</h4>
                             <select class="form-control shadow w-75 mx-auto" asp-for="Project.ProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="true" data-val-required="A project manager must be assigned.">
 
                             </select>
