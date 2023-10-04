@@ -126,7 +126,20 @@
                         <div class="col">
                             <div class="form-outline">
                                 <h3 class="text-decoration-underline">Priority</h3>
-                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</h5>
+                                @switch (Model.Project.Priority)
+                                {
+                                    case "Low":
+                                        <h5 class="fw-light blink" id="low-priority">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</h5>
+                                        break;
+
+                                    case "Medium":
+                                        <h5 class="fw-light blink" id="medium-priority">Medium</h5>
+                                        break;
+
+                                    case "High":
+                                        <h5 class="fw-light blink" id="high-priority">High</h5>
+                                        break;
+                                }
                             </div>
                         </div>
                         <div class="col">
@@ -153,7 +166,7 @@
                                         that point to each bug page-->
                                     <ol>
                                         @foreach (var Bug in Model.Bugs)
-                                        {
+                                    {
                                             <li>
                                                 <a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a>
                                             </li>
@@ -168,7 +181,7 @@
                                         as a list of links that point to each employee page-->
                                     <ol>
                                         @foreach (var Employee in Model.Employees)
-                                        {
+                                    {
                                             <li>
                                                 <a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a>
                                             </li>

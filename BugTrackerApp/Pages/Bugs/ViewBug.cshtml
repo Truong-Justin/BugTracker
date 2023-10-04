@@ -80,7 +80,20 @@
                         <div class="col">
                             <div class="form-outline">
                                 <h4 class="text-decoration-underline">Priority Level</h4>
-                                <h5 class="fw-light">@Html.DisplayFor(modelItem => modelItem.Bug.Priority)</h5>
+                                @switch (Model.Bug.Priority)
+                                {
+                                    case "Low":
+                                        <p class="card-text blink" id="low-priority"><small>@Html.DisplayFor(modelItem => modelItem.Bug.Priority) Priority</small></p>
+                                        break;
+
+                                    case "Medium":
+                                        <p class="card-text blink" id="medium-priority"><small>@Html.DisplayFor(modelItem => modelItem.Bug.Priority) Priority </small></p>
+                                        break;
+
+                                    case "High":
+                                        <p class="card-text blink" id="high-priority"><small>@Html.DisplayFor(modelItem => modelItem.Bug.Priority) Priority</small></p>
+                                        break;
+                                }
                             </div>
                         </div>
                     </div>

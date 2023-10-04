@@ -52,7 +52,7 @@ body {
 }
 
 img {
-    transform: scale(1);
+    transform: scale(1.3);
     transition-duration: .5s;
 }
 
@@ -81,8 +81,48 @@ img {
 }
 
 .card:hover img{
-    transform: scale(1.4);
+    transform: scale(1.5);
     transition-duration: .5s;
+}
+
+.blink {
+    animation: blink 1.5s linear 5;
+}
+
+@keyframes blink {
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    75% {
+        opacity: 0.5;
+    }
+}
+
+#low-priority {
+    display: table;
+    padding: 7px;
+    border-radius: 1em;
+    background-color: #1eff1e;
+    color: black;
+}
+
+#medium-priority {
+    display: table;
+    padding: 7px;
+    border-radius: 1em;
+    background-color: #ffdb1e;
+    color: black;
+}
+
+#high-priority {
+    display: table;
+    padding: 7px;
+    border-radius: 1em;
+    background-color: coral;
+    color: rgb(255,248,220);
 }
 
 .menu-container {
@@ -91,4 +131,12 @@ img {
 
 select {
     text-align-last: center;
+}
+
+.index-titles {
+    display: inline;
+    padding: 12px;
+    border-radius: 1em;
+    background-color: black;
+    color: white;
 }
