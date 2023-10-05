@@ -164,9 +164,13 @@
                                     <h3 class="text-decoration-underline">Project Bugs</h3>
                                     <!--All bugs that a project has are outputted as a list of links
                                         that point to each bug page-->
+                                    @if (Model.Bugs.Count == 0)
+                                    {
+                                        <p class="text-primary">Project has no bugs.</p>
+                                    }
                                     <ol>
                                         @foreach (var Bug in Model.Bugs)
-                                    {
+                                        {
                                             <li>
                                                 <a asp-page="/Bugs/ViewBug" asp-route-id="@Bug.BugId">@Html.DisplayFor(modelItem => Bug.Description)</a>
                                             </li>
@@ -179,9 +183,13 @@
                                     <h3 class="text-decoration-underline">Assigned Employees</h3>
                                     <!--All employees that are assigned to the project are outputted
                                         as a list of links that point to each employee page-->
+                                    @if (Model.Employees.Count == 0)
+                                    {
+                                        <p class="text-primary">No employees assigned yet.</p>
+                                    }
                                     <ol>
                                         @foreach (var Employee in Model.Employees)
-                                    {
+                                        {
                                             <li>
                                                 <a asp-page="/Employees/ViewEmployee" asp-route-id="@Employee.EmployeeId">@Html.DisplayFor(modelItem => Employee.FirstName) @Html.DisplayFor(modelItem => Employee.LastName)</a>
                                             </li>
