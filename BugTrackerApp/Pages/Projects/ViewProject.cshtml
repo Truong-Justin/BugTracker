@@ -129,15 +129,15 @@
                                 @switch (Model.Project.Priority)
                                 {
                                     case "Low":
-                                        <h5 class="fw-light blink" id="low-priority">@Html.DisplayFor(modelItem => modelItem.Project.Priority)</h5>
+                                        <h5 class="fw-light blink" id="low-priority">@Html.DisplayFor(modelItem => modelItem.Project.Priority) Priority</h5>
                                         break;
 
                                     case "Medium":
-                                        <h5 class="fw-light blink" id="medium-priority">Medium</h5>
+                                        <h5 class="fw-light blink" id="medium-priority">@Html.DisplayFor(modelItem => modelItem.Project.Priority) Priority</h5>
                                         break;
 
                                     case "High":
-                                        <h5 class="fw-light blink" id="high-priority">High</h5>
+                                        <h5 class="fw-light blink" id="high-priority">@Html.DisplayFor(modelItem => modelItem.Project.Priority) Priority</h5>
                                         break;
                                 }
                             </div>

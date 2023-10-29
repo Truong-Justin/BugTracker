@@ -33,10 +33,8 @@ namespace BugTrackerApp.Pages.Projects
             Project = _entityDataAccess.ViewEntity(id, Project);
             ProjectManager = _peopleDataAccess.ViewPerson(Project.ProjectManagerId, ProjectManager);
 
-
             Bugs = _entityDataAccess.GetAllBugsForProject(Project.ProjectId);
             Employees = _entityDataAccess.GetAllEmployeesForProject(Project.ProjectId);
-
         }
 
         public ActionResult OnPost(int id)

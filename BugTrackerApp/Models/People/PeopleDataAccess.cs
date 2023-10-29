@@ -251,7 +251,7 @@ namespace BugTrackerApp.Models.People
 
         //// Method updates the fields of a project
         //// manager record using given Id.
-        public void EditPerson(int projectManagerId, DateOnly hireDate, string firstName, string lastName, string phone, string zip, string address, ProjectManager projectManager)
+        public void EditPerson(int projectManagerId, string phone, string zip, string address, ProjectManager projectManager)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -262,29 +262,25 @@ namespace BugTrackerApp.Models.People
                     command.CommandText =
                     @"
                         UPDATE ProjectManager SET
-                        HireDate = @hireDate,
-                        FirstName = @firstName,
-                        LastName = @lastName,
                         Phone = @phone,
                         Zip = @zip,
                         Address = @address
                         WHERE ProjectManagerID = @id
                     ";
 
-                    command.Parameters.AddWithValue("@hireDate", hireDate);
-                    command.Parameters.AddWithValue("@firstName", firstName);
-                    command.Parameters.AddWithValue("@lastName", lastName);
                     command.Parameters.AddWithValue("@phone", phone);
                     command.Parameters.AddWithValue("@zip", zip);
                     command.Parameters.AddWithValue("@address", address);
                     command.Parameters.AddWithValue("@projectManagerId", projectManagerId);
+
+                    command.ExecuteNonQuery();
                 }
             }
         }
 
         //// Method updates the fields of an employee
         //// record using given Id.
-        public void EditPerson(int employeeId, DateOnly hireDate, string firstName, string lastName, string phone, string zip, string address, Employee employee)
+        public void EditPerson(int employeeId, string phone, string zip, string address, int projectId, Employee employee)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -295,22 +291,20 @@ namespace BugTrackerApp.Models.People
                     command.CommandText =
                     @"
                         UPDATE Employees SET
-                        HireDate = @hireDate,
-                        FirstName = @firstName,
-                        LastName = @lastName,
+                        ProjectId = @projectId,
                         Phone = @phone,
                         Zip = @zip,
                         Address = @address
                         WHERE EmployeeId = @employeeId
                     ";
 
-                    command.Parameters.AddWithValue("@hireDate", hireDate);
-                    command.Parameters.AddWithValue("@firstName", firstName);
-                    command.Parameters.AddWithValue("@lastName", lastName);
+                    command.Parameters.AddWithValue("@projectId", projectId);
                     command.Parameters.AddWithValue("@phone", phone);
                     command.Parameters.AddWithValue("@zip", zip);
                     command.Parameters.AddWithValue("@address", address);
                     command.Parameters.AddWithValue("@employeeId", employeeId);
+
+                    command.ExecuteNonQuery();
                 }
             }
         }

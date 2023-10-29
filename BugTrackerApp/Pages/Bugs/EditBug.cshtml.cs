@@ -22,6 +22,13 @@ namespace BugTrackerApp.Pages
             _peopleDataAccess = peopleDataAccess;
         }
 
+
+        // Method retrieves the selected bug record in order to populate
+        // the form fields with the selected bug's attributes.
+
+        // Then a list of all employee records is retrieved from the database
+        // and used to populate a <select> HTML element, so the user can choose
+        // to assign a different employee to work on the bug. 
         public IActionResult OnGet(int Id)
         {
             Bug = _entityDataAccess.ViewEntity(Id, Bug);
@@ -29,10 +36,10 @@ namespace BugTrackerApp.Pages
             return Page();
         }
 
-        // Populate the form fields with the attributes of the selected
-        // bug the user wants to update.
-        // When the user enters new data into the form,
-        // the bug record is updated with new values.
+        // Populates the form fields with the attributes of the selected
+        // bug and performs a full or partial update. When the
+        // user enters new data into the form field, the bug record
+        // is updated with the new values given.
         public IActionResult OnPost(int id, string description, string priority, string assignment)
         {
             description = Bug.Description;

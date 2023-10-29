@@ -47,7 +47,6 @@
                         <div class="form-group mb-4">
                             <label class="control-label">Project Assigned To</label>
                             <select class="form-control shadow" asp-for="Employee.ProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))" data-val="true" data-val-required="This bug must belong to an existing project.">
-                                <option value="0">-- Select Project --</option>
                             </select>
                             <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
                         </div>

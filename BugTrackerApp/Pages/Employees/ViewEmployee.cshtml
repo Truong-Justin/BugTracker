@@ -110,6 +110,7 @@
                     <div class="mt-5">
                         <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId">
                             <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
+                            <a class="btn btn-dark shadow" asp-page="EditEmployee" asp-route-id=@Model.Employee.EmployeeId>Edit Employee</a>
                             <button class="btn btn-danger shadow" type="submit">Delete</button>
                         </form>
                     </div>

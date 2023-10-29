@@ -18,7 +18,7 @@ namespace BugTrackerApp.Pages
         public void OnGet()
         {
             // Get all the project records from the Projects table,
-            // and truncate the descriptions and tiles so that the cards
+            // and truncate the descriptions and titles so that the cards
             // they populate in the View will all be uniform
             try
             {

@@ -129,10 +129,6 @@ img {
     display: inline-flex;
 }
 
-select {
-    text-align-last: center;
-}
-
 .index-titles {
     display: inline;
     padding: 12px;
