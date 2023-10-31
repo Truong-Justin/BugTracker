@@ -29,9 +29,9 @@ namespace BugTrackerApp.Pages
         // Then a list of all employee records is retrieved from the database
         // and used to populate a <select> HTML element, so the user can choose
         // to assign a different employee to work on the bug. 
-        public IActionResult OnGet(int Id)
+        public IActionResult OnGet(int id)
         {
-            Bug = _entityDataAccess.ViewEntity(Id, Bug);
+            Bug = _entityDataAccess.ViewEntity(id, Bug);
             Employees = _peopleDataAccess.GetAllPeople(Employee);
             return Page();
         }

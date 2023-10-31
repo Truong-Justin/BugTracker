@@ -1,0 +1,51 @@
+﻿@page
+@model BugTrackerApp.Pages.ProjectManagers.EditProjectManagerModel
+@{
+}
+
+<!--Desktop UI-->
+<div class="container d-none d-sm-none d-md-block">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Edit Project Manager</h1>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card px-5 py-5 mx-5 my-5 shadow">
+                        <div class="row my-5">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Address</h4>
+                                    <input asp-for="ProjectManager.Address" class="form-control shadow w-75" data-val="true" data-val-required="An address is required." />
+                                    <span asp-validation-for="ProjectManager.Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Zip</h4>
+                                    <input asp-for="ProjectManager.Zip" class="form-control shadow w-75" data-val="true" data-val-required="A zip code is required." />
+                                    <span asp-validation-for="ProjectManager.Zip" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-5">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <h4 class="text-decoration-underline">Phone</h4>
+                                    <input asp-for="ProjectManager.Phone" class="form-control shadow w-50" data-val="true" data-val-required="A phone number is required." />
+                                    <span asp-validation-for="ProjectManager.Phone" class="text-danger"></span>
+                                </div>
+                                </div>
+                            </div>
+                        <div class="mt-5">
+                            <a class="btn btn-secondary shadow" asp-page="/ProjectManagers/ProjectManagerIndex">Back</a>
+                            <a class="btn btn-dark shadow" asp-page="ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId">Back to Details</a>
+                            <input type="submit" value="Save" class="btn btn-primary shadow" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

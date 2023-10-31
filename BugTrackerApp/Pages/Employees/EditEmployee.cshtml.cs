@@ -30,9 +30,9 @@ namespace BugTrackerApp.Pages.Employees
         // Then a list of all project records is retrieved from the database
         // and used to populate the select HTML element, so the user can choose
         // to re-assign an employee to a different project.
-        public IActionResult OnGet(int Id)
+        public IActionResult OnGet(int id)
         {
-            Employee = _peopleDataAccess.ViewPerson(Id, Employee);
+            Employee = _peopleDataAccess.ViewPerson(id, Employee);
             Projects = _entityDataAccess.GetAllEntities(Project);
             return Page();
         }

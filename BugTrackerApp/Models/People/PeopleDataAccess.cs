@@ -261,11 +261,11 @@ namespace BugTrackerApp.Models.People
                 {
                     command.CommandText =
                     @"
-                        UPDATE ProjectManager SET
+                        UPDATE ProjectManagers SET
                         Phone = @phone,
                         Zip = @zip,
                         Address = @address
-                        WHERE ProjectManagerID = @id
+                        WHERE ProjectManagerID = @projectManagerId
                     ";
 
                     command.Parameters.AddWithValue("@phone", phone);
