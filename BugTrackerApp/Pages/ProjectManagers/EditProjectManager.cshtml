@@ -3,6 +3,49 @@
 @{
 }
 
+<!--Mobile UI-->
+<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Edit Employee</h1>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card px-3 py-3 mx-3 my-4 shadow">
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Address</h4>
+                                <input asp-for="ProjectManager.Address" class="form-control mx-auto text-center w-75" data-val="true" data-val-required="An address is required." />
+                                <span asp-validation-for="ProjectManager.Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Zip</h4>
+                                <input asp-for="ProjectManager.Zip" class="form-control mx-auto text-center w-75" data-val="true" data-val-required="A zipcode is required." />
+                                <span asp-validation-for="ProjectManager.Zip" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row my-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Phone</h4>
+                                <input asp-for="ProjectManager.Phone" class="form-control mx-auto text-center w-75" data-val="true" data-val-required="A phone number is required." />
+                                <span asp-validation-for="ProjectManager.Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a class="btn btn-secondary shadow" asp-page="ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId">Back</a>
+                            <input type="submit" value="Save" class="btn btn-primary shadow" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--Desktop UI-->
 <div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">
@@ -36,11 +79,10 @@
                                     <input asp-for="ProjectManager.Phone" class="form-control shadow w-50" data-val="true" data-val-required="A phone number is required." />
                                     <span asp-validation-for="ProjectManager.Phone" class="text-danger"></span>
                                 </div>
-                                </div>
                             </div>
+                        </div>
                         <div class="mt-5">
-                            <a class="btn btn-secondary shadow" asp-page="/ProjectManagers/ProjectManagerIndex">Back</a>
-                            <a class="btn btn-dark shadow" asp-page="ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId">Back to Details</a>
+                            <a class="btn btn-secondary shadow" asp-page="ViewManager" asp-route-id="@Model.ProjectManager.ProjectManagerId">Back</a>
                             <input type="submit" value="Save" class="btn btn-primary shadow" />
                         </div>
                     </div>

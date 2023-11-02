@@ -3,6 +3,56 @@
 @{
 }
 
+<!--Mobile UI-->
+<div class="container d-sm-none">
+    <div class="my-5 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="col-md-11 mx-auto">
+                <h1 class="mt-3 text-center text-decoration-underline">Edit Employee</h1>
+                <hr />
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card px-3 py-3 mx-3 my-4 shadow">
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Project Re-Assignment</h4>
+                                <select class="form-control mx-auto text-center w-75" asp-for="Employee.ProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))"></select>
+                                <span asp-validation-for="Employee.ProjectId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Address</h4>
+                                <input asp-for="Employee.Address" class="form-control mx-auto text-center w-75" data-val="true" data-val-required="An address is required." />
+                                <span asp-validation-for="Employee.Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Zip</h4>
+                                <input asp-for="Employee.Zip" class="form-control mx-auto text-center w-75" data-val="true" data-val-required="A zipcode is required." />
+                                <span asp-validation-for="Employee.Zip" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row my-5">
+                            <div class="col text-center mx-auto">
+                                <h4 class="text-decoration-underline">Phone</h4>
+                                <input asp-for="Employee.Phone" class="form-control mx-auto text-center w-75" data-val="true" data-val-required="A phone number is required." />
+                                <span asp-validation-for="Employee.Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a class="btn btn-secondary shadow" asp-page="ViewEmployee" asp-route-id="@Model.Employee.EmployeeId">Back</a>
+                            <input type="submit" value="Save" class="btn btn-primary shadow" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--Desktop UI-->
 <div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">
@@ -45,8 +95,7 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <a class="btn btn-secondary shadow" asp-page="/Employees/EmployeeIndex">Back</a>
-                            <a class="btn btn-dark shadow" asp-page="ViewEmployee" asp-route-id="@Model.Employee.EmployeeId">Back to Details</a>
+                            <a class="btn btn-secondary shadow" asp-page="ViewEmployee" asp-route-id="@Model.Employee.EmployeeId">Back</a>
                             <input type="submit" value="Save" class="btn btn-primary shadow" />
                         </div>
                     </div>
