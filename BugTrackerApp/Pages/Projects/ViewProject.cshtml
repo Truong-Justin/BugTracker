@@ -47,10 +47,10 @@
                     </div>
                     <hr />
                     <div class="py-3 px-3 card shadow">
-                        <h1 class="text-decoration-underline text-center">Project Bugs</h1>
+                        <h1 class="text-decoration-underline ps-3">Project Bugs</h1>
                         @if (Model.Bugs.Count == 0)
                         {
-                            <p class="text-primary text-center">Project has no bugs.</p>
+                            <p class="text-primary ps-4">Project has no bugs.</p>
                         }
                         <!--All bugs that a project has are outputted as a list of links
                             that point to each bug page-->
@@ -62,10 +62,10 @@
                                 </li>
                             }
                         </ol>
-                        <h1 class="text-decoration-underline text-center mt-3">Assigned Employees</h1>
+                        <h1 class="text-decoration-underline ps-3 mt-3">Assigned Employees</h1>
                         @if (Model.Employees.Count == 0)
                         {
-                            <p class="text-primary text-center">No employees assigned yet.</p>
+                            <p class="text-primary ps-4">No employees assigned yet.</p>
                         }
                         <!--All employees that are assigned to the project are outputted
                             as a list of links that point to each employee page-->

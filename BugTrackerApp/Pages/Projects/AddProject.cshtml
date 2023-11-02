@@ -23,7 +23,7 @@
                         </div>
                         <div class="row mt-5">
                             <h4 class="text-decoration-underline text-center">Project Manager Assignment</h4>
-                            <select class="form-control shadow w-75 mx-auto" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="true" data-val-required="A project manager must be assigned.">
+                            <select class="form-control shadow w-75 center-select-options mx-auto" asp-for="SelectedProjectManagerId" asp-items="@(Model._peopleDataAccess.GetProjectManagerNames(Model.ProjectManagers))" data-val="true" data-val-required="A project manager must be assigned.">
                             </select>
                             <span asp-validation-for="Project.ProjectManagerId" class="text-danger"></span>
                         </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="row mt-5">
                             <h4 class="text-decoration-underline text-center">Priority</h4>
-                            <select asp-for="Project.Priority" class="form-control shadow w-75 mx-auto text-center" name="Priority">
+                            <select asp-for="Project.Priority" class="form-control shadow w-75 center-select-options mx-auto" name="Priority">
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>

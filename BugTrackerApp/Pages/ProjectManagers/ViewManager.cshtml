@@ -46,6 +46,10 @@
                     <hr />
                     <div class="py-3 px-3 card shadow">
                         <h1 class="text-decoration-underline text-center">Projects In Charge Of</h1>
+                        @if(Model.ProjectManagerProjects.Count == 0)
+                        {
+                            <p class="text-primary text-center">No projects assigned</p>
+                        }
                         <!--All projects that this project manager is in charge of
                             is outputted as a list of links that point to each project page-->
                         <ol class="mt-3">
@@ -131,6 +135,10 @@
                             <div class="col px-5">
                                 <div class="form-outline">
                                     <h3 class="text-decoration-underline">Projects In-Charge Of</h3>
+                                    @if(Model.ProjectManagerProjects.Count == 0)
+                                    {
+                                        <p class="text-primary">No projects assigned</p>
+                                    }
                                     <!--All projects that this project manager is in charge of
                                         is outputted as a list of links that point to each project page-->
                                     <ol>

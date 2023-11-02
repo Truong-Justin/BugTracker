@@ -17,7 +17,7 @@
                         <div class="row mt-5">
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline text-center">Project Assignment</h4>
-                                <select class="form-control shadow w-75 mx-auto text-center" asp-for="Project.ProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))" data-val="true" data-val-required="This bug must belong to an existing project.">
+                                <select class="form-control shadow w-75 center-select-options mx-auto" asp-for="Project.ProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))" data-val="true" data-val-required="This bug must belong to an existing project.">
                                 </select>
                                 <span asp-validation-for="Project.ProjectTitle" class="text-danger"></span>
                             </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="row mt-5">
                             <h4 class="text-decoration-underline text-center">Priority</h4>
-                            <select asp-for="Bug.Priority" class="form-control shadow w-75 mx-auto" name="Priority" data-val="true" data-val-required="A priority is required.">
+                            <select asp-for="Bug.Priority" class="form-control shadow w-75 center-select-options mx-auto" name="Priority" data-val="true" data-val-required="A priority is required.">
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
@@ -43,7 +43,7 @@
                         </div>
                         <div class="row my-5">
                             <h4 class="text-decoration-underline text-center">Employee Assignment</h4>
-                            <select asp-for="SelectedEmployee" class="form-control shadow w-75 mx-auto text-center" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))" data-val="true" data-val-required="An employee must be assigned.">
+                            <select asp-for="SelectedEmployee" class="form-control shadow w-75 center-select-options mx-auto" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))" data-val="true" data-val-required="An employee must be assigned.">
                             </select>
                             <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
                         </div>

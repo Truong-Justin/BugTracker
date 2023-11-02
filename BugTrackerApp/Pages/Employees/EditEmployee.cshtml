@@ -16,7 +16,7 @@
                         <div class="row mt-5">
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline">Project Re-Assignment</h4>
-                                <select class="form-control mx-auto text-center w-75" asp-for="Employee.ProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))"></select>
+                                <select class="form-control w-75 center-select-options mx-auto" asp-for="Employee.ProjectId" asp-items="@(Model._entityDataAccess.GetProjectTitles(Model.Projects))"></select>
                                 <span asp-validation-for="Employee.ProjectId" class="text-danger"></span>
                             </div>
                         </div>
@@ -52,7 +52,6 @@
         </div>
     </div>
 </div>
-
 <!--Desktop UI-->
 <div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">

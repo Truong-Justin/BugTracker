@@ -16,7 +16,7 @@
                         <div class="row mt-5">
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline text-center">Priority Level</h4>
-                                <select asp-for="Bug.Priority" class="form-control shadow w-75 mx-auto">
+                                <select asp-for="Bug.Priority" class="form-control shadow w-75 center-select-options mx-auto">
                                     <option value="Low">Low</option>
                                     <option value="Medium">Medium</option>
                                     <option value="High">High</option>
@@ -27,7 +27,7 @@
                         <div class="row mt-5">
                             <div class="col text-center mx-auto">
                                 <h4 class="text-decoration-underline text-center">Assignment</h4>
-                                <select class="form-control shadow w-75 mx-auto" asp-for="Bug.Assignment" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
+                                <select class="form-control shadow w-75 center-select-options mx-auto" asp-for="Bug.Assignment" asp-items="@(Model._peopleDataAccess.GetEmployeeNames(Model.Employees))">
                                 </select>
                                 <span asp-validation-for="Bug.Assignment" class="text-danger"></span>
                             </div>
@@ -47,7 +47,6 @@
         </div>
     </div>
 </div>
-
 <!--Desktop UI-->
 <div class="container d-none d-sm-none d-md-block">
     <div class="my-5 mx-auto">

@@ -136,3 +136,7 @@ img {
     background-color: black;
     color: white;
 }
+
+.center-select-options {
+    text-align-last: center;
+}
